@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        'y-upper': '0px -2px 5px #e5e6eb1a',
+      }
+    },
   },
   plugins: [],
 }

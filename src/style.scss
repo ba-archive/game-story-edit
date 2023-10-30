@@ -2,83 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url("https://fonts.blue-archive.io/misans-webfont/misans-400-regular.min.css");
+@import url("https://fonts.blue-archive.io/misans-webfont/misans-600-semibold.min.css");
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+@font-face {
+  src: url("https://fonts.blue-archive.io/WixMadeforText-VariableFont_wght.ttf")
+    format("truetype");
+  font-family: "Wix Madefor Text";
+  font-display: swap;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+@font-face {
+  src: url("https://fonts.blue-archive.io/WixMadeforDisplay-VariableFont_wght.ttf")
+    format("truetype");
+  font-family: "Wix Madefor Display";
+  font-display: swap;
 }
 
-body {
+* {
+  padding: 0;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  box-sizing: border-box;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+:root {
+  --font-base: "Wix Madefor Text", "MiSans", "Microsoft YaHei", "PingFang SC",
+    -apple-system, system-ui, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans",
+    BlinkMacSystemFont, "Helvetica Neue", "Hiragino Sans GB", Arial, sans-serif;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+html,
+body {
+  background: #f7f8fa;
+  font-family: var(--font-base) !important;
 }
 
-.card {
-  padding: 2em;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.title {
+  font-weight: 700;
+  font-family: "Wix Madefor Display", var(--font-base);
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+  width: 100vw;
+  width: 100dvw;
+  height: 100vh;
+  height: 100dvh;
+  display: grid;
+  grid-template-areas:
+    "main"
+    "footer";
+  grid-template-rows: 1fr min-content;
 }

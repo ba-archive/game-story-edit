@@ -1,11 +1,13 @@
 <script setup lang="ts">
-
+import PageFooter from '@components/PageFooter.vue'
 </script>
 
 <template>
-  <a-button>test</a-button>
+  <page-footer class="footer" />
 </template>
 
-<style scoped>
-
+<style scoped lang="scss">
+.footer {
+  grid-area: footer;
+}
 </style>
