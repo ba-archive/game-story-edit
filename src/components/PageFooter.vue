@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { useGameStoryEditorStore } from '@/store/store';
 
+const store = useGameStoryEditorStore();
 </script>
 
 <template>

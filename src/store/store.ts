@@ -5,8 +5,7 @@ export const useGameStoryEditorStore = defineStore({
   persist: true,
   state: () => {
     return {
-      // prettier-ignore
-      
+      story: {},
     };
   },
   getters: {
