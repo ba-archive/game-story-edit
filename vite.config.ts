@@ -7,6 +7,10 @@ import { defineConfig } from 'vite';
 import legacy from '@vitejs/plugin-legacy';
 import vue from '@vitejs/plugin-vue';
 import tailwindConfig from './tailwind.config.js';
+import AutoImport from "unplugin-auto-import/vite";
+import { ArcoResolver } from "unplugin-vue-components/resolvers";
+import Components from "unplugin-vue-components/vite";
+import { vitePluginForArco } from '@arco-plugins/vite-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -42,6 +46,17 @@ export default defineConfig({
         '> 1%',
       ],
     }),
+    AutoImport({
+      resolvers: [ArcoResolver()],
+    }),
+    Components({
+      dirs: ["components"],
+      include: [/\.vue$/, /\.md$/],
+      resolvers: [ArcoResolver({ sideEffect: true })],
+    }),
+    vitePluginForArco({
+      style: 'css'
+    })
   ],
   build: {
     emptyOutDir: true,
