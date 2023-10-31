@@ -1,5 +1,5 @@
 export interface Character {
-
+  
 }
 
 export interface StoryEditorTextUnit {
