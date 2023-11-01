@@ -24,9 +24,15 @@
     "paths": {
       "@/*": ["src/*"],
       "@components/*": ["src/components/*"],
-      "@assets/*": ["src/assets/*"],
+      "@assets/*": ["src/assets/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "src/vite-env.d.ts"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
