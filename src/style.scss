@@ -37,6 +37,19 @@ body {
   font-family: var(--font-base) !important;
 }
 
+#app {
+  width: 100vw;
+  width: 100dvw;
+  height: 100vh;
+  height: 100dvh;
+  display: grid;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+  grid-template-rows: min-content 1fr min-content;
+}
+
 h1,
 h2,
 h3,
@@ -46,16 +59,4 @@ h6,
 .title {
   font-weight: 700;
   font-family: "Wix Madefor Display", var(--font-base);
-}
-
-#app {
-  width: 100vw;
-  width: 100dvw;
-  height: 100vh;
-  height: 100dvh;
-  display: grid;
-  grid-template-areas:
-    "main"
-    "footer";
-  grid-template-rows: 1fr min-content;
 }

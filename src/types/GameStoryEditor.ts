@@ -31,7 +31,7 @@ export interface Character {
 }
 
 export interface StoryEditorTextUnit {
-  id: TimeStamp;     // 直接用时间戳，不用自增
+  id: TimeStamp;  // 直接用时间戳，不用自增
   type:
   | "title"       // 标题
   | "place"       // 场景 banner
@@ -45,18 +45,19 @@ export interface StoryEditorTextUnit {
   bgmId: number;
   speaker?: string;
   affiliation?: string;
-  selectionGroup?: NumericRange<CreateArrayWithLengthX<1>, 99>; // 1-99 的数字
+  selectionGroups?: SelectionGroup[];
   text?: string;
   characters?: Character[];
   command?:
   | "smoke"
   | "shake"
   | "wait"
+  | "trigger"
   // 还能扩展
-  commandArgs?: (number | string)[];
+  commandArgs?: (number | string | boolean)[];
 }
 
-export interface StoryEditorSelectionUnit extends StoryEditorTextUnit {
-  selectionGroup: NumericRange<CreateArrayWithLengthX<1>, 99>;
+export interface SelectionGroup extends StoryEditorTextUnit {
+  selectionGroup: NumericRange<CreateArrayWithLengthX<1>, 99>; // 1-99 的数字
   type: "option";
 }
