@@ -8,7 +8,7 @@
       <div class="icon-back-container p-1 rounded-sm">
         <icon-left size="20" />
       </div>
-      <h1>111</h1>
+      <h1 class="m-0">111</h1>
     </div>
   </div>
 </template>
