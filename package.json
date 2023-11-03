@@ -39,7 +39,7 @@
     "mitt": "3.0.1",
     "pinia": "2.1.7",
     "postcss-plugin-px2rem": "0.8.1",
-    "postcss-preset-env": "8.5.1",
+    "postcss-preset-env": "9.3.0",
     "prettier": "3.0.3",
     "sass": "1.69.5",
     "terser": "5.22.0",
