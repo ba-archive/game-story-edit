@@ -43,18 +43,18 @@ export interface StoryEditorTextUnit {
   | "continue"    // 显示待续画面
   backgroundImage: string;
   bgmId: number;
-  speaker?: string;
-  affiliation?: string;
-  selectionGroups?: SelectionGroup[];
-  text?: string;
-  characters?: Character[];
+  speaker?: string;                   // 纯特效可以没有说话人
+  affiliation?: string;               // 没有说话人时可以没有所属
+  selectionGroups?: SelectionGroup[]; // 选项触发
+  text?: string;                      // 纯特效时可以没有文本
+  characters?: Character[];           // 纯特效时可以没有人物
   command?:
   | "smoke"
   | "shake"
   | "wait"
   | "trigger"
   // 还能扩展
-  commandArgs?: (number | string | boolean)[];
+  commandArgs?: (number | string | boolean)[];    // 命令参数
 }
 
 export interface SelectionGroup extends StoryEditorTextUnit {
