@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import PageFooter from '@components/PageFooter.vue'
 import PageHeader from './components/PageHeader.vue';
 </script>
 
@@ -7,14 +6,21 @@ import PageHeader from './components/PageHeader.vue';
   <div class="header bg-white shadow-sm">
     <page-header />
   </div>
-  <page-footer class="footer" />
+  <div class="main-view">
+    <router-view></router-view>
+  </div>
 </template>
 
 <style scoped lang="scss">
 .header {
   grid-area: header;
+  z-index: 999;
 }
-.footer {
-  grid-area: footer;
-}
+
+.main-view {
+  grid-area: main;
+
+  display: flex;
+  flex-direction: column;
+} 
 </style>

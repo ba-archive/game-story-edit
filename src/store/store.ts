@@ -5,7 +5,7 @@ export const useGameStoryEditorStore = defineStore({
   persist: true,
   state: () => {
     return {
-      story: {},
+      stories: [],
     };
   },
   getters: {

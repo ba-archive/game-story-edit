@@ -4,8 +4,19 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'Home',
-    component: () => import("../App.vue"),
+    redirect: '/edit',
+    children: [
+      {
+        path: '/edit',
+        name: 'EditorMain',
+        meta: {
+          title: "编辑剧情"
+        },
+        component: () => import("@components/EditorMain.vue"),
+      },
+    ]
   },
+
 ];
 
 const routerConvert = createRouter({

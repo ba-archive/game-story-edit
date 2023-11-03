@@ -5,7 +5,7 @@ const store = useGameStoryEditorStore();
 </script>
 
 <template>
-<a-space class="p-4 bg-white shadow-y-upper" size="large" fill align="center" style="justify-content: center;">
+<a-space class="p-4 bg-white shadow-y-upper footer__container" size="large" fill align="center" style="justify-content: center;">
   <a-space size="small">
     输出 RAW 文件
     <a-switch>
@@ -29,5 +29,4 @@ const store = useGameStoryEditorStore();
 </template>
 
 <style scoped lang="scss">
-
 </style>
