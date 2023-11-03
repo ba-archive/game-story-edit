@@ -30,7 +30,7 @@
     "@vue/eslint-config-typescript": "11.0.3",
     "@vueuse/core": "10.5.0",
     "eslint": "8.52.0",
-    "eslint-config-prettier": "8.10.0",
+    "eslint-config-prettier": "9.0.0",
     "eslint-plugin-import": "2.29.0",
     "eslint-plugin-sort-exports": "0.8.0",
     "eslint-plugin-vue": "9.18.0",
