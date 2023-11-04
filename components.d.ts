@@ -7,10 +7,8 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    APopco: typeof import('@arco-design/web-vue')['Popco']
-    APopcon: typeof import('@arco-design/web-vue')['Popcon']
-    APopconform: typeof import('@arco-design/web-vue')['Popconform']
-    AText: typeof import('@arco-design/web-vue')['Text']
+    ATool: (typeof import("@arco-design/web-vue"))["Tool"]
+    AToolt: (typeof import("@arco-design/web-vue"))["Toolt"]
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

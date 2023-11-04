@@ -1,22 +1,23 @@
-import { RouteRecordRaw, createRouter, createWebHistory } from 'vue-router';
+import { RouteRecordRaw, createRouter, createWebHistory } from "vue-router";
 
 const routes: RouteRecordRaw[] = [
   {
-    path: '/',
-    name: 'Home',
-    redirect: '/edit',
+    path: "/",
+    name: "Home",
+    meta: {
+      title: "千年游戏制作人 剧情编辑工具",
+    },
     children: [
       {
-        path: '/edit',
-        name: 'EditorMain',
+        path: "/edit/:uuid",
+        name: "EditorMain",
         meta: {
-          title: "编辑剧情"
+          title: "编辑剧情",
         },
         component: () => import("@components/EditorMain.vue"),
       },
-    ]
+    ],
   },
-
 ];
 
 const routerConvert = createRouter({

@@ -32,7 +32,8 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "src/vite-env.d.ts"
+    "src/vite-env.d.ts",
+    "node_modules/.pnpm/unplugin-auto-import@0.16.7_@vueuse+core@10.5.0/node_modules/unplugin-auto-import/auto-imports.d.ts"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

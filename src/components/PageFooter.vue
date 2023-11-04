@@ -1,32 +1,35 @@
 <script setup lang="ts">
-import { useGameStoryEditorStore } from '@/store/store';
+import {onMounted, ref, watch} from 'vue';
+import { useElementSize} from "@vueuse/core";
+// import { useGameStoryEditorStore } from '@/useStore/useStore';
 
-const store = useGameStoryEditorStore();
+// const useStore = useGameStoryEditorStore();
+
+const outputRawFile = ref(false);
+const footerElement = ref<HTMLElement | null>(null);
+
+const { height } = useElementSize(footerElement);
+
+onMounted(() => {
+  document.body.style.setProperty("--footer-height", `${height.value}px`);
+});
+
+watch(height, newHeight => {
+  document.body.style.setProperty("--footer-height", `${newHeight + 32}px`);
+});
 </script>
 
 <template>
-<a-space class="p-4 bg-white shadow-y-upper footer__container" size="large" fill align="center" style="justify-content: center;">
-  <a-space size="small">
-    输出 RAW 文件
-    <a-switch>
-      <template #checked>
-        开
-      </template>
-      <template #unchecked>
-        关
-      </template>
-    </a-switch>
+  <a-space
+    class="p-4 bg-white shadow-y-upper footer__container justify-center"
+    size="large"
+    fill
+    align="center"
+    ref="footerElement"
+  >
+    <a-checkbox v-model="outputRawFile">输出 RAW 文件</a-checkbox>
+    <a-button type="primary">保存到本地</a-button>
   </a-space>
-<a-button type="primary">保存到本地</a-button>
-<a-popconfirm type="warning" ok-text="清空">
-  <a-button type="primary" status="danger">清空当前工作区</a-button>
-  <template #content>
-    <div>你确定要清空吗？</div>
-    <div>清空的内容无法恢复。</div>
-  </template>
-</a-popconfirm>
-</a-space>
 </template>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

@@ -1,22 +1,55 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
-import { computed } from 'vue';
+import { useRouter } from "vue-router";
+import { computed } from "vue";
 
 const router = useRouter();
 
 const currentRoute = computed(() => router.currentRoute.value.meta.title);
+
+const isHomeRoute = computed(() => router.currentRoute.value.name === "Home");
+
+function handleBackToHome() {
+  router.push({ name: "Home" });
+}
 </script>
 
 <template>
   <div class="header__container p-2 pl-[24px]">
-    <div class="header__container__left flex gap-1">
-      <a-button type="text" shape="circle">
+    <div class="header__container__left flex gap-1 items-center justify-start">
+      <a-button
+        type="text"
+        shape="circle"
+        v-if="!isHomeRoute"
+        @click="handleBackToHome"
+      >
         <template #icon>
           <icon-left size="20" />
         </template>
       </a-button>
       <h1 class="m-0">{{ currentRoute }}</h1>
     </div>
+    <div
+      class="header__container__center flex gap-1 items-center justify-center"
+      v-if="false"
+    >
+      <a-tooltip mini content="撤销">
+        <a-button type="text" shape="circle">
+          <template #icon>
+            <icon-undo size="20" />
+          </template>
+        </a-button>
+      </a-tooltip>
+      <a-tooltip mini content="返回">
+        <a-button type="text" shape="circle">
+          <template #icon>
+            <icon-redo size="20" />
+          </template>
+        </a-button>
+      </a-tooltip>
+    </div>
+    <div
+      class="header__container__right flex gap-1 items-center justify-end"
+    ></div>
   </div>
 </template>
 
@@ -28,9 +61,6 @@ const currentRoute = computed(() => router.currentRoute.value.meta.title);
     width: 100%;
 
     &__left {
-      display: flex;
-      align-items: center;
-
       .icon-back-container {
         margin-right: 8px;
         cursor: pointer;
@@ -42,6 +72,7 @@ const currentRoute = computed(() => router.currentRoute.value.meta.title);
 
       h1 {
         font-size: 1.25rem;
+        line-height: 32px;
         font-weight: 600;
       }
     }
