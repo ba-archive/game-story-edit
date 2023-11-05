@@ -87,6 +87,7 @@ function handleChangeUnitType(unitType: StoryEditorTextUnit["type"]) {
 
 .footer {
   grid-area: footer;
+  z-index: 997;
 }
 
 .sidebar {

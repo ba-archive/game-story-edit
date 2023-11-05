@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       boxShadow: {
-        "y-upper": "0px -2px 5px #e5e6eb1a",
+        "y-upper": "0px 8px 20px #e5e6eb",
       },
     },
   },

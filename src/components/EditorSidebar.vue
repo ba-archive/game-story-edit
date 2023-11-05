@@ -37,7 +37,8 @@ function scrollToPosition(uuid: string) {
 
 function getDisplayText(item: SidebarStoryUnitListUnit) {
   switch (item.type) {
-    case "text" || "place" || "title" || "st":
+    case "title":
+      return item.text?.replace(";", " ") || "标题";
 
     default:
       return (
