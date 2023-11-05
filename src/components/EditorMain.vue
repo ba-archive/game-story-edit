@@ -1,37 +1,46 @@
 <template>
   <div class="main-editor__container">
-    <editor-sidebar class="sidebar shadow-sm" mode="storyEditor" :uuid="uuid"/>
+    <editor-sidebar class="sidebar shadow-sm" mode="storyEditor" :uuid="uuid" />
 
     <div class="main-editor__container__main flex flex-col gap-4">
-      <card-component-container v-for="storyUnit in story?.content" :uuid="uuid" :story-unit="storyUnit"/>
-      <a-divider/>
+      <card-component-container
+        v-for="storyUnit in story?.content"
+        :uuid="uuid"
+        :story-unit="storyUnit"
+        :key="storyUnit.id"
+      />
+      <a-divider />
       <a-button-group>
-        <a-button type="primary" long @click="addNewStoryUnit">添加新卡片</a-button>
+        <a-button type="primary" long @click="addNewStoryUnit"
+          >添加新卡片</a-button
+        >
         <a-dropdown position="br" @select="handleChangeUnitType">
           <a-button type="primary">
             <template #icon>
-              <icon-down/>
+              <icon-down />
             </template>
           </a-button>
           <template #content>
-            <a-doption v-for="item in unitType" :value="item.value">{{item.label}}</a-doption>
+            <a-doption v-for="item in unitType" :value="item.value">{{
+              item.label
+            }}</a-doption>
           </template>
         </a-dropdown>
       </a-button-group>
     </div>
 
-    <page-footer class="footer"/>
+    <editor-footer class="footer" :uuid="uuid" />
   </div>
 </template>
 
 <script setup lang="ts">
-import PageFooter from "./PageFooter.vue";
+import EditorFooter from "./EditorFooter.vue";
 import EditorSidebar from "./EditorSidebar.vue";
 import CardComponentContainer from "@components/EditorComponent/CardComponentContainer.vue";
-import {useGameStoryEditorStore} from "@/store/store";
-import {useRouter} from "vue-router";
-import {computed, ref} from "vue";
-import {StoryEditorTextUnit, unitType} from "@/types/GameStoryEditor";
+import { useGameStoryEditorStore } from "@/store/store";
+import { useRouter } from "vue-router";
+import { computed, ref } from "vue";
+import { StoryEditorTextUnit, unitType } from "@/types/GameStoryEditor";
 
 const router = useRouter();
 const useStore = useGameStoryEditorStore();

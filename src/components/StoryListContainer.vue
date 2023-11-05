@@ -4,7 +4,7 @@ import { computed, ref } from "vue";
 import EditorSidebar from "@components/EditorSidebar.vue";
 import { useRouter } from "vue-router";
 import StoryListCard from "@components/StoryListCard.vue";
-import {storyType} from "@/types/GameStoryEditor.ts";
+import { storyType } from "@/types/GameStoryEditor.ts";
 import { Message } from "@arco-design/web-vue";
 
 const router = useRouter();
@@ -88,7 +88,10 @@ function handleInputBlur(type: InputBlurType) {
           <a-space direction="vertical" size="small" fill>
             <h2 class="m-0">剧情编号</h2>
             <a-input-group>
-              <a-select v-model="selectedStoryType" :trigger-props="{ autoFitPopupMinWidth: true }">
+              <a-select
+                v-model="selectedStoryType"
+                :trigger-props="{ autoFitPopupMinWidth: true }"
+              >
                 <a-option
                   v-for="item in storyType"
                   :key="item.value"
@@ -124,9 +127,7 @@ function handleInputBlur(type: InputBlurType) {
             full
             align="center"
           >
-            <a-button @click="handleCreateNewStory(false)">
-              新建剧情
-            </a-button>
+            <a-button @click="handleCreateNewStory(false)"> 新建剧情 </a-button>
             <a-button type="primary" @click="handleCreateNewStory"
               >新建剧情并编辑</a-button
             >

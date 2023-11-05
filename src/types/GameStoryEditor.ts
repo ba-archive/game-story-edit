@@ -1,4 +1,4 @@
-import {CreateArrayWithLengthX, NumericRange, TimeStamp} from "./Helper";
+import { CreateArrayWithLengthX, NumericRange, TimeStamp } from "./Helper";
 
 export interface Story {
   uuid: string;
@@ -11,45 +11,43 @@ export interface Character {
   name: string;
   position: 1 | 2 | 3 | 4 | 5;
   face: string;
-  action: // 人物表情
-    (
-      | "heart"
-      | "respond"
-      | "music"
-      | "twinkle"
-      | "upset"
-      | "sweat"
-      | "dot"
-      | "chat"
-      | "exclaim"
-      | "surprise"
-      | "question"
-      | "shy"
-      | "angry"
-      | "steam"
-      | "sigh"
-      | "sad"
-      | "bulb"
-      | "zzz"
-      | "tear"
-      // 人物行为
-      | "appear"
-      | "disappear"
-      | "disappearLeft"
-      | "disappearRight"
-      | "appearToLeft"
-      | "appearToRight"
-      | "hophop"
-      | "greeting"
-      | "shake"
-      | "stiff"
-      | "closeup"
-      | "jump"
-      | "falldownR"
-      | "falldownL" // 区别在于第一下跌倒的方向
-      | "hide"
-      | "move"
-      )[]; // 人物移动，具体位置从 actionArgs 里取
+  emotion: // 人物表情
+  | "heart"
+    | "respond"
+    | "music"
+    | "twinkle"
+    | "upset"
+    | "sweat"
+    | "dot"
+    | "chat"
+    | "exclaim"
+    | "surprise"
+    | "question"
+    | "shy"
+    | "angry"
+    | "steam"
+    | "sigh"
+    | "sad"
+    | "bulb"
+    | "zzz"
+    | "tear";
+  action:
+    | "appear"
+    | "disappear"
+    | "disappearLeft"
+    | "disappearRight"
+    | "appearToLeft"
+    | "appearToRight"
+    | "hophop"
+    | "greeting"
+    | "shake"
+    | "stiff"
+    | "closeup"
+    | "jump"
+    | "falldownR"
+    | "falldownL" // 区别在于第一下跌倒的方向
+    | "hide"
+    | "move"; // 人物移动，具体位置从 actionArgs 里取
   actionArgs?: number | string | boolean; // 行为参数，比如 move 的参数是 1-5 的数字
 
   filter: "signal"; // 全息特效
@@ -83,8 +81,8 @@ export interface SelectionGroup extends StoryEditorTextUnit {
   type: "option";
   condition?: [
     string,
-      "Less" | "LessEqual" | "Equal" | "NotEqual" | "Greater" | "GreaterEqual",
-      string | number | boolean,
+    "Less" | "LessEqual" | "Equal" | "NotEqual" | "Greater" | "GreaterEqual",
+    string | number | boolean,
   ]; // 条件参数，可能有多个，例: ["flagName", "GreaterEqual", 1]
 }
 
@@ -94,8 +92,7 @@ export interface SidebarStoryListUnit {
   description: string;
 }
 
-export interface SidebarStoryUnitListUnit extends StoryEditorTextUnit {
-}
+export interface SidebarStoryUnitListUnit extends StoryEditorTextUnit {}
 
 export const storyType = [
   {

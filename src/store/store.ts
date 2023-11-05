@@ -51,6 +51,15 @@ export const useGameStoryEditorStore = defineStore({
       if (story) {
         story.content.push(unit);
       }
-    }
+    },
+    deleteStoryUnit(uuid: string, id: number) {
+      const story = this.stories.find(story => uuid === story.uuid);
+      if (story) {
+        const targetIndex = story.content.findIndex(unit => id === unit.id);
+        if (targetIndex > -1) {
+          story.content.splice(targetIndex, 1);
+        }
+      }
+    },
   },
 });

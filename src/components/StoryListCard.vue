@@ -31,7 +31,11 @@ const storyNumberSerial = ref(storySerialFull.value.slice(3));
 watch(
   [selectedStoryType, storyNumberSerial, storyDescription],
   ([newSelectedStoryType, newStoryNumberSerial, newStoryDescription]) => {
-    useStore.updateStoryMeta(props.uuid, newSelectedStoryType + "_" + newStoryNumberSerial, newStoryDescription);
+    useStore.updateStoryMeta(
+      props.uuid,
+      newSelectedStoryType + "_" + newStoryNumberSerial,
+      newStoryDescription
+    );
   },
   { deep: true }
 );
@@ -43,7 +47,10 @@ watch(
       <a-space direction="vertical" size="small" fill>
         <h2 class="m-0">剧情编号</h2>
         <a-input-group>
-          <a-select v-model="selectedStoryType" :trigger-props="{ autoFitPopupMinWidth: true }">
+          <a-select
+            v-model="selectedStoryType"
+            :trigger-props="{ autoFitPopupMinWidth: true }"
+          >
             <a-option
               v-for="item in storyType"
               :key="item.value"
@@ -51,7 +58,11 @@ watch(
               :label="item.label"
             />
           </a-select>
-          <a-input allow-clear :placeholder="storyNumberSerial" v-model="storyNumberSerial"/>
+          <a-input
+            allow-clear
+            :placeholder="storyNumberSerial"
+            v-model="storyNumberSerial"
+          />
         </a-input-group>
       </a-space>
       <a-space direction="vertical" size="small" fill>

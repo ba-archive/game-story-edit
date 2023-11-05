@@ -40,7 +40,9 @@ function getDisplayText(item: SidebarStoryUnitListUnit) {
     case "text" || "place" || "title" || "st":
 
     default:
-      return unitType.find((unit) => unit.value === item.type)?.label ?? item.type;
+      return (
+        unitType.find(unit => unit.value === item.type)?.label ?? item.type
+      );
   }
 }
 </script>

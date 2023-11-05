@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import {StoryEditorTextUnit, unitType} from "@/types/GameStoryEditor.ts";
-import {ref} from "vue";
+import { StoryEditorTextUnit, unitType } from "@/types/GameStoryEditor.ts";
+import { ref } from "vue";
+import { useGameStoryEditorStore } from "@/store/store.ts";
+
+const useStore = useGameStoryEditorStore();
 
 const props = defineProps<{
   uuid: string;
   storyUnit: StoryEditorTextUnit;
-}>()
+}>();
 
 const currentUnitType = ref(props.storyUnit.type);
 
@@ -14,23 +17,35 @@ const currentStoryUnit = ref(props.storyUnit);
 function handleStoryUnitTypeChange(unitType: StoryEditorTextUnit["type"]) {
   currentStoryUnit.value.type = unitType;
 }
+
+function deleteCurrentStoryUnit() {
+  useStore.deleteStoryUnit(props.uuid, props.storyUnit.id);
+}
 </script>
 
 <template>
   <a-card :bordered="false" hoverable :id="props.storyUnit.id">
     <template #title>
-        <a-select v-model="currentUnitType" style="width: 8rem;" @change="handleStoryUnitTypeChange">
-          <a-option
-            v-for="item in unitType"
-            :key="item.value"
-            :value="item.value"
-            :label="item.label"
-          />
-        </a-select>
+      <a-select
+        v-model="currentUnitType"
+        style="width: 8rem"
+        @change="handleStoryUnitTypeChange"
+      >
+        <a-option
+          v-for="item in unitType"
+          :key="item.value"
+          :value="item.value"
+          :label="item.label"
+        />
+      </a-select>
     </template>
     <template #extra>
       <a-space>
-        <a-popconfirm type="warning" ok-text="删除">
+        <a-popconfirm
+          type="warning"
+          ok-text="删除"
+          @ok="deleteCurrentStoryUnit"
+        >
           <a-button type="text" size="mini" status="danger">删除</a-button>
           <template #content>
             <div>你确定要删除吗？</div>
@@ -43,6 +58,4 @@ function handleStoryUnitTypeChange(unitType: StoryEditorTextUnit["type"]) {
   </a-card>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>
