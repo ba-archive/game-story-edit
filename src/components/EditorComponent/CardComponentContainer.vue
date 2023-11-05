@@ -2,6 +2,12 @@
 import { StoryEditorTextUnit, unitType } from "@/types/GameStoryEditor.ts";
 import { ref } from "vue";
 import { useGameStoryEditorStore } from "@/store/store.ts";
+import EffectOnlyUnit from "@components/EditorComponent/Units/EffectOnlyUnit.vue";
+import OptionUnit from "@components/EditorComponent/Units/OptionUnit.vue";
+import PlaceUnit from "./Units/PlaceUnit.vue";
+import StUnit from "./Units/StUnit.vue";
+import TextUnit from "./Units/TextUnit.vue";
+import ToBeContinueUnit from "./Units/ToBeContinueUnit.vue";
 
 const useStore = useGameStoryEditorStore();
 
