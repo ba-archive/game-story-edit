@@ -18,7 +18,6 @@
     "eqeqeq": ["error", "always"],
     "max-len": ["error", { "code": 120 }],
     "linebreak-style": ["error", "unix"],
-    "quotes": ["error", "single"],
     "semi": ["warn", "always"],
     "comma-dangle": [
       "error",
@@ -28,16 +27,6 @@
         "imports": "always-multiline",
         "exports": "always-multiline",
         "functions": "ignore"
-      }
-    ],
-    "sort-exports/sort-exports": ["error", { "sortDir": "asc" }],
-    "sort-imports": [
-      "error",
-      {
-        "ignoreCase": false,
-        "ignoreDeclarationSort": true,
-        "ignoreMemberSort": false,
-        "memberSyntaxSortOrder": ["all", "single", "multiple", "none"]
       }
     ],
     "vue/multi-word-component-names": [

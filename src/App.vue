@@ -20,6 +20,7 @@ watch(height, newHeight => {
 
 onMounted(() => {
   document.body.style.setProperty("--header-height", `${height.value}px`);
+  import("@components/EditorComponent/CardComponentContainer.vue");
 });
 </script>
 

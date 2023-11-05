@@ -7,8 +7,6 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    ATool: (typeof import("@arco-design/web-vue"))["Tool"]
-    AToolt: (typeof import("@arco-design/web-vue"))["Toolt"]
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

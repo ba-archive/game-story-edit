@@ -2,6 +2,7 @@
 import { StoryEditorTextUnit, unitType } from "@/types/GameStoryEditor.ts";
 import { ref } from "vue";
 import { useGameStoryEditorStore } from "@/store/store.ts";
+import TitleUnit from "@components/EditorComponent/Units/TitleUnit.vue";
 import EffectOnlyUnit from "@components/EditorComponent/Units/EffectOnlyUnit.vue";
 import OptionUnit from "@components/EditorComponent/Units/OptionUnit.vue";
 import PlaceUnit from "./Units/PlaceUnit.vue";
@@ -10,6 +11,37 @@ import TextUnit from "./Units/TextUnit.vue";
 import ToBeContinueUnit from "./Units/ToBeContinueUnit.vue";
 
 const useStore = useGameStoryEditorStore();
+
+const unitTypeComponentMap = [
+  {
+    type: "title",
+    component: TitleUnit,
+  },
+  {
+    type: "effectOnly",
+    component: EffectOnlyUnit,
+  },
+  {
+    type: "option",
+    component: OptionUnit,
+  },
+  {
+    type: "place",
+    component: PlaceUnit,
+  },
+  {
+    type: "st",
+    component: StUnit,
+  },
+  {
+    type: "text",
+    component: TextUnit,
+  },
+  {
+    type: "toBeContinue",
+    component: ToBeContinueUnit,
+  },
+];
 
 const props = defineProps<{
   uuid: string;
@@ -31,6 +63,15 @@ function deleteCurrentStoryUnit() {
 
 <template>
   <a-card :bordered="false" hoverable :id="props.storyUnit.id">
+    <component
+      :is="
+        unitTypeComponentMap.find(item => item.type === currentUnitType)
+          ?.component || null
+      "
+      :uuid="props.uuid"
+      :storyUnit="currentStoryUnit"
+    />
+
     <template #title>
       <a-select
         v-model="currentUnitType"
