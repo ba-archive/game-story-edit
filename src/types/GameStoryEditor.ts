@@ -69,7 +69,7 @@ export interface StoryEditorTextUnit {
     | "effectOnly" // 仅特效
     | "continue"; // 显示待续画面
   backgroundImage: string; // 背景图，不需要后缀
-  bgmId: string; // BGM，不需要后缀
+  bgm: string; // BGM，不需要后缀
   speaker?: string; // 纯特效可以没有说话人
   affiliation?: string; // 没有说话人时可以没有所属
   selectionGroups?: SelectionGroup[]; // 选项触发
