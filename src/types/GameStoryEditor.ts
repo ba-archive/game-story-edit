@@ -11,8 +11,9 @@ export interface Character {
   name: string;
   position: 1 | 2 | 3 | 4 | 5;
   face: string;
-  emotion: // 人物表情
-  | "heart"
+  // 人物表情
+  emotion?:
+    | "heart"
     | "respond"
     | "music"
     | "twinkle"
@@ -30,8 +31,10 @@ export interface Character {
     | "sad"
     | "bulb"
     | "zzz"
-    | "tear";
-  action:
+    | "tear"
+    | ""; // 无特殊表情
+  // 人物动作
+  action?:
     | "appear"
     | "disappear"
     | "disappearLeft"
@@ -47,8 +50,9 @@ export interface Character {
     | "falldownR"
     | "falldownL" // 区别在于第一下跌倒的方向
     | "hide"
-    | "move"; // 人物移动，具体位置从 actionArgs 里取
-  actionArgs?: number | string | boolean; // 行为参数，比如 move 的参数是 1-5 的数字
+    | "move" // 人物移动，具体位置从 actionArgs 里取
+    | ""; // 无特殊动作
+  actionArgs?: 1 | 2 | 3 | 4 | 5; // 行为参数，比如 move 的参数是 1-5 的数字
 
   filter: "signal"; // 全息特效
 }
@@ -64,8 +68,8 @@ export interface StoryEditorTextUnit {
     | "st" // 浮动文字
     | "effectOnly" // 仅特效
     | "continue"; // 显示待续画面
-  backgroundImage: string;
-  bgmId: number;
+  backgroundImage: string; // 背景图，不需要后缀
+  bgmId: string; // BGM，不需要后缀
   speaker?: string; // 纯特效可以没有说话人
   affiliation?: string; // 没有说话人时可以没有所属
   selectionGroups?: SelectionGroup[]; // 选项触发

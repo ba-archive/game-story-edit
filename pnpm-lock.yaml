@@ -42,7 +42,7 @@ dependencies:
     specifier: 0.8.0
     version: 0.8.0(eslint@8.52.0)
   file-saver:
-    specifier: ^2.0.5
+    specifier: 2.0.5
     version: 2.0.5
   husky:
     specifier: 8.0.3
@@ -81,7 +81,7 @@ dependencies:
     specifier: 0.25.2
     version: 0.25.2(vue@3.3.7)
   uuid:
-    specifier: ^9.0.1
+    specifier: 9.0.1
     version: 9.0.1
   vite:
     specifier: 4.5.0
@@ -104,7 +104,7 @@ devDependencies:
     specifier: 0.0.1
     version: 0.0.1(prettier@3.0.3)
   "@types/file-saver":
-    specifier: ^2.0.6
+    specifier: 2.0.6
     version: 2.0.6
   "@types/lodash-es":
     specifier: 4.17.10
@@ -113,7 +113,7 @@ devDependencies:
     specifier: 20.8.9
     version: 20.8.9
   "@types/uuid":
-    specifier: ^9.0.6
+    specifier: 9.0.6
     version: 9.0.6
   autoprefixer:
     specifier: 10.4.16
@@ -125,7 +125,7 @@ devDependencies:
     specifier: 9.18.0
     version: 9.18.0(eslint@8.52.0)
   lint-staged:
-    specifier: ^15.0.2
+    specifier: 15.0.2
     version: 15.0.2
   pinia-plugin-persistedstate:
     specifier: 3.2.0
