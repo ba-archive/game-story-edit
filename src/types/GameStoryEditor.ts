@@ -147,3 +147,7 @@ export const unitType = [
     value: "continue",
   },
 ];
+
+export const unitTypeWithoutOption = unitType.filter(
+  unit => unit.value !== "option"
+);

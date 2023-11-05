@@ -21,9 +21,11 @@
             </template>
           </a-button>
           <template #content>
-            <a-doption v-for="item in unitType" :value="item.value">{{
-              item.label
-            }}</a-doption>
+            <a-doption
+              v-for="item in unitTypeWithoutOption"
+              :value="item.value"
+              >{{ item.label }}</a-doption
+            >
           </template>
         </a-dropdown>
       </a-button-group>
@@ -40,7 +42,10 @@ import CardComponentContainer from "@components/EditorComponent/CardComponentCon
 import { useGameStoryEditorStore } from "@/store/store";
 import { useRouter } from "vue-router";
 import { computed, ref } from "vue";
-import { StoryEditorTextUnit, unitType } from "@/types/GameStoryEditor";
+import {
+  StoryEditorTextUnit,
+  unitTypeWithoutOption,
+} from "@/types/GameStoryEditor";
 
 const router = useRouter();
 const useStore = useGameStoryEditorStore();
@@ -49,7 +54,9 @@ const uuid = computed(() => router.currentRoute.value.params.uuid as string);
 
 const story = ref(useStore.getStoryByUuid(uuid.value));
 
-const selectedUnitType = ref(unitType[0].value as StoryEditorTextUnit["type"]);
+const selectedUnitType = ref(
+  unitTypeWithoutOption[0].value as StoryEditorTextUnit["type"]
+);
 
 function addNewStoryUnit() {
   useStore.addNewStoryUnit(uuid.value, {

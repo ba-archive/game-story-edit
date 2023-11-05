@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { StoryEditorTextUnit, unitType } from "@/types/GameStoryEditor.ts";
+import {
+  StoryEditorTextUnit,
+  unitTypeWithoutOption,
+} from "@/types/GameStoryEditor.ts";
 import { ref } from "vue";
 import { useGameStoryEditorStore } from "@/store/store.ts";
 import TitleUnit from "@components/EditorComponent/Units/TitleUnit.vue";
@@ -79,7 +82,7 @@ function deleteCurrentStoryUnit() {
         @change="handleStoryUnitTypeChange"
       >
         <a-option
-          v-for="item in unitType"
+          v-for="item in unitTypeWithoutOption"
           :key="item.value"
           :value="item.value"
           :label="item.label"
