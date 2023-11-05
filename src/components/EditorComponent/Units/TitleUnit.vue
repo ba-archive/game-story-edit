@@ -2,6 +2,8 @@
 import { ref, watch } from "vue";
 import { StoryEditorTextUnit } from "@/types/GameStoryEditor";
 import { useGameStoryEditorStore } from "@/store/store";
+import BackgroundImageSelector from "@components/EditorComponent/Units/BackgroundImageSelector.vue";
+import { getImageUrl } from "@/helper/image.ts";
 
 const useStore = useGameStoryEditorStore();
 
@@ -24,6 +26,9 @@ const props = withDefaults(
 
 const currentStoryUnit = ref(props.storyUnit);
 
+const subTitle = ref(currentStoryUnit.value?.text?.split(";")[0] || "");
+const mainTitle = ref(currentStoryUnit.value?.text?.split(";")[1] || "");
+
 watch(
   () => currentStoryUnit.value,
   () => {
@@ -34,26 +39,50 @@ watch(
     );
   }
 );
+
+watch(
+  () => [subTitle.value, mainTitle.value],
+  () => {
+    currentStoryUnit.value.text = `${subTitle.value};${mainTitle.value}`;
+  }
+);
+
+function handleImageSelect(imageUrl: string) {
+  currentStoryUnit.value.backgroundImage = imageUrl;
+}
 </script>
 
 <template>
-  <a-space direction="vertical" size="medium" fill>
-    <a-space direction="vertical" size="small">
-      <h1>标题内容</h1>
-      <a-input-group>
-        <a-input allow-clear placeholder="小标题内容">
-          <template #prefix>小标题</template>
-        </a-input>
-        <a-input allow-clear placeholder="大标题内容">
-          <template #prefix>大标题</template>
-        </a-input>
-      </a-input-group>
-    </a-space>
-    <a-space direction="horizontal" size="medium">
+  <a-space direction="horizontal" size="medium" fill align="start">
+    <a-space direction="vertical" size="medium">
       <a-space direction="vertical" size="small">
-        <h1>背景</h1>
+        <h1>标题内容</h1>
+        <a-input-group>
+          <a-input allow-clear placeholder="小标题内容" v-model="subTitle">
+            <template #prefix>小标题</template>
+          </a-input>
+          <a-input allow-clear placeholder="大标题内容" v-model="mainTitle">
+            <template #prefix>大标题</template>
+          </a-input>
+        </a-input-group>
       </a-space>
-      <a-image> </a-image>
+      <a-space direction="horizontal" size="medium">
+        <a-space direction="vertical" size="small">
+          <h1>背景</h1>
+          <background-image-selector @value-change="handleImageSelect" />
+        </a-space>
+      </a-space>
+    </a-space>
+    <a-space
+      v-if="0 !== currentStoryUnit.backgroundImage.length"
+      direction="vertical"
+      size="small"
+    >
+      <h1>背景预览（点击放大）</h1>
+      <a-image
+        :src="getImageUrl(currentStoryUnit.backgroundImage)"
+        height="109"
+      />
     </a-space>
   </a-space>
 </template>

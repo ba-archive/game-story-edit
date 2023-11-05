@@ -76,8 +76,12 @@ function getDisplayText(item: SidebarStoryUnitListUnit) {
         <a-tooltip
           v-for="item in list as SidebarStoryUnitListUnit[]"
           position="right"
-          :content="item.text ? item.text : '此段剧情暂无描述'"
         >
+          <template #content>
+            <span
+              v-html="item.text?.replace('\n', '<br>') || '此段剧情暂无描述'"
+            />
+          </template>
           <a-button
             type="text"
             class="!justify-start"

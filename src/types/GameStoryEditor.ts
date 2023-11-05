@@ -53,8 +53,9 @@ export interface Character {
     | "move" // 人物移动，具体位置从 actionArgs 里取
     | ""; // 无特殊动作
   actionArgs?: 1 | 2 | 3 | 4 | 5; // 行为参数，比如 move 的参数是 1-5 的数字
-
-  filter: "signal"; // 全息特效
+  filter:
+    | "signal" // 全息特效
+    | "";
 }
 
 export interface StoryEditorTextUnit {

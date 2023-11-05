@@ -1,0 +1,1509 @@
+{
+  "index": [
+    {
+      "id": 76,
+      "label": "星野",
+      "value": "hoshino"
+    },
+    {
+      "id": 42,
+      "label": "星野（泳装）",
+      "value": "hoshino_swimsuit"
+    },
+    {
+      "id": 86,
+      "label": "白子",
+      "value": "shiroko"
+    },
+    {
+      "id": 58,
+      "label": "白子（泳装）",
+      "value": "shiroko_swimsuit"
+    },
+    {
+      "id": 87,
+      "label": "白子（骑行服）",
+      "value": "shiroko_riding"
+    },
+    {
+      "id": 85,
+      "label": "绫音",
+      "value": "ayane"
+    },
+    {
+      "id": 47,
+      "label": "绫音（泳装）",
+      "value": "ayane_swimsuit"
+    },
+    {
+      "id": 83,
+      "label": "芹香",
+      "value": "serika"
+    },
+    {
+      "id": 44,
+      "label": "芹香（正月）",
+      "value": "serika_new_year"
+    },
+    {
+      "id": 78,
+      "label": "野宫",
+      "value": "nonomi"
+    },
+    {
+      "id": 40,
+      "label": "野宫（泳装）",
+      "value": "nonomi_swimsuit"
+    },
+    {
+      "id": 114,
+      "label": "一花",
+      "value": "ichika"
+    },
+    {
+      "id": 37,
+      "label": "和纱",
+      "value": "kazusa"
+    },
+    {
+      "id": 139,
+      "label": "夏",
+      "value": "natsu"
+    },
+    {
+      "id": 118,
+      "label": "好美",
+      "value": "yoshimi"
+    },
+    {
+      "id": 157,
+      "label": "小春",
+      "value": "koharu"
+    },
+    {
+      "id": 299,
+      "label": "小春（泳装）",
+      "value": "koharu_swimsuit"
+    },
+    {
+      "id": 194,
+      "label": "志美子",
+      "value": "shimiko"
+    },
+    {
+      "id": 23,
+      "label": "忧",
+      "value": "ui"
+    },
+    {
+      "id": 302,
+      "label": "忧（泳装）",
+      "value": "ui_swimsuit"
+    },
+    {
+      "id": 26,
+      "label": "日向",
+      "value": "hinata"
+    },
+    {
+      "id": 301,
+      "label": "日向（泳装）",
+      "value": "hinata_swimsuit"
+    },
+    {
+      "id": 74,
+      "label": "日富美",
+      "value": "hifumi"
+    },
+    {
+      "id": 70,
+      "label": "日富美（泳装）",
+      "value": "hifumi_swimsuit"
+    },
+    {
+      "id": 1,
+      "label": "未花",
+      "value": "mika"
+    },
+    {
+      "id": 3,
+      "label": "梓",
+      "value": "azusa"
+    },
+    {
+      "id": 228,
+      "label": "梓（泳装）",
+      "value": "azusa_swimsuit"
+    },
+    {
+      "id": 203,
+      "label": "樱子",
+      "value": "sakurako"
+    },
+    {
+      "id": 25,
+      "label": "渚",
+      "value": "nagisa"
+    },
+    {
+      "id": 10,
+      "label": "爱莉",
+      "value": "airi"
+    },
+    {
+      "id": 99,
+      "label": "玛丽",
+      "value": "mari"
+    },
+    {
+      "id": 55,
+      "label": "玛丽（体育服）",
+      "value": "mari_track"
+    },
+    {
+      "id": 142,
+      "label": "玲纱",
+      "value": "reisa"
+    },
+    {
+      "id": 79,
+      "label": "真白",
+      "value": "mashiro"
+    },
+    {
+      "id": 80,
+      "label": "真白（泳装）",
+      "value": "mashiro_swimsuit"
+    },
+    {
+      "id": 129,
+      "label": "美弥",
+      "value": "mine"
+    },
+    {
+      "id": 92,
+      "label": "花子",
+      "value": "hanako"
+    },
+    {
+      "id": 300,
+      "label": "花子（泳装）",
+      "value": "hanako_swimsuit"
+    },
+    {
+      "id": 98,
+      "label": "花江",
+      "value": "hanae"
+    },
+    {
+      "id": 178,
+      "label": "花江（圣诞节）",
+      "value": "hanae_christmas"
+    },
+    {
+      "id": 91,
+      "label": "芹娜",
+      "value": "serina"
+    },
+    {
+      "id": 153,
+      "label": "芹娜（圣诞节）",
+      "value": "serina_christmas"
+    },
+    {
+      "id": 111,
+      "label": "莲见",
+      "value": "hasumi"
+    },
+    {
+      "id": 60,
+      "label": "莲见（体育服）",
+      "value": "hasumi_track"
+    },
+    {
+      "id": 181,
+      "label": "铃美",
+      "value": "suzumi"
+    },
+    {
+      "id": 94,
+      "label": "鹤城",
+      "value": "tsurugi"
+    },
+    {
+      "id": 269,
+      "label": "鹤城（泳装）",
+      "value": "tsurugi_swimsuit"
+    },
+    {
+      "id": 39,
+      "label": "亚子",
+      "value": "ako"
+    },
+    {
+      "id": 38,
+      "label": "伊吕波",
+      "value": "iroha"
+    },
+    {
+      "id": 72,
+      "label": "伊织",
+      "value": "iori"
+    },
+    {
+      "id": 122,
+      "label": "伊织（泳装）",
+      "value": "iori_swimsuit"
+    },
+    {
+      "id": 176,
+      "label": "佳代子",
+      "value": "kayoko"
+    },
+    {
+      "id": 123,
+      "label": "佳代子（正月）",
+      "value": "kayoko_new_year"
+    },
+    {
+      "id": 117,
+      "label": "千夏",
+      "value": "chinatsu"
+    },
+    {
+      "id": 140,
+      "label": "千夏（温泉）",
+      "value": "chinatsu_hot_spring"
+    },
+    {
+      "id": 229,
+      "label": "惠",
+      "value": "megu"
+    },
+    {
+      "id": 71,
+      "label": "日奈",
+      "value": "hina"
+    },
+    {
+      "id": 121,
+      "label": "日奈（泳装）",
+      "value": "hina_swimsuit"
+    },
+    {
+      "id": 110,
+      "label": "明里",
+      "value": "akari"
+    },
+    {
+      "id": 195,
+      "label": "晴奈",
+      "value": "haruna"
+    },
+    {
+      "id": 154,
+      "label": "晴奈（体育服）",
+      "value": "haruna_track"
+    },
+    {
+      "id": 145,
+      "label": "晴奈（正月）",
+      "value": "haruna_new_year"
+    },
+    {
+      "id": 186,
+      "label": "朱莉",
+      "value": "juri"
+    },
+    {
+      "id": 97,
+      "label": "枫香",
+      "value": "fuuka"
+    },
+    {
+      "id": 49,
+      "label": "枫香（正月）",
+      "value": "fuuka_new_year"
+    },
+    {
+      "id": 73,
+      "label": "泉",
+      "value": "izumi"
+    },
+    {
+      "id": 75,
+      "label": "泉（泳装）",
+      "value": "izumi_swimsuit"
+    },
+    {
+      "id": 18,
+      "label": "濑名",
+      "value": "sena"
+    },
+    {
+      "id": 107,
+      "label": "睦月",
+      "value": "mutsuki"
+    },
+    {
+      "id": 177,
+      "label": "睦月（正月）",
+      "value": "mutsuki_new_year"
+    },
+    {
+      "id": 103,
+      "label": "纯子",
+      "value": "junko"
+    },
+    {
+      "id": 146,
+      "label": "纯子（正月）",
+      "value": "junko_new_year"
+    },
+    {
+      "id": 192,
+      "label": "遥香",
+      "value": "haruka"
+    },
+    {
+      "id": 124,
+      "label": "遥香（正月）",
+      "value": "haruka_new_year"
+    },
+    {
+      "id": 112,
+      "label": "阿露",
+      "value": "aru"
+    },
+    {
+      "id": 102,
+      "label": "阿露（正月）",
+      "value": "aru_new_year"
+    },
+    {
+      "id": 116,
+      "label": "霞",
+      "value": "kasumi"
+    },
+    {
+      "id": 52,
+      "label": "优香",
+      "value": "yuuka"
+    },
+    {
+      "id": 54,
+      "label": "优香（体育服）",
+      "value": "yuuka_track"
+    },
+    {
+      "id": 20,
+      "label": "千寻",
+      "value": "chihiro"
+    },
+    {
+      "id": 69,
+      "label": "响",
+      "value": "hibiki"
+    },
+    {
+      "id": 51,
+      "label": "响（应援团）",
+      "value": "hibiki_cheer_squad"
+    },
+    {
+      "id": 187,
+      "label": "堇",
+      "value": "sumire"
+    },
+    {
+      "id": 213,
+      "label": "妮禄",
+      "value": "neru"
+    },
+    {
+      "id": 138,
+      "label": "妮禄（兔女郎）",
+      "value": "neru_bunny_girl"
+    },
+    {
+      "id": 212,
+      "label": "小玉",
+      "value": "kodama"
+    },
+    {
+      "id": 101,
+      "label": "小雪",
+      "value": "koyuki"
+    },
+    {
+      "id": 211,
+      "label": "小鸟",
+      "value": "kotori"
+    },
+    {
+      "id": 57,
+      "label": "小鸟（应援团）",
+      "value": "kotori_cheer_squad"
+    },
+    {
+      "id": 62,
+      "label": "日鞠",
+      "value": "himari"
+    },
+    {
+      "id": 77,
+      "label": "时",
+      "value": "toki"
+    },
+    {
+      "id": 230,
+      "label": "时（兔女郎）",
+      "value": "toki_bunny_girl"
+    },
+    {
+      "id": 113,
+      "label": "明日奈",
+      "value": "asuna"
+    },
+    {
+      "id": 130,
+      "label": "明日奈（兔女郎）",
+      "value": "asuna_bunny_girl"
+    },
+    {
+      "id": 160,
+      "label": "晴",
+      "value": "hare"
+    },
+    {
+      "id": 81,
+      "label": "柚子",
+      "value": "yuzu"
+    },
+    {
+      "id": 82,
+      "label": "柚子（女仆）",
+      "value": "yuzu_maid"
+    },
+    {
+      "id": 2,
+      "label": "桃井",
+      "value": "momoi"
+    },
+    {
+      "id": 185,
+      "label": "歌原",
+      "value": "utaha"
+    },
+    {
+      "id": 53,
+      "label": "歌原（应援团）",
+      "value": "utaha_cheer_squad"
+    },
+    {
+      "id": 108,
+      "label": "爱丽丝",
+      "value": "aris"
+    },
+    {
+      "id": 152,
+      "label": "爱丽丝（女仆）",
+      "value": "aris_maid"
+    },
+    {
+      "id": 182,
+      "label": "真纪",
+      "value": "maki"
+    },
+    {
+      "id": 27,
+      "label": "绿",
+      "value": "midori"
+    },
+    {
+      "id": 158,
+      "label": "艾米",
+      "value": "eimi"
+    },
+    {
+      "id": 175,
+      "label": "花凛",
+      "value": "karin"
+    },
+    {
+      "id": 137,
+      "label": "花凛（兔女郎）",
+      "value": "karin_bunny_girl"
+    },
+    {
+      "id": 24,
+      "label": "茜",
+      "value": "akane"
+    },
+    {
+      "id": 132,
+      "label": "茜（兔女郎）",
+      "value": "akane_bunny_girl"
+    },
+    {
+      "id": 28,
+      "label": "诺亚",
+      "value": "noa"
+    },
+    {
+      "id": 179,
+      "label": "切里诺",
+      "value": "cherino"
+    },
+    {
+      "id": 141,
+      "label": "切里诺（温泉）",
+      "value": "cherino_hot_spring"
+    },
+    {
+      "id": 119,
+      "label": "和香",
+      "value": "nodoka"
+    },
+    {
+      "id": 120,
+      "label": "和香（温泉）",
+      "value": "nodoka_hot_spring"
+    },
+    {
+      "id": 166,
+      "label": "实梨",
+      "value": "minori"
+    },
+    {
+      "id": 106,
+      "label": "时雨",
+      "value": "shigure"
+    },
+    {
+      "id": 227,
+      "label": "时雨（温泉）",
+      "value": "shigure_hot_spring"
+    },
+    {
+      "id": 95,
+      "label": "智惠",
+      "value": "tomoe"
+    },
+    {
+      "id": 264,
+      "label": "梅露",
+      "value": "meru"
+    },
+    {
+      "id": 45,
+      "label": "玛丽娜",
+      "value": "marina"
+    },
+    {
+      "id": 167,
+      "label": "红叶",
+      "value": "momiji"
+    },
+    {
+      "id": 131,
+      "label": "南",
+      "value": "mina"
+    },
+    {
+      "id": 4,
+      "label": "心奈",
+      "value": "kokona"
+    },
+    {
+      "id": 128,
+      "label": "留美",
+      "value": "rumi"
+    },
+    {
+      "id": 90,
+      "label": "瞬",
+      "value": "shun"
+    },
+    {
+      "id": 109,
+      "label": "瞬（幼女）",
+      "value": "shun_small"
+    },
+    {
+      "id": 88,
+      "label": "纱绫",
+      "value": "saya"
+    },
+    {
+      "id": 89,
+      "label": "纱绫（私服）",
+      "value": "saya_casual"
+    },
+    {
+      "id": 144,
+      "label": "叶渚",
+      "value": "karin"
+    },
+    {
+      "id": 63,
+      "label": "吹雪",
+      "value": "fubuki"
+    },
+    {
+      "id": 100,
+      "label": "桐乃",
+      "value": "kirino"
+    },
+    {
+      "id": 84,
+      "label": "千世",
+      "value": "chise"
+    },
+    {
+      "id": 48,
+      "label": "千世（泳装）",
+      "value": "chise_swimsuit"
+    },
+    {
+      "id": 22,
+      "label": "弥守",
+      "value": "mimori"
+    },
+    {
+      "id": 56,
+      "label": "弥守（泳装）",
+      "value": "mimori_swimsuit"
+    },
+    {
+      "id": 32,
+      "label": "月咏",
+      "value": "tsukuyo"
+    },
+    {
+      "id": 143,
+      "label": "果穗",
+      "value": "kaho"
+    },
+    {
+      "id": 29,
+      "label": "枫",
+      "value": "kaede"
+    },
+    {
+      "id": 93,
+      "label": "椿",
+      "value": "tsubaki"
+    },
+    {
+      "id": 180,
+      "label": "泉奈",
+      "value": "izuna"
+    },
+    {
+      "id": 46,
+      "label": "泉奈（泳装）",
+      "value": "izuna_swimsuit"
+    },
+    {
+      "id": 214,
+      "label": "满",
+      "value": "michiru"
+    },
+    {
+      "id": 11,
+      "label": "若藻",
+      "value": "wakamo"
+    },
+    {
+      "id": 41,
+      "label": "若藻（泳装）",
+      "value": "wakamo_swimsuit"
+    },
+    {
+      "id": 215,
+      "label": "菲娜",
+      "value": "pina"
+    },
+    {
+      "id": 96,
+      "label": "静子",
+      "value": "shizuko"
+    },
+    {
+      "id": 50,
+      "label": "静子（泳装）",
+      "value": "shizuko_swimsuit"
+    },
+    {
+      "id": 35,
+      "label": "亚津子",
+      "value": "atsuko"
+    },
+    {
+      "id": 34,
+      "label": "日和",
+      "value": "hiyori"
+    },
+    {
+      "id": 36,
+      "label": "纱织",
+      "value": "saori"
+    },
+    {
+      "id": 33,
+      "label": "美咲",
+      "value": "misaki"
+    },
+    {
+      "id": 8,
+      "label": "咲",
+      "value": "saki"
+    },
+    {
+      "id": 279,
+      "label": "咲（泳装）",
+      "value": "saki_swimsuit"
+    },
+    {
+      "id": 6,
+      "label": "宫子",
+      "value": "miyako"
+    },
+    {
+      "id": 280,
+      "label": "宫子（泳装）",
+      "value": "miyako_swimsuit"
+    },
+    {
+      "id": 9,
+      "label": "美游",
+      "value": "miyu"
+    },
+    {
+      "id": 278,
+      "label": "美游（泳装）",
+      "value": "miyu_swimsuit"
+    },
+    {
+      "id": 7,
+      "label": "萌绘",
+      "value": "moe"
+    },
+    {
+      "id": 68,
+      "label": "初音未来",
+      "value": "hatsune"
+    },
+    {
+      "id": 316,
+      "label": "操祈",
+      "value": "shokuho"
+    },
+    {
+      "id": 317,
+      "label": "泪子",
+      "value": "ruiko"
+    },
+    {
+      "id": 315,
+      "label": "美琴",
+      "value": "mikoto"
+    },
+    {
+      "id": 126,
+      "label": "尼娅",
+      "value": "niya"
+    },
+    {
+      "id": 59,
+      "label": "芹香（泳装）",
+      "value": "serika_swimsuit"
+    },
+    {
+      "id": 43,
+      "label": "圣娅",
+      "value": "seia"
+    },
+    {
+      "id": 136,
+      "label": "伊吹",
+      "value": "ibuki"
+    },
+    {
+      "id": 155,
+      "label": "明里（正月）",
+      "value": "akari_new_year"
+    },
+    {
+      "id": 156,
+      "label": "泉（正月）",
+      "value": "izumi_new_year"
+    },
+    {
+      "id": 216,
+      "label": "皐月",
+      "value": "satsuki"
+    },
+    {
+      "id": 115,
+      "label": "真琴",
+      "value": "makoto"
+    },
+    {
+      "id": 159,
+      "label": "绘里香",
+      "value": "erika"
+    },
+    {
+      "id": 163,
+      "label": "绮良",
+      "value": "kirara"
+    },
+    {
+      "id": 161,
+      "label": "小雪（兔女郎）",
+      "value": "koyuki_bunny_girl"
+    },
+    {
+      "id": 30,
+      "label": "桃井（女仆）",
+      "value": "momoi_maid"
+    },
+    {
+      "id": 31,
+      "label": "绿（女仆）",
+      "value": "midori_maid"
+    },
+    {
+      "id": 133,
+      "label": "莉音",
+      "value": "rio"
+    },
+    {
+      "id": 309,
+      "label": "八云",
+      "value": "yakumo"
+    },
+    {
+      "id": 265,
+      "label": "梅露（温泉）",
+      "value": "meru_hot_spring"
+    },
+    {
+      "id": 308,
+      "label": "贵音",
+      "value": "takane"
+    },
+    {
+      "id": 271,
+      "label": "丽情",
+      "value": "reijo"
+    },
+    {
+      "id": 304,
+      "label": "凛华",
+      "value": "rinka"
+    },
+    {
+      "id": 61,
+      "label": "妃咲",
+      "value": "kisaki"
+    },
+    {
+      "id": 270,
+      "label": "海",
+      "value": "kai"
+    },
+    {
+      "id": 254,
+      "label": "名草",
+      "value": "nagusa"
+    },
+    {
+      "id": 127,
+      "label": "海夏",
+      "value": "umika"
+    },
+    {
+      "id": 174,
+      "label": "葛叶",
+      "value": "kazuha"
+    },
+    {
+      "id": 65,
+      "label": "妮可",
+      "value": "niko"
+    },
+    {
+      "id": 66,
+      "label": "胡桃",
+      "value": "kurumi"
+    },
+    {
+      "id": 286,
+      "label": "萌绘（泳装）",
+      "value": "moe_swimsuit"
+    },
+    {
+      "id": 64,
+      "label": "雪乃",
+      "value": "yukino"
+    },
+    {
+      "id": 67,
+      "label": "音葵",
+      "value": "otogi"
+    },
+    {
+      "id": 165,
+      "label": "舞",
+      "value": "mai"
+    },
+    {
+      "id": 193,
+      "label": "诗乃",
+      "value": "shinon"
+    },
+    {
+      "id": 134,
+      "label": "兰舞",
+      "value": "rabu"
+    },
+    {
+      "id": 253,
+      "label": "晶",
+      "value": "akira"
+    },
+    {
+      "id": 202,
+      "label": "佩洛洛",
+      "value": "peroro"
+    },
+    {
+      "id": 273,
+      "label": "机器人",
+      "value": "robot"
+    },
+    {
+      "id": 249,
+      "label": "笛卡尔",
+      "value": "descartes"
+    },
+    {
+      "id": 287,
+      "label": "星野（昔日）",
+      "value": "hoshino_past"
+    },
+    {
+      "id": 288,
+      "label": "梦",
+      "value": "yume"
+    },
+    {
+      "id": 135,
+      "label": "白子？",
+      "value": "shiroko？"
+    },
+    {
+      "id": 220,
+      "label": "修女会普通成员A",
+      "value": "sisterhood_member_A"
+    },
+    {
+      "id": 219,
+      "label": "圣三一普通学生A",
+      "value": "trinity_student_A"
+    },
+    {
+      "id": 245,
+      "label": "圣女芭尔芭拉",
+      "value": "sancta_barbara"
+    },
+    {
+      "id": 232,
+      "label": "尤斯蒂娜圣徒",
+      "value": "justina"
+    },
+    {
+      "id": 303,
+      "label": "尤斯蒂娜圣徒（泳装）",
+      "value": "justina_swimsuit"
+    },
+    {
+      "id": 162,
+      "label": "正义委杂鱼酱",
+      "value": "justice_member"
+    },
+    {
+      "id": 217,
+      "label": "茶会普通成员A",
+      "value": "tea_party_member"
+    },
+    {
+      "id": 223,
+      "label": "茶会普通成员B",
+      "value": "tea_party_member_B"
+    },
+    {
+      "id": 222,
+      "label": "万魔殿普通成员A",
+      "value": "pandemonium_member_A"
+    },
+    {
+      "id": 218,
+      "label": "救急医学部普通成员A",
+      "value": "first_aid_member_A"
+    },
+    {
+      "id": 221,
+      "label": "格赫娜普通学生A",
+      "value": "gehenna_student_A"
+    },
+    {
+      "id": 191,
+      "label": "温泉开发部普通学生A",
+      "value": "value_hot_spring_member_A"
+    },
+    {
+      "id": 226,
+      "label": "风纪委员会杂鱼酱",
+      "value": "fuuki_member"
+    },
+    {
+      "id": 248,
+      "label": "千禧普通学生A",
+      "value": "value_千禧普通学生A"
+    },
+    {
+      "id": 244,
+      "label": "工程部普通学生A",
+      "value": "value_工程部普通学生A"
+    },
+    {
+      "id": 235,
+      "label": "普通工程学生1",
+      "value": "value_普通工程学生1"
+    },
+    {
+      "id": 234,
+      "label": "红冬-劳务部学生",
+      "value": "value_红冬-劳务部学生"
+    },
+    {
+      "id": 199,
+      "label": "红冬普通学生A",
+      "value": "value_红冬普通学生A"
+    },
+    {
+      "id": 173,
+      "label": "普拉娜",
+      "value": "value_普拉娜"
+    },
+    {
+      "id": 16,
+      "label": "老师",
+      "value": "value_老师"
+    },
+    {
+      "id": 104,
+      "label": "阿罗娜",
+      "value": "value_阿罗娜"
+    },
+    {
+      "id": 263,
+      "label": "山海经店员",
+      "value": "value_山海经店员"
+    },
+    {
+      "id": 204,
+      "label": "玄龙门一般学生A",
+      "value": "value_玄龙门一般学生A"
+    },
+    {
+      "id": 200,
+      "label": "女武神一般学生A",
+      "value": "value_女武神一般学生A"
+    },
+    {
+      "id": 283,
+      "label": "女武神一般学生A（泳装）",
+      "value": "value_女武神一般学生A_swimsuit"
+    },
+    {
+      "id": 231,
+      "label": "魑魅一座-部员",
+      "value": "value_魑魅一座-部员"
+    },
+    {
+      "id": 233,
+      "label": "魑魅一座-队长",
+      "value": "value_魑魅一座-队长"
+    },
+    {
+      "id": 12,
+      "label": "阿里乌斯一般学生A",
+      "value": "value_阿里乌斯一般学生A"
+    },
+    {
+      "id": 183,
+      "label": "凛",
+      "value": "value_凛"
+    },
+    {
+      "id": 276,
+      "label": "李",
+      "value": "value_李"
+    },
+    {
+      "id": 184,
+      "label": "桃香",
+      "value": "value_桃香"
+    },
+    {
+      "id": 168,
+      "label": "步美",
+      "value": "value_步美"
+    },
+    {
+      "id": 275,
+      "label": "灰音",
+      "value": "value_灰音"
+    },
+    {
+      "id": 208,
+      "label": "联邦学生会一般工作人员A",
+      "value": "value_联邦学生会一般工作人员A"
+    },
+    {
+      "id": 209,
+      "label": "联邦学生会一般工作人员B",
+      "value": "value_联邦学生会一般工作人员B"
+    },
+    {
+      "id": 17,
+      "label": "联邦学生会长",
+      "value": "value_联邦学生会长"
+    },
+    {
+      "id": 169,
+      "label": "花耶",
+      "value": "value_花耶"
+    },
+    {
+      "id": 171,
+      "label": "葵",
+      "value": "value_葵"
+    },
+    {
+      "id": 252,
+      "label": "奥德赛兔女郎成员A",
+      "value": "value_奥德赛兔女郎成员A"
+    },
+    {
+      "id": 105,
+      "label": "空",
+      "value": "value_空"
+    },
+    {
+      "id": 305,
+      "label": "KAITEN FX MK.0",
+      "value": "value_KAITEN FX MK.0"
+    },
+    {
+      "id": 189,
+      "label": "冲锋枪不良",
+      "value": "value_冲锋枪不良"
+    },
+    {
+      "id": 149,
+      "label": "寿司粉",
+      "value": "value_寿司粉"
+    },
+    {
+      "id": 150,
+      "label": "寿司红",
+      "value": "value_寿司红"
+    },
+    {
+      "id": 148,
+      "label": "寿司绿",
+      "value": "value_寿司绿"
+    },
+    {
+      "id": 151,
+      "label": "寿司黄",
+      "value": "value_寿司黄"
+    },
+    {
+      "id": 147,
+      "label": "寿司黑",
+      "value": "value_寿司黑"
+    },
+    {
+      "id": 188,
+      "label": "步枪不良",
+      "value": "value_步枪不良"
+    },
+    {
+      "id": 190,
+      "label": "重机枪不良",
+      "value": "value_重机枪不良"
+    },
+    {
+      "id": 224,
+      "label": "钢盔团成员A",
+      "value": "value_钢盔团成员A"
+    },
+    {
+      "id": 225,
+      "label": "钢盔团成员B",
+      "value": "value_钢盔团成员B"
+    },
+    {
+      "id": 310,
+      "label": "黑市组织成员A",
+      "value": "value_黑市组织成员A"
+    },
+    {
+      "id": 281,
+      "label": "假日北极熊",
+      "value": "value_假日北极熊"
+    },
+    {
+      "id": 198,
+      "label": "冲锋枪不良（泳装）",
+      "value": "value_冲锋枪不良_swimsuit"
+    },
+    {
+      "id": 260,
+      "label": "和服狗狗",
+      "value": "value_和服狗狗"
+    },
+    {
+      "id": 257,
+      "label": "和服猫猫",
+      "value": "value_和服猫猫"
+    },
+    {
+      "id": 242,
+      "label": "和服麻雀",
+      "value": "value_和服麻雀"
+    },
+    {
+      "id": 250,
+      "label": "商店老板狗狗",
+      "value": "value_商店老板狗狗"
+    },
+    {
+      "id": 255,
+      "label": "城市狗狗",
+      "value": "value_城市狗狗"
+    },
+    {
+      "id": 284,
+      "label": "头带狗狗",
+      "value": "value_头带狗狗"
+    },
+    {
+      "id": 282,
+      "label": "工人花栗鼠",
+      "value": "value_工人花栗鼠"
+    },
+    {
+      "id": 251,
+      "label": "工程师狗狗",
+      "value": "value_工程师狗狗"
+    },
+    {
+      "id": 261,
+      "label": "市民机器人",
+      "value": "value_市民机器人"
+    },
+    {
+      "id": 196,
+      "label": "店老板狗狗",
+      "value": "value_店老板狗狗"
+    },
+    {
+      "id": 285,
+      "label": "打渔小熊猫",
+      "value": "value_打渔小熊猫"
+    },
+    {
+      "id": 241,
+      "label": "料理麻雀",
+      "value": "value_料理麻雀"
+    },
+    {
+      "id": 256,
+      "label": "眼罩猫猫",
+      "value": "value_眼罩猫猫"
+    },
+    {
+      "id": 258,
+      "label": "绷带狗狗",
+      "value": "value_绷带狗狗"
+    },
+    {
+      "id": 267,
+      "label": "蝴蝶结小山雀",
+      "value": "value_蝴蝶结小山雀"
+    },
+    {
+      "id": 266,
+      "label": "贝雷帽小山雀",
+      "value": "value_贝雷帽小山雀"
+    },
+    {
+      "id": 259,
+      "label": "贝雷帽狗狗",
+      "value": "value_贝雷帽狗狗"
+    },
+    {
+      "id": 262,
+      "label": "资本机器人",
+      "value": "value_资本机器人"
+    },
+    {
+      "id": 197,
+      "label": "重机枪不良（泳装）",
+      "value": "value_重机枪不良_swimsuit"
+    },
+    {
+      "id": 268,
+      "label": "黄帽小山雀",
+      "value": "value_黄帽小山雀"
+    },
+    {
+      "id": 14,
+      "label": "黑龟组机器人A",
+      "value": "value_黑龟组机器人A"
+    },
+    {
+      "id": 239,
+      "label": "凯撒-将军",
+      "value": "value_凯撒-将军"
+    },
+    {
+      "id": 240,
+      "label": "凯撒-总裁",
+      "value": "value_凯撒-总裁"
+    },
+    {
+      "id": 15,
+      "label": "凯撒机器人A",
+      "value": "value_凯撒机器人A"
+    },
+    {
+      "id": 238,
+      "label": "凯撒特种部队成员A",
+      "value": "value_凯撒特种部队成员A"
+    },
+    {
+      "id": 201,
+      "label": "理事",
+      "value": "value_理事"
+    },
+    {
+      "id": 172,
+      "label": "理事（度假）",
+      "value": "value_理事_度假"
+    },
+    {
+      "id": 164,
+      "label": "巨匠",
+      "value": "value_巨匠"
+    },
+    {
+      "id": 205,
+      "label": "弗朗西斯",
+      "value": "value_弗朗西斯"
+    },
+    {
+      "id": 19,
+      "label": "戈尔孔达&印花釉法",
+      "value": "value_戈尔孔达&印花釉法"
+    },
+    {
+      "id": 170,
+      "label": "贝阿朵莉切",
+      "value": "value_贝阿朵莉切"
+    },
+    {
+      "id": 125,
+      "label": "黑服",
+      "value": "value_黑服"
+    },
+    {
+      "id": 298,
+      "label": "凯瑟",
+      "value": "value_凯瑟"
+    },
+    {
+      "id": 296,
+      "label": "凯赛德",
+      "value": "value_凯赛德"
+    },
+    {
+      "id": 295,
+      "label": "比纳",
+      "value": "value_比纳"
+    },
+    {
+      "id": 13,
+      "label": "神名十字机器人A",
+      "value": "value_神名十字机器人A"
+    },
+    {
+      "id": 297,
+      "label": "霍德",
+      "value": "value_霍德"
+    },
+    {
+      "id": 306,
+      "label": "白&黑",
+      "value": "value_白&黑"
+    },
+    {
+      "id": 307,
+      "label": "佩罗罗斯拉",
+      "value": "value_佩罗罗斯拉"
+    },
+    {
+      "id": 311,
+      "label": "列车乘务员A",
+      "value": "value_列车乘务员A"
+    },
+    {
+      "id": 312,
+      "label": "列车乘务员B",
+      "value": "value_列车乘务员B"
+    },
+    {
+      "id": 313,
+      "label": "列车乘务员C",
+      "value": "value_列车乘务员C"
+    },
+    {
+      "id": 314,
+      "label": "列车乘务员D",
+      "value": "value_列车乘务员D"
+    },
+    {
+      "id": 274,
+      "label": "守卫机器人",
+      "value": "value_守卫机器人"
+    },
+    {
+      "id": 247,
+      "label": "无名司祭",
+      "value": "value_无名司祭"
+    },
+    {
+      "id": 272,
+      "label": "普雷那帕特斯",
+      "value": "value_普雷那帕特斯"
+    }
+  ]
+}

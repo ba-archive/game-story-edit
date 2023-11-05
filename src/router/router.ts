@@ -5,7 +5,7 @@ const routes: RouteRecordRaw[] = [
     path: "/",
     name: "Home",
     meta: {
-      title: "千年游戏制作人 剧情编辑工具",
+      title: "剧情编辑工具",
     },
     children: [
       {
