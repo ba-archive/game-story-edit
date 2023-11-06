@@ -79,14 +79,9 @@ function deleteCurrentStoryUnit() {
       <a-select
         v-model="currentUnitType"
         style="width: 8rem"
+        :options="unitTypeWithoutOption"
         @change="handleStoryUnitTypeChange"
       >
-        <a-option
-          v-for="item in unitTypeWithoutOption"
-          :key="item.value"
-          :value="item.value"
-          :label="item.label"
-        />
       </a-select>
     </template>
     <template #extra>

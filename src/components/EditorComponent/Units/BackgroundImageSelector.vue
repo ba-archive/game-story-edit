@@ -64,6 +64,12 @@ function handleOpenWindow(url: string) {
 }
 
 getImageList();
+
+function handleImageQuickSelect(imageUrl: string) {
+  selectedImage.value = imageUrl;
+  modalVisible.value = false;
+  emit("value-change", imageUrl);
+}
 </script>
 
 <template>
@@ -112,6 +118,7 @@ getImageList();
           v-for="image in imageList"
           :key="image.md5_hash"
           @click="selectedImage = image.filename"
+          @dblclick="handleImageQuickSelect(image.filename)"
           :class="{ selected: image.filename === selectedImage }"
         >
           <img

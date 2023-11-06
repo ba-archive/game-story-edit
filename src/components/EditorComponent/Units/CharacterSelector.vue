@@ -2,6 +2,9 @@
 import { ref } from "vue";
 import axios from "axios";
 import { Message } from "@arco-design/web-vue";
+import { useGameStoryEditorStore } from "@/store/store.ts";
+
+const useStore = useGameStoryEditorStore();
 
 const modalVisible = ref(false);
 
