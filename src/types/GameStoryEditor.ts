@@ -8,6 +8,7 @@ export interface Story {
 }
 
 export interface Character {
+  uuid: string;
   name: string;
   position: 1 | 2 | 3 | 4 | 5;
   face: string;
@@ -53,7 +54,7 @@ export interface Character {
     | "move" // 人物移动，具体位置从 actionArgs 里取
     | ""; // 无特殊动作
   actionArgs?: 1 | 2 | 3 | 4 | 5; // 行为参数，比如 move 的参数是 1-5 的数字
-  filter:
+  filter?:
     | "signal" // 全息特效
     | "";
 }
@@ -153,7 +154,7 @@ export const unitTypeWithoutOption = unitType.filter(
   unit => unit.value !== "option"
 );
 
-export const characterEmotions: Array<{
+export const characterEmotionsList: Array<{
   label: Character["emotion"];
   value: Character["emotion"];
 }> = [
@@ -232,5 +233,75 @@ export const characterEmotions: Array<{
   {
     label: "tear",
     value: "tear",
+  },
+];
+
+export const characterActionsList: Array<{
+  label: string;
+  value: Character["action"];
+}> = [
+  {
+    label: "出现",
+    value: "appear",
+  },
+  {
+    label: "消失",
+    value: "disappear",
+  },
+  {
+    label: "从左侧离开",
+    value: "disappearLeft",
+  },
+  {
+    label: "从右侧离开",
+    value: "disappearRight",
+  },
+  {
+    label: "从右侧进入",
+    value: "appearToLeft",
+  },
+  {
+    label: "从左侧进入",
+    value: "appearToRight",
+  },
+  {
+    label: "跳两下",
+    value: "hophop",
+  },
+  {
+    label: "屈膝礼",
+    value: "greeting",
+  },
+  {
+    label: "摇晃",
+    value: "shake",
+  },
+  {
+    label: "颤抖",
+    value: "stiff",
+  },
+  {
+    label: "靠近",
+    value: "closeup",
+  },
+  {
+    label: "跳一下",
+    value: "jump",
+  },
+  {
+    label: "向右倒下",
+    value: "falldownR",
+  },
+  {
+    label: "向左倒下",
+    value: "falldownL",
+  },
+  {
+    label: "隐藏",
+    value: "hide",
+  },
+  {
+    label: "移动",
+    value: "move",
   },
 ];

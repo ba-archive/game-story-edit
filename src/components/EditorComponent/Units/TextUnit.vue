@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useGameStoryEditorStore } from "@/store/store.ts";
-import { StoryEditorTextUnit } from "@/types/GameStoryEditor.ts";
-import { ref } from "vue";
+import { Character, StoryEditorTextUnit } from "@/types/GameStoryEditor.ts";
+import { ref, watch } from "vue";
 import BackgroundImageSelector from "@components/EditorComponent/Units/BackgroundImageSelector.vue";
 import { getImageUrl } from "@/helper/image.ts";
 import CharacterSelector from "@components/EditorComponent/Units/CharacterSelector.vue";
@@ -30,6 +30,17 @@ const currentStoryUnit = ref(props.storyUnit);
 function handleImageSelect(imageUrl: string) {
   currentStoryUnit.value.backgroundImage = imageUrl;
 }
+
+function handleCharacterChange(characterList: Character[]) {
+  currentStoryUnit.value.characters = characterList;
+}
+
+watch(
+  () => currentStoryUnit.value,
+  newValue => {
+    useStore.updateStoryUnit(props.uuid, newValue.id, newValue);
+  }
+);
 </script>
 
 <template>
@@ -69,7 +80,11 @@ function handleImageSelect(imageUrl: string) {
 
       <a-space direction="vertical" size="small">
         <h1>舞台人物</h1>
-        <character-selector />
+        <character-selector
+          :uuid="uuid"
+          :story-unit="storyUnit"
+          @character-change="handleCharacterChange"
+        />
       </a-space>
 
       <a-space direction="vertical" size="small">
