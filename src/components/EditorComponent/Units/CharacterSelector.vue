@@ -129,7 +129,13 @@ getCharacterList();
       </a-space>
       <a-space size="medium">
         <a-button type="primary">新增人物</a-button>
-        <a-button type="text">刷新人物列表</a-button>
+        <a-tooltip content="点击刷新人物列表">
+          <a-button type="text">
+            <template #icon>
+              <icon-refresh />
+            </template>
+          </a-button>
+        </a-tooltip>
       </a-space>
     </a-space>
   </a-modal>
