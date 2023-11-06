@@ -152,3 +152,85 @@ export const unitType = [
 export const unitTypeWithoutOption = unitType.filter(
   unit => unit.value !== "option"
 );
+
+export const characterEmotions: Array<{
+  label: Character["emotion"];
+  value: Character["emotion"];
+}> = [
+  {
+    label: "heart",
+    value: "heart",
+  },
+  {
+    label: "respond",
+    value: "respond",
+  },
+  {
+    label: "music",
+    value: "music",
+  },
+  {
+    label: "twinkle",
+    value: "twinkle",
+  },
+  {
+    label: "upset",
+    value: "upset",
+  },
+  {
+    label: "sweat",
+    value: "sweat",
+  },
+  {
+    label: "dot",
+    value: "dot",
+  },
+  {
+    label: "chat",
+    value: "chat",
+  },
+  {
+    label: "exclaim",
+    value: "exclaim",
+  },
+  {
+    label: "surprise",
+    value: "surprise",
+  },
+  {
+    label: "question",
+    value: "question",
+  },
+  {
+    label: "shy",
+    value: "shy",
+  },
+  {
+    label: "angry",
+    value: "angry",
+  },
+  {
+    label: "steam",
+    value: "steam",
+  },
+  {
+    label: "sigh",
+    value: "sigh",
+  },
+  {
+    label: "sad",
+    value: "sad",
+  },
+  {
+    label: "bulb",
+    value: "bulb",
+  },
+  {
+    label: "zzz",
+    value: "zzz",
+  },
+  {
+    label: "tear",
+    value: "tear",
+  },
+];
