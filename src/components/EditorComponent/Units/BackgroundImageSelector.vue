@@ -73,14 +73,14 @@ function handleImageQuickSelect(imageUrl: string) {
 </script>
 
 <template>
-  <a-space size="small">
-    <a-button @click="modalVisible = true"> 选择图片… </a-button>
-    <a-button type="text" status="danger" @click="handleReset">
+  <a-button-group>
+    <a-button @click="modalVisible = true" long> 选择图片… </a-button>
+    <a-button status="danger" @click="handleReset">
       <template #icon>
         <icon-delete />
       </template>
     </a-button>
-  </a-space>
+  </a-button-group>
   <a-modal
     unmount-on-close
     v-model:visible="modalVisible"

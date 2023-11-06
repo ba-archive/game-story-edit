@@ -5,6 +5,7 @@ import { ref, watch } from "vue";
 import BackgroundImageSelector from "@components/EditorComponent/Units/BackgroundImageSelector.vue";
 import { getImageUrl } from "@/helper/image.ts";
 import CharacterSelector from "@components/EditorComponent/Units/CharacterSelector.vue";
+import BackgroundMusicSelector from "@components/EditorComponent/Units/BackgroundMusicSelector.vue";
 
 const useStore = useGameStoryEditorStore();
 
@@ -78,19 +79,27 @@ watch(
         </a-textarea>
       </a-space>
 
-      <a-space direction="vertical" size="small">
-        <h1>舞台人物</h1>
-        <character-selector
-          :uuid="uuid"
-          :story-unit="storyUnit"
-          @character-change="handleCharacterChange"
-        />
-      </a-space>
-
-      <a-space direction="vertical" size="small">
-        <h1>背景</h1>
-        <background-image-selector @value-change="handleImageSelect" />
-      </a-space>
+      <div class="w-full flex gap-4 justify-between">
+        <div class="flex flex-col w-full gap-2">
+          <h1>舞台人物</h1>
+          <character-selector
+            :uuid="uuid"
+            :story-unit="storyUnit"
+            @character-change="handleCharacterChange"
+          />
+        </div>
+        <div class="flex flex-col w-full gap-2">
+          <h1>背景</h1>
+          <background-image-selector @value-change="handleImageSelect" />
+        </div>
+        <div class="flex flex-col w-full gap-2">
+          <h1>背景音乐</h1>
+          <background-music-selector
+            @value-change=""
+            :current-bgm="storyUnit.bgm"
+          />
+        </div>
+      </div>
     </a-space>
 
     <a-space

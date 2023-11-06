@@ -62,7 +62,6 @@ function getCharacterList() {
     isLoading.value = false;
   });
 }
-function handleReset() {}
 
 getCharacterList();
 
@@ -106,21 +105,15 @@ watch(
 </script>
 
 <template>
-  <a-space size="small">
-    <a-button @click="modalVisible = true">选择人物…</a-button>
-    <a-button @click="handleReset" type="text" status="danger">
-      <template #icon>
-        <icon-delete />
-      </template>
-    </a-button>
-  </a-space>
+  <div class="flex gap-2 w-full flex-1">
+    <a-button @click="modalVisible = true" long>选择人物…</a-button>
+  </div>
   <a-modal
     v-model:visible="modalVisible"
     title="选择人物"
     @close="modalVisible = false"
     @cancel="modalVisible = false"
     width="auto"
-    unmount-on-close
   >
     <a-space direction="vertical" size="medium">
       <!--人物循环开始-->

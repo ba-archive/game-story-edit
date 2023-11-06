@@ -41,7 +41,7 @@ const unitTypeComponentMap = [
     component: TextUnit,
   },
   {
-    type: "toBeContinue",
+    type: "continue",
     component: ToBeContinueUnit,
   },
 ];
@@ -62,6 +62,23 @@ function handleStoryUnitTypeChange(unitType: StoryEditorTextUnit["type"]) {
 function deleteCurrentStoryUnit() {
   useStore.deleteStoryUnit(props.uuid, props.storyUnit.id);
 }
+
+function handleAddNewUnitBelow() {
+  useStore.addNewStoryUnit(
+    props.uuid,
+    {
+      id: Date.now().valueOf(),
+      type: "title",
+      backgroundImage: "",
+      bgm: "",
+      speaker: "",
+      affiliation: "",
+      text: "",
+      characters: [],
+    },
+    props.storyUnit.id
+  );
+}
 </script>
 
 <template>
@@ -78,7 +95,7 @@ function deleteCurrentStoryUnit() {
     <template #title>
       <a-select
         v-model="currentUnitType"
-        style="width: 8rem"
+        style="width: 10rem"
         :options="unitTypeWithoutOption"
         @change="handleStoryUnitTypeChange"
       >
@@ -97,7 +114,9 @@ function deleteCurrentStoryUnit() {
             <div>删除的内容无法恢复。</div>
           </template>
         </a-popconfirm>
-        <a-button type="outline" size="mini">在下方插入</a-button>
+        <a-button type="outline" size="mini" @click="handleAddNewUnitBelow"
+          >在下方插入</a-button
+        >
       </a-space>
     </template>
   </a-card>

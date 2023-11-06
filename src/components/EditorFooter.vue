@@ -48,7 +48,7 @@ function handleSaveFileRequest() {
     align="center"
     ref="footerElement"
   >
-    <a-checkbox v-model="outputRawFile">输出 RAW 文件</a-checkbox>
+    <!--    <a-checkbox v-model="outputRawFile">输出 RAW 文件</a-checkbox>-->
     <a-button type="primary" @click="handleSaveFileRequest"
       >保存到本地</a-button
     >

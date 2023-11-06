@@ -64,6 +64,7 @@ export interface StoryEditorTextUnit {
   type:
     | "title" // 标题
     | "place" // 场景 banner
+    | "bgm" // BGM
     | "text" // 文字
     | "select" // 选项触发
     | "option" // 选项
@@ -78,42 +79,27 @@ export interface StoryEditorTextUnit {
   text?: string; // 纯特效时可以没有文本
   characters?: Character[]; // 纯特效时可以没有人物
   command?:
-    | "BG_ScrollT_0.5"
-    | "BG_Filter_Red"
+    | "setFlag" // 触发 flag
+    | "manipulateFlag" // 操作 flag
+    | "clearST" // 隐藏对话框，直到下一个文本单元出现时再显示
+    | "hideAll" // 隐藏所有人物
+    | "bgShake" // 背景震动
+    | "popupFile" // 弹出图片
+    | "BG_Filter_Red" // 红色滤镜
     | "BG_Wave_F"
-    | "BG_Flash"
-    | "BG_UnderFire_R"
-    | "BG_Love_L"
-    | "BG_ScrollB_0.5"
-    | "BG_Rain_L"
-    | "BG_UnderFire"
-    | "BG_WaveShort_F"
-    | "BG_SandStorm_L"
+    | "BG_Flash" // 强光
+    | "BG_UnderFire_R" // 扫射从左到右
+    | "BG_Love_L" // 爱心背景
+    | "BG_Rain_L" // 下雨
+    | "BG_UnderFire" // 扫射从右到左
+    | "BG_SandStorm_L" // 沙尘环境
     | ""
-    | "BG_ScrollT_1.5"
-    | "BG_Shining_L"
-    | "BG_ScrollB_1.0"
-    | "BG_Love_L_BGOff"
-    | "BG_Dust_L"
-    | "BG_ScrollL_0.5"
-    | "BG_ScrollL_1.0"
-    | "BG_Ash_Black"
-    | "BG_Mist_L"
-    | "BG_Flash_Sound"
-    | "BG_ScrollL_1.5"
-    | "BG_FocusLine"
-    | "BG_ScrollR_1.5"
-    | "BG_Shining_L_BGOff"
-    | "BG_ScrollT_1.0"
-    | "BG_ScrollB_1.5"
-    | "BG_Filter_Red_BG"
-    | "BG_Ash_Red"
-    | "BG_Fireworks_L_BGOff_02"
-    | "BG_ScrollR_0.5"
-    | "BG_Snow_L"
-    | "BG_Fireworks_L_BGOff_01"
-    | "BG_ScrollR_1.0"
-    | "trigger"; // 触发命令
+    | "BG_Shining_L" // 闪闪发光
+    | "BG_Dust_L" // 爆炸烟尘
+    | "BG_Flash_Sound" // 闪光弹爆炸
+    | "BG_FocusLine" // 聚焦线
+    | "BG_Ash_Red" // 火星
+    | "BG_Snow_L"; // 下雪
   commandArgs?: (number | string | boolean)[]; // 命令参数，可能有多个，比如 trigger 的参数有 flagName，可选参数有 value
 }
 
@@ -176,7 +162,7 @@ export const unitType = [
     value: "st",
   },
   {
-    label: "仅特效",
+    label: "场景特效或指令",
     value: "effectOnly",
   },
   {
@@ -338,5 +324,103 @@ export const characterActionsList: Array<{
   {
     label: "移动",
     value: "move",
+  },
+];
+
+export const commandList = [
+  {
+    label: "设置 flag",
+    value: "setFlag",
+  },
+  {
+    label: "更改 flag 值",
+    value: "manipulateFlag",
+  },
+  {
+    label: "隐藏对话框",
+    value: "clearST",
+  },
+  {
+    label: "隐藏所有人物",
+    value: "hideAll",
+  },
+  {
+    label: "背景震动",
+    value: "bgShake",
+  },
+  {
+    label: "弹出图片",
+    value: "popupFile",
+  },
+  {
+    label: "红色滤镜",
+    value: "BG_Filter_Red",
+  },
+  {
+    label: "波纹特效",
+    value: "BG_Wave_F",
+  },
+  {
+    label: "强光",
+    value: "BG_Flash",
+  },
+  {
+    label: "扫射从左到右",
+    value: "BG_UnderFire_R",
+  },
+  {
+    label: "爱心背景",
+    value: "BG_Love_L",
+  },
+  {
+    label: "下雨",
+    value: "BG_Rain_L",
+  },
+  {
+    label: "扫射从右到左",
+    value: "BG_UnderFire",
+  },
+  {
+    label: "沙尘环境",
+    value: "BG_SandStorm_L",
+  },
+  {
+    label: "闪闪发光",
+    value: "BG_Shining_L",
+  },
+  {
+    label: "爆炸烟尘",
+    value: "BG_Dust_L",
+  },
+  {
+    label: "闪光弹爆炸",
+    value: "BG_Flash_Sound",
+  },
+  {
+    label: "聚焦线",
+    value: "BG_FocusLine",
+  },
+  {
+    label: "火星",
+    value: "BG_Ash_Red",
+  },
+  {
+    label: "下雪",
+    value: "BG_Snow_L",
+  },
+];
+
+export const flagManipulateList = [
+  {
+    label: "增加",
+    value: "add",
+  },
+  {
+    label: "减少",
+    value: "subtract",
+  },
+  {
+    label: "设置为相反值",
+    value: "setOpposite",
   },
 ];

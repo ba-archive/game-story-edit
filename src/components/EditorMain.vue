@@ -63,7 +63,7 @@ function addNewStoryUnit() {
     id: Date.now().valueOf(),
     type: selectedUnitType.value,
     backgroundImage: "",
-    bgmId: 0,
+    bgm: "",
     speaker: "",
     affiliation: "",
     text: "",

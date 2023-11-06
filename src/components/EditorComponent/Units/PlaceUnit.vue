@@ -29,7 +29,7 @@ const text = ref(currentStoryUnit.value?.text || "");
 watch(
   () => text.value,
   () => {
-    currentStoryUnit.value.text = text.value;
+    currentStoryUnit.value.text = text.value ? text.value : "placeholder";
   }
 );
 
@@ -46,9 +46,13 @@ watch(
 </script>
 
 <template>
-  <a-space direction="vertical" size="small">
+  <a-space direction="vertical" size="small" fill>
     <h1>地点</h1>
-    <a-input allow-clear placeholder="夏莱" v-model="text" />
+    <a-input
+      allow-clear
+      placeholder="地点会显示在剧情窗口左上角"
+      v-model="text"
+    />
   </a-space>
 </template>
 
