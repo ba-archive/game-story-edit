@@ -75,10 +75,11 @@ export interface StoryEditorTextUnit {
   bgm: string; // BGM，不需要后缀
   speaker?: string; // 纯特效可以没有说话人
   affiliation?: string; // 没有说话人时可以没有所属
-  selectionGroups?: SelectionGroup[]; // 选项触发
+  selectionGroups?: SelectionGroup[]; // 选项组，只有选项触发时才有
   text?: string; // 纯特效时可以没有文本
   characters?: Character[]; // 纯特效时可以没有人物
   command?:
+    | "wait" // 等待
     | "setFlag" // 触发 flag
     | "manipulateFlag" // 操作 flag
     | "clearST" // 隐藏对话框，直到下一个文本单元出现时再显示
@@ -111,6 +112,7 @@ export interface SelectionGroup extends StoryEditorTextUnit {
     "Less" | "LessEqual" | "Equal" | "NotEqual" | "Greater" | "GreaterEqual",
     string | number | boolean,
   ]; // 条件参数，可能有多个，例: ["flagName", "GreaterEqual", 1]
+  content: StoryEditorTextUnit[]; // 当满足条件时才显示具体对话内容
 }
 
 export interface SidebarStoryListUnit {
@@ -120,6 +122,41 @@ export interface SidebarStoryListUnit {
 }
 
 export interface SidebarStoryUnitListUnit extends StoryEditorTextUnit {}
+
+export const unitTypeDescription = [
+  {
+    type: "title",
+    description: "整个故事的标题。每段故事只能存在至多一个。",
+  },
+  {
+    type: "place",
+    description: "",
+  },
+  {
+    type: "text",
+    description: "",
+  },
+  {
+    type: "select",
+    description: "",
+  },
+  {
+    type: "option",
+    description: "",
+  },
+  {
+    type: "st",
+    description: "",
+  },
+  {
+    type: "effectOnly",
+    description: "",
+  },
+  {
+    type: "continue",
+    description: "",
+  },
+];
 
 export const storyType = [
   {
@@ -152,10 +189,6 @@ export const unitType = [
   {
     label: "选项触发",
     value: "select",
-  },
-  {
-    label: "选项",
-    value: "option",
   },
   {
     label: "浮动文字",
@@ -328,6 +361,10 @@ export const characterActionsList: Array<{
 ];
 
 export const commandList = [
+  {
+    label: "等待",
+    value: "wait",
+  },
   {
     label: "设置 flag",
     value: "setFlag",
