@@ -70,6 +70,14 @@ const flagManipulateParam = computed({
     currentStoryUnit.value.commandArgs[2] = newValue;
   },
 });
+
+const waitTime = computed({
+  // @ts-ignore
+  get: () => ((currentStoryUnit.value.commandArgs || [])[0] || 0) * 1,
+  set: newValue => {
+    currentStoryUnit.value.commandArgs = [newValue];
+  },
+});
 </script>
 
 <template>
@@ -120,6 +128,16 @@ const flagManipulateParam = computed({
     >
       <h1>参数</h1>
       <a-input allow-clear v-model="flagManipulateParam" style="width: 80px" />
+    </a-space>
+    <a-space
+      direction="vertical"
+      v-if="'wait' === currentStoryUnit.command"
+      size="small"
+    >
+      <h1>等待时间</h1>
+      <a-input-number :step="50" allow-clear v-model="waitTime">
+        <template #suffix>毫秒</template>
+      </a-input-number>
     </a-space>
   </a-space>
 </template>

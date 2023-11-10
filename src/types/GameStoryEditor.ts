@@ -107,12 +107,14 @@ export interface StoryEditorTextUnit {
 export interface SelectionGroup extends StoryEditorTextUnit {
   selectionGroup: NumericRange<CreateArrayWithLengthX<1>, 99>; // 1-99 的数字
   type: "option";
+  text: string; // 选项文本
   condition?: [
     string,
     "Less" | "LessEqual" | "Equal" | "NotEqual" | "Greater" | "GreaterEqual",
     string | number | boolean,
   ]; // 条件参数，可能有多个，例: ["flagName", "GreaterEqual", 1]
-  content: StoryEditorTextUnit[]; // 当满足条件时才显示具体对话内容
+  content: StoryEditorTextUnit[]; // 当满足条件时显示的对话内容
+  contentIfNot?: StoryEditorTextUnit[]; // 当不满足条件时显示的具体对话内容
 }
 
 export interface SidebarStoryListUnit {
@@ -126,19 +128,19 @@ export interface SidebarStoryUnitListUnit extends StoryEditorTextUnit {}
 export const unitTypeDescription = [
   {
     type: "title",
-    description: "整个故事的标题。每段故事只能存在至多一个。",
+    description: "故事的标题。每段故事只能存在至多一个",
   },
   {
     type: "place",
-    description: "",
+    description: "以横幅形式出现在画面左上角的地点提示",
   },
   {
     type: "text",
-    description: "",
+    description: "对话",
   },
   {
     type: "select",
-    description: "",
+    description: "选项",
   },
   {
     type: "option",
@@ -187,7 +189,7 @@ export const unitType = [
     value: "text",
   },
   {
-    label: "选项触发",
+    label: "玩家选项",
     value: "select",
   },
   {
