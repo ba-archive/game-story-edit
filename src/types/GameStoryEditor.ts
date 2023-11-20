@@ -4,6 +4,7 @@ export interface Story {
   uuid: string;
   serial: string;
   description: string;
+  tags: string[];
   content: StoryEditorTextUnit[];
 }
 

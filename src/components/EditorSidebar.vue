@@ -2,6 +2,7 @@
 import {
   SidebarStoryListUnit,
   SidebarStoryUnitListUnit,
+  StoryEditorTextUnit,
 } from "@/types/GameStoryEditor.ts";
 import { computed } from "vue";
 import { useGameStoryEditorStore } from "@/store/store.ts";
@@ -46,6 +47,25 @@ function getDisplayText(item: SidebarStoryUnitListUnit) {
       );
   }
 }
+
+function getTooltipText(storyUnit: StoryEditorTextUnit) {
+  switch (storyUnit.type) {
+    case "title":
+      return storyUnit.text?.replace(";", " ") || "标题";
+    case "select":
+
+    case "effectOnly":
+      // FIXME 改成显示效果
+      return storyUnit.text?.replaceAll("\n", "<br>") || "此段剧情暂无描述";
+
+    case "continue":
+      return 0 === (storyUnit.text?.length ?? 0)
+        ? "To Be Continued"
+        : storyUnit.text;
+    default:
+      return storyUnit.text?.replaceAll("\n", "<br>") || "此段剧情暂无描述";
+  }
+}
 </script>
 
 <template>
@@ -78,9 +98,7 @@ function getDisplayText(item: SidebarStoryUnitListUnit) {
           position="right"
         >
           <template #content>
-            <span
-              v-html="item.text?.replace('\n', '<br>') || '此段剧情暂无描述'"
-            />
+            <span v-html="getTooltipText(item)" />
           </template>
           <a-button
             type="text"

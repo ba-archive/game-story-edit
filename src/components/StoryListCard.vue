@@ -27,14 +27,16 @@ function goToEditor() {
 
 const selectedStoryType = ref(storySerialFull.value.slice(0, 2));
 const storyNumberSerial = ref(storySerialFull.value.slice(3));
+const tags = ref<string[]>(story.value?.tags ?? []);
 
 watch(
-  [selectedStoryType, storyNumberSerial, storyDescription],
-  ([newSelectedStoryType, newStoryNumberSerial, newStoryDescription]) => {
+  [selectedStoryType, storyNumberSerial, storyDescription, tags],
+  ([newSelectedStoryType, newStoryNumberSerial, newStoryDescription, tags]) => {
     useStore.updateStoryMeta(
       props.uuid,
       newSelectedStoryType + "_" + newStoryNumberSerial,
-      newStoryDescription
+      newStoryDescription,
+      tags
     );
   },
   { deep: true }
@@ -76,13 +78,22 @@ watch(
           :placeholder="storyDescription || '此段剧情暂无描述'"
         />
       </a-space>
-      <div class="flex w-full justify-between items-center">
-        <a-tag color="blue">
-          <template #icon>
-            <icon-code />
-          </template>
-          {{ uuid }}
-        </a-tag>
+      <div class="flex w-full justify-between items-end">
+        <a-space size="small" direction="vertical">
+          <a-tooltip :content="uuid" position="tl">
+            <h1>标签</h1>
+          </a-tooltip>
+          <a-input-tag
+            v-model="tags"
+            size="small"
+            :style="{ minWidth: '320px', flex: 1 }"
+            allow-clear
+          >
+            <template #prefix>
+              <icon-tag />
+            </template>
+          </a-input-tag>
+        </a-space>
         <a-space size="medium">
           <a-popconfirm type="warning" ok-text="删除" @ok="handleDeleteStory()">
             <a-button type="text" status="danger">删除</a-button>

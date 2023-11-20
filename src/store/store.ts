@@ -39,10 +39,16 @@ export const useGameStoryEditorStore = defineStore({
         this.stories.splice(index, 1);
       }
     },
-    updateStoryMeta(uuid: string, serial: string, description: string) {
+    updateStoryMeta(
+      uuid: string,
+      serial: string,
+      description: string,
+      tags: string[]
+    ) {
       const story = this.stories.find(story => uuid === story.uuid);
       if (story) {
         story.serial = serial;
+        story.tags = tags;
         story.description = description;
       }
     },
