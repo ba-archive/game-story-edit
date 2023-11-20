@@ -4,7 +4,7 @@ import { computed, ref, watch } from "vue";
 import { Message } from "@arco-design/web-vue";
 import MusicPlayer from "@components/EditorComponent/Widgets/MusicPlayer.vue";
 import { BgmInfo } from "@/types/GameStoryEditor.ts";
-import { Howler, Howl } from "howler";
+import { Howl } from "howler";
 
 const props = defineProps<{
   currentBgm: string;
@@ -176,11 +176,11 @@ function requestPlayAudio(filename: string) {
         :virtualListProps="{
           fixedSize: true,
           height: virtualListHeight,
+          estimatedSize: 83,
         }"
         :data="bgmList"
         size="large"
         :bordered="false"
-        :style="{ height: '50vh' }"
       >
         <template #item="{ item, index }">
           <a-list-item :key="index">

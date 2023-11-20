@@ -84,6 +84,12 @@ function handleAddNewUnitBelow() {
 function handleValueChange(newValue: StoryEditorTextUnit) {
   useStore.updateStoryUnit(props.uuid, newValue.id, newValue);
 }
+
+function getUnitTypeDescription(type: string) {
+  return (
+    unitTypeWithoutOption.find(item => item.value === type)?.description || ""
+  );
+}
 </script>
 
 <template>
@@ -106,12 +112,16 @@ function handleValueChange(newValue: StoryEditorTextUnit) {
     />
 
     <template #title>
-      <a-select
-        v-model="currentUnitType"
-        style="width: 10rem"
-        :options="unitTypeWithoutOption"
-      >
-      </a-select>
+      <a-space>
+        <a-select
+          v-model="currentUnitType"
+          style="width: 10rem"
+          :options="unitTypeWithoutOption"
+        />
+        <a-tooltip :content="getUnitTypeDescription(currentUnitType)">
+          <icon-question-circle class="cursor-pointer" />
+        </a-tooltip>
+      </a-space>
     </template>
     <template #extra>
       <a-space>

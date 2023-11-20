@@ -3,7 +3,6 @@ import { computed } from "vue";
 import {
   SelectionGroup,
   StoryEditorTextUnit,
-  unitTypeDescription,
 } from "@/types/GameStoryEditor.ts";
 import { useGameStoryEditorStore } from "@/store/store.ts";
 import EffectOnlyUnit from "@components/EditorComponent/Units/EffectOnlyUnit.vue";

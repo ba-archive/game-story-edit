@@ -124,41 +124,6 @@ export interface SidebarStoryListUnit {
 
 export interface SidebarStoryUnitListUnit extends StoryEditorTextUnit {}
 
-export const unitTypeDescription = [
-  {
-    type: "title",
-    description: "故事的标题。每段故事只能存在至多一个",
-  },
-  {
-    type: "place",
-    description: "以横幅形式出现在画面左上角的地点提示",
-  },
-  {
-    type: "text",
-    description: "对话",
-  },
-  {
-    type: "select",
-    description: "选项",
-  },
-  {
-    type: "option",
-    description: "",
-  },
-  {
-    type: "st",
-    description: "",
-  },
-  {
-    type: "effectOnly",
-    description: "",
-  },
-  {
-    type: "continue",
-    description: "",
-  },
-];
-
 export const storyType = [
   {
     label: "主线剧情",
@@ -178,30 +143,38 @@ export const unitType = [
   {
     label: "标题",
     value: "title",
+    description: "故事的标题。每段故事只能存在至多一个",
   },
   {
     label: "场景提示",
     value: "place",
+    description: "以横幅形式出现在画面左上角的地点提示",
   },
   {
-    label: "文字",
+    label: "对话",
     value: "text",
+    description: "显示在屏幕下方的对话内容",
   },
   {
     label: "玩家选项",
     value: "select",
+    description: "玩家可以在对话中做出的选择",
   },
   {
     label: "浮动文字",
     value: "st",
+    description: "它是文字，但是会出现在屏幕任何一个地方",
   },
   {
     label: "场景特效或指令",
     value: "effectOnly",
+    description:
+      "显示在屏幕上的特效（火星、烟尘等），或者需要发送给事件系统的指令",
   },
   {
     label: "待续",
     value: "continue",
+    description: "显示to be continued画面",
   },
 ];
 
