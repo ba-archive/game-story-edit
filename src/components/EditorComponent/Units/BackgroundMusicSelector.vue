@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import axios from "axios";
-import { computed, ref, watch } from "vue";
+import { computed, ref } from "vue";
 import { Message } from "@arco-design/web-vue";
 
 export interface BgmInfo {
@@ -49,6 +49,8 @@ const emit = defineEmits<{
 }>();
 
 getBgmList();
+
+function handleReset() {}
 </script>
 
 <template>

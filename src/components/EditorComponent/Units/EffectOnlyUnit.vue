@@ -5,13 +5,14 @@ import {
   flagManipulateList,
 } from "@/types/GameStoryEditor.ts";
 import { computed } from "vue";
-import { useGameStoryEditorStore } from "@/store/store.ts";
-
-const useStore = useGameStoryEditorStore();
 
 const props = defineProps<{
   uuid: string;
   storyUnit: StoryEditorTextUnit;
+}>();
+
+const emit = defineEmits<{
+  (event: "value-change", value: StoryEditorTextUnit): void;
 }>();
 
 const currentStoryUnit = computed({
@@ -28,13 +29,14 @@ const currentStoryUnit = computed({
     return storyUnit;
   },
   set: newValue => {
-    useStore.updateStoryUnit(props.uuid, newValue.id, newValue);
+    emit("value-change", newValue);
   },
 });
 
 const flagName = computed({
   get: () => ((currentStoryUnit.value.commandArgs || [])[0] || "") as string,
   set: newValue => {
+    console.log(newValue);
     if (
       !Array.isArray(currentStoryUnit.value.commandArgs) ||
       0 === currentStoryUnit.value.commandArgs.length

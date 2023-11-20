@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import { StoryEditorTextUnit } from "@/types/GameStoryEditor";
-import { useGameStoryEditorStore } from "@/store/store";
 import BackgroundImageSelector from "@components/EditorComponent/Units/BackgroundImageSelector.vue";
 import { getImageUrl } from "@/helper/image.ts";
-
-const useStore = useGameStoryEditorStore();
 
 const props = withDefaults(
   defineProps<{
@@ -24,21 +21,19 @@ const props = withDefaults(
   }
 );
 
-const currentStoryUnit = ref(props.storyUnit);
+const emit = defineEmits<{
+  (event: "value-change", value: StoryEditorTextUnit): void;
+}>();
+
+const currentStoryUnit = computed({
+  get: () => props.storyUnit,
+  set: newValue => {
+    emit("value-change", newValue);
+  },
+});
 
 const subTitle = ref(currentStoryUnit.value?.text?.split(";")[0] || "");
 const mainTitle = ref(currentStoryUnit.value?.text?.split(";")[1] || "");
-
-watch(
-  () => currentStoryUnit.value,
-  () => {
-    useStore.updateStoryUnit(
-      props.uuid,
-      currentStoryUnit.value.id,
-      currentStoryUnit.value
-    );
-  }
-);
 
 watch(
   () => [subTitle.value, mainTitle.value],

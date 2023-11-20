@@ -96,7 +96,7 @@ watch(
           <h1>背景音乐</h1>
           <background-music-selector
             @value-change=""
-            :current-bgm="storyUnit.bgm"
+            :current-bgm="storyUnit.bgm ?? ''"
           />
         </div>
       </div>

@@ -79,6 +79,10 @@ function handleAddNewUnitBelow() {
     props.storyUnit.id
   );
 }
+
+function handleValueChange(newValue: StoryEditorTextUnit) {
+  useStore.updateStoryUnit(props.uuid, newValue.id, newValue);
+}
 </script>
 
 <template>
@@ -90,6 +94,7 @@ function handleAddNewUnitBelow() {
       "
       :uuid="props.uuid"
       :storyUnit="currentStoryUnit"
+      @value-change="handleValueChange"
     />
 
     <template #title>
