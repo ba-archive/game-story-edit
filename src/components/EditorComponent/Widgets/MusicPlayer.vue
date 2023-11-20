@@ -22,6 +22,10 @@ function handlePlay(bgmName: string) {
   emit("request-play", bgmName);
 }
 
+function handleStop() {
+  emit("request-play", "");
+}
+
 function handleSelect() {
   emit("request-play", "");
   emit("value-change", selectedBgm.value.filename);
@@ -32,12 +36,19 @@ function handleSelect() {
   <div class="flex w-full justify-between pt-2 pb-2">
     <h1>{{ bgm.filename }}</h1>
     <a-space size="small">
-      <a-button type="text" size="mini" @click="handlePlay(bgm.filename)"
-        >播放</a-button
-      >
-      <a-button type="outline" size="mini" @click="handleSelect">
-        选择
-      </a-button>
+      <a-button-group type="text">
+        <a-button @click="handlePlay(bgm.filename)">
+          <template #icon>
+            <icon-play-circle-fill />
+          </template>
+        </a-button>
+        <a-button @click="handleStop">
+          <template #icon>
+            <icon-record-stop />
+          </template>
+        </a-button>
+      </a-button-group>
+      <a-button type="outline" @click="handleSelect"> 选择 </a-button>
     </a-space>
   </div>
 </template>

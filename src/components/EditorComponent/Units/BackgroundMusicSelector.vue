@@ -48,12 +48,14 @@ const selectedBgm = computed({
 
 function handleReset() {
   selectedBgm.value = "";
+  currentPlayingBgm.value = "";
 }
 
 getBgmList();
 
 function handleBgmSelect(newValue: string) {
   selectedBgm.value = newValue;
+  modalVisible.value = false;
 }
 
 watch(
@@ -69,6 +71,54 @@ watch(
 );
 
 const virtualListHeight = computed(() => window.innerHeight * 0.5);
+
+const audioMap = new Map<string, Howl>();
+const audioVolume = ref(10);
+
+function getAudio(url: string): Howl {
+  const audio = audioMap.get(url);
+  if (audio) {
+    return audio;
+  } else {
+    const newAudio = new Howl({
+      src: url,
+      html5: true,
+      autoplay: false,
+      preload: true,
+      volume: audioVolume.value / 100,
+    });
+    audioMap.set(url, newAudio);
+    return newAudio;
+  }
+}
+
+watch(
+  () => currentPlayingBgm.value,
+  newValue => {
+    if (newValue === "") {
+      for (const audio of audioMap.values()) {
+        audio.stop();
+      }
+      Howler.unload();
+    } else {
+      const audio = getAudio(`https://bgm.blue-archive.io/${newValue}.mp3`);
+      audio.play();
+    }
+  }
+);
+
+watch(
+  () => audioVolume.value,
+  newValue => {
+    for (const audio of audioMap.values()) {
+      audio.volume(newValue / 100);
+    }
+  }
+);
+
+function requestPlayAudio(filename: string) {
+  currentPlayingBgm.value = filename;
+}
 </script>
 
 <template>
@@ -90,22 +140,36 @@ const virtualListHeight = computed(() => window.innerHeight * 0.5);
   >
     <div class="flex flex-col gap-4">
       <div class="w-full flex gap-4">
-        <a-input
-          allow-clear
-          placeholder="搜索音乐"
-          v-model="searchValue"
-          style="flex: 1"
-        />
-        <a-button
-          type="text"
-          @click="getBgmList"
-          :loading="loadingState"
-          :disabled="loadingState"
-        >
-          <template #icon>
-            <icon-refresh />
-          </template>
-        </a-button>
+        <a-input-group>
+          <a-input
+            allow-clear
+            placeholder="搜索音乐"
+            v-model="searchValue"
+            style="flex: 1"
+          />
+          <a-button
+            @click="getBgmList"
+            :loading="loadingState"
+            :disabled="loadingState"
+          >
+            <template #icon>
+              <icon-refresh />
+            </template>
+          </a-button>
+        </a-input-group>
+
+        <a-space>
+          <a-button type="text">
+            <template #icon>
+              <icon-sound-fill />
+            </template>
+          </a-button>
+          <a-slider
+            v-model="audioVolume"
+            :default-value="50"
+            :style="{ width: '200px' }"
+          />
+        </a-space>
       </div>
       <a-list
         fill
@@ -123,6 +187,7 @@ const virtualListHeight = computed(() => window.innerHeight * 0.5);
             <music-player
               :bgm="item"
               @value-change="handleBgmSelect"
+              @request-play="requestPlayAudio"
               :selected="selectedBgm === item.filename"
             />
           </a-list-item>

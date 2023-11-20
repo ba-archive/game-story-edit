@@ -17,6 +17,9 @@ dependencies:
   '@trivago/prettier-plugin-sort-imports':
     specifier: 4.3.0
     version: 4.3.0(prettier@3.1.0)
+  '@types/howler':
+    specifier: ^2.2.11
+    version: 2.2.11
   '@typescript-eslint/eslint-plugin':
     specifier: 6.10.0
     version: 6.10.0(@typescript-eslint/parser@6.9.1)(eslint@8.53.0)(typescript@5.2.2)
@@ -2260,6 +2263,10 @@ packages:
   /@types/file-saver@2.0.7:
     resolution: {integrity: sha512-dNKVfHd/jk0SkR/exKGj2ggkB45MAkzvWCaqLUUgkyjITkGNzH8H+yUwr+BLJUBjZOe9w8X3wgmXhZDRg1ED6A==}
     dev: true
+
+  /@types/howler@2.2.11:
+    resolution: {integrity: sha512-7aBoUL6RbSIrqKnpEgfa1wSNUBK06mn08siP2QI0zYk7MXfEJAaORc4tohamQYqCqVESoDyRWSdQn2BOKWj2Qw==}
+    dev: false
 
   /@types/json-schema@7.0.14:
     resolution: {integrity: sha512-U3PUjAudAdJBeC2pgN8uTIKgxrb4nlDF3SF0++EldXQvQBGkpFZMSnwQiIoDU77tv45VgNkl/L4ouD+rEomujw==}

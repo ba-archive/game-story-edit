@@ -105,17 +105,25 @@ function handleBgmSelect(bgm: string) {
       </div>
     </a-space>
 
-    <a-space
-      v-if="0 !== currentStoryUnit.backgroundImage.length"
-      direction="vertical"
-      size="small"
-    >
-      <h1>背景预览（点击放大）</h1>
-      <a-image
-        :src="getImageUrl(currentStoryUnit.backgroundImage)"
-        height="158"
-        preview
-      />
+    <a-space direction="vertical" size="medium">
+      <a-space
+        v-if="0 !== currentStoryUnit.backgroundImage.length"
+        direction="vertical"
+        size="small"
+      >
+        <h1>背景预览（点击放大）</h1>
+        <a-image
+          :src="getImageUrl(currentStoryUnit.backgroundImage)"
+          height="152"
+          preview
+        />
+      </a-space>
+      <a-space v-if="0 !== currentStoryUnit.bgm.length" size="small">
+        <h1>背景音乐</h1>
+        <span>
+          {{ currentStoryUnit.bgm }}
+        </span>
+      </a-space>
     </a-space>
   </a-space>
 </template>
