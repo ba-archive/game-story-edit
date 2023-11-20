@@ -10,6 +10,7 @@ const props = withDefaults(
   {
     uuid: "",
     storyUnit: {
+      // @ts-ignore
       id: Date.now().valueOf(),
       type: "title",
       backgroundImage: "",

@@ -29,6 +29,7 @@ export const useGameStoryEditorStore = defineStore({
         serial: serial,
         uuid: uuid,
         description: description,
+        tags: [],
         content: [] as StoryEditorTextUnit[],
       });
       return uuid;

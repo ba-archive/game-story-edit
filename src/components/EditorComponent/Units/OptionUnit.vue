@@ -1,16 +1,9 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import {
-  SelectionGroup,
-  StoryEditorTextUnit,
-} from "@/types/GameStoryEditor.ts";
-import { useGameStoryEditorStore } from "@/store/store.ts";
+import { SelectionGroup } from "@/types/GameStoryEditor.ts";
 import EffectOnlyUnit from "@components/EditorComponent/Units/EffectOnlyUnit.vue";
 import PlaceUnit from "@components/EditorComponent/Units/PlaceUnit.vue";
 import StUnit from "@components/EditorComponent/Units/StUnit.vue";
 import TextUnit from "@components/EditorComponent/Units/TextUnit.vue";
-
-const useStore = useGameStoryEditorStore();
 
 const unitTypeComponentMap = [
   {

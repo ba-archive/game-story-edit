@@ -15,8 +15,6 @@ const props = withDefaults(
     uuid: "",
   }
 );
-
-const outputRawFile = ref(false);
 const footerElement = ref<HTMLElement | null>(null);
 
 const { height } = useElementSize(footerElement);

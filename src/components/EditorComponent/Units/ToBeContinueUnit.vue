@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
-import { useGameStoryEditorStore } from "@/store/store.ts";
 import { StoryEditorTextUnit } from "@/types/GameStoryEditor.ts";
-const useStore = useGameStoryEditorStore();
 
 const props = defineProps<{
   uuid: string;
