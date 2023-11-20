@@ -119,7 +119,7 @@ function handleBgmSelect(bgm: string) {
           preview
         />
       </a-space>
-      <a-space v-if="0 !== currentStoryUnit.bgm.length" size="small">
+      <a-space v-if="currentStoryUnit.bgm?.length" size="small">
         <h1>背景音乐</h1>
         <span>
           {{ currentStoryUnit.bgm }}
