@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import { useGameStoryEditorStore } from "@/store/store.ts";
 import { Character, StoryEditorTextUnit } from "@/types/GameStoryEditor.ts";
-import { ref, watch } from "vue";
+import { computed } from "vue";
 import BackgroundImageSelector from "@components/EditorComponent/Units/BackgroundImageSelector.vue";
 import { getImageUrl } from "@/helper/image.ts";
 import CharacterSelector from "@components/EditorComponent/Units/CharacterSelector.vue";
 import BackgroundMusicSelector from "@components/EditorComponent/Units/BackgroundMusicSelector.vue";
-
-const useStore = useGameStoryEditorStore();
 
 const props = withDefaults(
   defineProps<{
@@ -26,7 +23,16 @@ const props = withDefaults(
   }
 );
 
-const currentStoryUnit = ref(props.storyUnit);
+const emit = defineEmits<{
+  (event: "value-change", value: StoryEditorTextUnit): void;
+}>();
+
+const currentStoryUnit = computed({
+  get: () => props.storyUnit,
+  set: newValue => {
+    emit("value-change", newValue);
+  },
+});
 
 function handleImageSelect(imageUrl: string) {
   currentStoryUnit.value.backgroundImage = imageUrl;
@@ -36,12 +42,9 @@ function handleCharacterChange(characterList: Character[]) {
   currentStoryUnit.value.characters = characterList;
 }
 
-watch(
-  () => currentStoryUnit.value,
-  newValue => {
-    useStore.updateStoryUnit(props.uuid, newValue.id, newValue);
-  }
-);
+function handleBgmSelect(bgm: string) {
+  currentStoryUnit.value.bgm = bgm;
+}
 </script>
 
 <template>
@@ -95,7 +98,7 @@ watch(
         <div class="flex flex-col w-full gap-2">
           <h1>背景音乐</h1>
           <background-music-selector
-            @value-change=""
+            @value-change="handleBgmSelect"
             :current-bgm="storyUnit.bgm ?? ''"
           />
         </div>

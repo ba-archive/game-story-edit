@@ -3,7 +3,7 @@ import {
   StoryEditorTextUnit,
   unitTypeWithoutOption,
 } from "@/types/GameStoryEditor.ts";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useGameStoryEditorStore } from "@/store/store.ts";
 import TitleUnit from "@components/EditorComponent/Units/TitleUnit.vue";
 import EffectOnlyUnit from "@components/EditorComponent/Units/EffectOnlyUnit.vue";
@@ -51,13 +51,14 @@ const props = defineProps<{
   storyUnit: StoryEditorTextUnit;
 }>();
 
-const currentUnitType = ref(props.storyUnit.type);
-
 const currentStoryUnit = ref(props.storyUnit);
 
-function handleStoryUnitTypeChange(unitType: StoryEditorTextUnit["type"]) {
-  currentStoryUnit.value.type = unitType;
-}
+const currentUnitType = computed({
+  get: () => props.storyUnit.type,
+  set: newValue => {
+    currentStoryUnit.value.type = newValue;
+  },
+});
 
 function deleteCurrentStoryUnit() {
   useStore.deleteStoryUnit(props.uuid, props.storyUnit.id);
@@ -86,7 +87,14 @@ function handleValueChange(newValue: StoryEditorTextUnit) {
 </script>
 
 <template>
-  <a-card :bordered="false" hoverable :id="props.storyUnit.id">
+  <a-card
+    :bordered="false"
+    hoverable
+    :id="props.storyUnit.id"
+    :class="{
+      'is-selection': 'select' === props.storyUnit.type,
+    }"
+  >
     <component
       :is="
         unitTypeComponentMap.find(item => item.type === currentUnitType)
@@ -102,7 +110,6 @@ function handleValueChange(newValue: StoryEditorTextUnit) {
         v-model="currentUnitType"
         style="width: 10rem"
         :options="unitTypeWithoutOption"
-        @change="handleStoryUnitTypeChange"
       >
       </a-select>
     </template>
@@ -127,4 +134,14 @@ function handleValueChange(newValue: StoryEditorTextUnit) {
   </a-card>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.is-selection {
+  :deep(.arco-card-header) {
+    border: none;
+  }
+
+  :deep(.arco-card-body) {
+    padding: 0;
+  }
+}
+</style>

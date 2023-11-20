@@ -1,4 +1,4 @@
-import { CreateArrayWithLengthX, NumericRange, TimeStamp } from "./Helper";
+import { TimeStamp } from "./Helper";
 
 export interface Story {
   uuid: string;
@@ -104,8 +104,8 @@ export interface StoryEditorTextUnit {
   commandArgs?: (number | string | boolean)[]; // 命令参数，可能有多个，比如 trigger 的参数有 flagName，可选参数有 value
 }
 
-export interface SelectionGroup extends StoryEditorTextUnit {
-  selectionGroup: NumericRange<CreateArrayWithLengthX<1>, 99>; // 1-99 的数字
+export interface SelectionGroup {
+  id: TimeStamp; // 精确到毫秒级别的时间戳在这里已经足够
   type: "option";
   text: string; // 选项文本
   condition?: [
@@ -114,7 +114,6 @@ export interface SelectionGroup extends StoryEditorTextUnit {
     string | number | boolean,
   ]; // 条件参数，可能有多个，例: ["flagName", "GreaterEqual", 1]
   content: StoryEditorTextUnit[]; // 当满足条件时显示的对话内容
-  contentIfNot?: StoryEditorTextUnit[]; // 当不满足条件时显示的具体对话内容
 }
 
 export interface SidebarStoryListUnit {
@@ -463,3 +462,9 @@ export const flagManipulateList = [
     value: "setOpposite",
   },
 ];
+
+export interface BgmInfo {
+  filename: string;
+  format: "mp3";
+  md5_hash: string;
+}

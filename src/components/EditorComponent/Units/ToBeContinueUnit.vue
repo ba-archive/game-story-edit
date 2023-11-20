@@ -9,10 +9,14 @@ const props = defineProps<{
   storyUnit: StoryEditorTextUnit;
 }>();
 
+const emit = defineEmits<{
+  (event: "value-change", value: StoryEditorTextUnit): void;
+}>();
+
 const currentStoryUnit = computed({
   get: () => props.storyUnit,
   set: newValue => {
-    useStore.updateStoryUnit(props.uuid, newValue.id, newValue);
+    emit("value-change", newValue);
   },
 });
 

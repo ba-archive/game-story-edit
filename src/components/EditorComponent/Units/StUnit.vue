@@ -1,29 +1,29 @@
 <script setup lang="ts">
-import { computed, ref, watch } from "vue";
+import { computed } from "vue";
 import { StoryEditorTextUnit } from "@/types/GameStoryEditor.ts";
-import { useGameStoryEditorStore } from "@/store/store.ts";
-
-const useStore = useGameStoryEditorStore();
 
 const props = defineProps<{
   uuid: string;
   storyUnit: StoryEditorTextUnit;
 }>();
 
-const currentStoryUnit = ref(props.storyUnit);
+const emit = defineEmits<{
+  (event: "value-change", value: StoryEditorTextUnit): void;
+}>();
+
+const currentStoryUnit = computed({
+  get: () => props.storyUnit,
+  set: newValue => {
+    emit("value-change", newValue);
+  },
+});
+
 const commandArgs = computed({
   get: () => ((currentStoryUnit.value.commandArgs || [])[0] || 0) as number,
   set: newValue => {
     currentStoryUnit.value.commandArgs = newValue ? [newValue] : [0];
   },
 });
-
-watch(
-  () => currentStoryUnit.value,
-  newValue => {
-    useStore.updateStoryUnit(props.uuid, newValue.id, newValue);
-  }
-);
 </script>
 
 <template>

@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
-import { useGameStoryEditorStore } from "@/store/store.ts";
+import { computed } from "vue";
 import { StoryEditorTextUnit } from "@/types/GameStoryEditor.ts";
-
-const useStore = useGameStoryEditorStore();
 
 const props = withDefaults(
   defineProps<{
@@ -22,27 +19,23 @@ const props = withDefaults(
   }
 );
 
-const currentStoryUnit = ref(props.storyUnit);
+const emit = defineEmits<{
+  (event: "value-change", value: StoryEditorTextUnit): void;
+}>();
 
-const text = ref(currentStoryUnit.value?.text || "");
+const currentStoryUnit = computed({
+  get: () => props.storyUnit,
+  set: newValue => {
+    emit("value-change", newValue);
+  },
+});
 
-watch(
-  () => text.value,
-  () => {
-    currentStoryUnit.value.text = text.value ? text.value : "placeholder";
-  }
-);
-
-watch(
-  () => currentStoryUnit.value,
-  () => {
-    useStore.updateStoryUnit(
-      props.uuid,
-      currentStoryUnit.value.id,
-      currentStoryUnit.value
-    );
-  }
-);
+const text = computed({
+  get: () => currentStoryUnit.value?.text || "",
+  set: newValue => {
+    currentStoryUnit.value.text = newValue;
+  },
+});
 </script>
 
 <template>
