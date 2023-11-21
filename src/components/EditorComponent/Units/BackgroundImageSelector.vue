@@ -1,17 +1,13 @@
 <script setup lang="ts">
 import axios from "axios";
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import { Message } from "@arco-design/web-vue";
 import { getImageUrl } from "@/helper/image.ts";
-
-export interface ImageInfo {
-  filename: string;
-  format: "jpg";
-  md5_hash: string;
-}
+import { ImageInfo } from "@/types/GameStoryEditor.ts";
+import { chunk } from "lodash-es";
 
 const staticImageList = ref<ImageInfo[]>();
-const imageList = ref<ImageInfo[]>();
+const imageList = ref<ImageInfo[][]>();
 const loadingState = ref(true);
 const modalVisible = ref(false);
 const searchValue = ref("");
@@ -25,7 +21,7 @@ function getImageList() {
         Message.error("图片列表获取失败");
       }
       staticImageList.value = res.data as ImageInfo[];
-      imageList.value = res.data as ImageInfo[];
+      imageList.value = chunk(res.data, 3) as ImageInfo[][];
       loadingState.value = false;
     })
     .catch(() => {
@@ -42,10 +38,18 @@ watch(
   () => searchValue.value,
   newValue => {
     if (newValue === "") {
-      imageList.value = staticImageList.value;
+      imageList.value = chunk(staticImageList.value, 3);
     }
-    imageList.value = staticImageList.value?.filter(image =>
-      image.filename.toLowerCase().includes(newValue.toLowerCase())
+    // imageList.value = staticImageList.value?.filter(image =>
+    //   image.filename.toLowerCase().includes(newValue.toLowerCase())
+    // );
+    imageList.value = chunk(
+      staticImageList.value
+        ?.flat()
+        .filter(image =>
+          image.filename.toLowerCase().includes(newValue.toLowerCase())
+        ),
+      3
     );
   }
 );
@@ -70,6 +74,8 @@ function handleImageQuickSelect(imageUrl: string) {
   modalVisible.value = false;
   emit("value-change", imageUrl);
 }
+
+const virtualListHeight = computed(() => window.innerHeight * 0.5);
 </script>
 
 <template>
@@ -113,21 +119,36 @@ function handleImageQuickSelect(imageUrl: string) {
         ref="imageContainerElement"
       >
         <a-spin v-if="loadingState" />
-        <div
-          class="image-container"
-          v-for="image in imageList"
-          :key="image.md5_hash"
-          @click="selectedImage = image.filename"
-          @dblclick="handleImageQuickSelect(image.filename)"
-          :class="{ selected: image.filename === selectedImage }"
+        <a-list
+          fill
+          :virtualListProps="{
+            fixedSize: true,
+            height: virtualListHeight,
+            estimatedSize: 138,
+          }"
+          :data="imageList"
+          size="large"
+          :bordered="false"
         >
-          <img
-            class="object-cover rounded-md"
-            :src="getImageUrl(image.filename)"
-            loading="lazy"
-          />
-          <span class="rounded-md">{{ image.filename }}</span>
-        </div>
+          <template #item="{ item }">
+            <div class="flex gap-4 pb-2">
+              <div
+                class="image-container"
+                v-for="image in item"
+                :key="image.md5_hash"
+                @click="selectedImage = image.filename"
+                @dblclick="handleImageQuickSelect(image.filename)"
+                :class="{ selected: image.filename === selectedImage }"
+              >
+                <img
+                  class="object-cover rounded-md"
+                  :src="getImageUrl(image.filename)"
+                />
+                <span class="rounded-md">{{ image.filename }}</span>
+              </div>
+            </div>
+          </template>
+        </a-list>
       </div>
     </div>
   </a-modal>

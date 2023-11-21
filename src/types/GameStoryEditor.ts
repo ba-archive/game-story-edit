@@ -442,3 +442,9 @@ export interface BgmInfo {
   format: "mp3";
   md5_hash: string;
 }
+
+export interface ImageInfo {
+  filename: string;
+  format: "jpg";
+  md5_hash: string;
+}
