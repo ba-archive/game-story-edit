@@ -3,6 +3,7 @@ import { computed, ref, watch } from "vue";
 import { StoryEditorTextUnit } from "@/types/GameStoryEditor";
 import BackgroundImageSelector from "@components/EditorComponent/Units/BackgroundImageSelector.vue";
 import { getImageUrl } from "@/helper/image.ts";
+import BackgroundMusicSelector from "@components/EditorComponent/Units/BackgroundMusicSelector.vue";
 
 const props = withDefaults(
   defineProps<{
@@ -46,6 +47,10 @@ watch(
 function handleImageSelect(imageUrl: string) {
   currentStoryUnit.value.backgroundImage = imageUrl;
 }
+
+function handleBgmSelect(bgm: string) {
+  currentStoryUnit.value.bgm = bgm;
+}
 </script>
 
 <template>
@@ -66,6 +71,13 @@ function handleImageSelect(imageUrl: string) {
         <a-space direction="vertical" size="small">
           <h1>背景</h1>
           <background-image-selector @value-change="handleImageSelect" />
+        </a-space>
+        <a-space direction="vertical" size="small">
+          <h1>背景音乐</h1>
+          <background-music-selector
+            :current-bgm="currentStoryUnit.bgm"
+            @value-change="handleBgmSelect"
+          />
         </a-space>
       </a-space>
     </a-space>

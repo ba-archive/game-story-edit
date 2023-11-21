@@ -65,7 +65,6 @@ export interface StoryEditorTextUnit {
   type:
     | "title" // 标题
     | "place" // 场景 banner
-    | "bgm" // BGM
     | "text" // 文字
     | "select" // 选项触发
     | "option" // 选项
@@ -109,10 +108,11 @@ export interface SelectionGroup {
   id: TimeStamp; // 精确到毫秒级别的时间戳在这里已经足够
   type: "option";
   text: string; // 选项文本
+  isConditional: boolean; // 是否有条件
   condition?: [
     string,
     "Less" | "LessEqual" | "Equal" | "NotEqual" | "Greater" | "GreaterEqual",
-    string | number | boolean,
+    string,
   ]; // 条件参数，可能有多个，例: ["flagName", "GreaterEqual", 1]
   content: StoryEditorTextUnit[]; // 当满足条件时显示的对话内容
 }
@@ -434,6 +434,33 @@ export const flagManipulateList = [
   {
     label: "设置为相反值",
     value: "setOpposite",
+  },
+];
+
+export const flagConditionList = [
+  {
+    label: "小于",
+    value: "Less",
+  },
+  {
+    label: "小于等于",
+    value: "LessEqual",
+  },
+  {
+    label: "等于",
+    value: "Equal",
+  },
+  {
+    label: "不等于",
+    value: "NotEqual",
+  },
+  {
+    label: "大于",
+    value: "Greater",
+  },
+  {
+    label: "大于等于",
+    value: "GreaterEqual",
   },
 ];
 

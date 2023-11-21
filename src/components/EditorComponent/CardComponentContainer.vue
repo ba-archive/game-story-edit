@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import {
+  SelectionGroup,
   StoryEditorTextUnit,
   unitTypeWithoutOption,
 } from "@/types/GameStoryEditor.ts";
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 import { useGameStoryEditorStore } from "@/store/store.ts";
 import TitleUnit from "@components/EditorComponent/Units/TitleUnit.vue";
 import EffectOnlyUnit from "@components/EditorComponent/Units/EffectOnlyUnit.vue";
@@ -90,6 +91,29 @@ function getUnitTypeDescription(type: string) {
     unitTypeWithoutOption.find(item => item.value === type)?.description || ""
   );
 }
+watch(
+  () => currentUnitType.value,
+  newValue => {
+    if ("select" === newValue) {
+      if (!currentStoryUnit.value.selectionGroups) {
+        currentStoryUnit.value.selectionGroups = [
+          {
+            id: Date.now().valueOf(),
+            type: "option",
+            text: "",
+            isConditional: false,
+            condition: [
+              "",
+              "Less",
+              "",
+            ] as unknown as SelectionGroup["condition"],
+            content: [] as StoryEditorTextUnit[],
+          },
+        ];
+      }
+    }
+  }
+);
 </script>
 
 <template>
@@ -143,16 +167,18 @@ function getUnitTypeDescription(type: string) {
   </a-card>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 .is-selection {
   background-color: transparent;
 
-  :deep(.arco-card-header) {
-    border: none;
-    background: var(--color-bg-2);
+  & > .arco-card-body {
+    margin-top: 1rem;
+    padding: 0;
   }
 
-  :deep(.arco-card-body) {
+  & > .arco-card-header {
+    border: none;
+    background: var(--color-bg-2);
   }
 }
 </style>
