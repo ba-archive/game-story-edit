@@ -179,6 +179,7 @@ const virtualListHeight = computed(() => window.innerHeight * 0.5);
 
   img {
     grid-row: 1/2;
+    border: 2px solid transparent;
   }
 
   span {
