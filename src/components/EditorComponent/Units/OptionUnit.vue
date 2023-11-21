@@ -35,11 +35,10 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <a-space size="small" direction="vertical">
+  <div class="option-container flex flex-col gap-4">
     <a-card
       v-for="content in selectionGroup.content"
       :bordered="false"
-      hoverable
       :id="props.selectionGroup.id"
       :class="{}"
     >
@@ -52,7 +51,11 @@ const emit = defineEmits<{
         :storyUnit="content"
       />
     </a-card>
-  </a-space>
+  </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.option-container {
+  border-radius: 4;
+}
+</style>

@@ -7,7 +7,7 @@ import { ref, computed } from "vue";
 import { useGameStoryEditorStore } from "@/store/store.ts";
 import TitleUnit from "@components/EditorComponent/Units/TitleUnit.vue";
 import EffectOnlyUnit from "@components/EditorComponent/Units/EffectOnlyUnit.vue";
-import OptionUnit from "@components/EditorComponent/Units/OptionUnit.vue";
+import SelectionUnit from "@components/EditorComponent/Units/SelectionUnit.vue";
 import PlaceUnit from "./Units/PlaceUnit.vue";
 import StUnit from "./Units/StUnit.vue";
 import TextUnit from "./Units/TextUnit.vue";
@@ -25,8 +25,8 @@ const unitTypeComponentMap = [
     component: EffectOnlyUnit,
   },
   {
-    type: "option",
-    component: OptionUnit,
+    type: "select",
+    component: SelectionUnit,
   },
   {
     type: "place",
@@ -95,7 +95,6 @@ function getUnitTypeDescription(type: string) {
 <template>
   <a-card
     :bordered="false"
-    hoverable
     :id="props.storyUnit.id"
     :class="{
       'is-selection': 'select' === props.storyUnit.type,
@@ -146,12 +145,14 @@ function getUnitTypeDescription(type: string) {
 
 <style scoped lang="scss">
 .is-selection {
+  background-color: transparent;
+
   :deep(.arco-card-header) {
     border: none;
+    background: var(--color-bg-2);
   }
 
   :deep(.arco-card-body) {
-    padding: 0;
   }
 }
 </style>
