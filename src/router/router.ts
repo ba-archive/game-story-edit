@@ -10,22 +10,20 @@ const routes: RouteRecordRaw[] = [
     component: () => import("@components/LoginScreen.vue"),
   },
   {
-    path: "/edit",
+    path: "/overview",
     name: "EditorHome",
     meta: {
       title: "剧情编辑工具",
     },
     component: () => import("@components/StoryListContainer.vue"),
-    children: [
-      {
-        path: "/edit/:uuid",
-        name: "EditorMain",
-        meta: {
-          title: "编辑剧情",
-        },
-        component: () => import("@components/EditorMain.vue"),
-      },
-    ],
+  },
+  {
+    path: "/edit/:uuid",
+    name: "EditorMain",
+    meta: {
+      title: "编辑剧情",
+    },
+    component: () => import("@components/EditorMain.vue"),
   },
   {
     path: "/",
