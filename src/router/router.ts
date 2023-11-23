@@ -2,11 +2,20 @@ import { RouteRecordRaw, createRouter, createWebHistory } from "vue-router";
 
 const routes: RouteRecordRaw[] = [
   {
-    path: "/",
-    name: "Home",
+    path: "/login",
+    name: "Login",
+    meta: {
+      title: "登录",
+    },
+    component: () => import("@components/LoginScreen.vue"),
+  },
+  {
+    path: "/edit",
+    name: "EditorHome",
     meta: {
       title: "剧情编辑工具",
     },
+    component: () => import("@components/StoryListContainer.vue"),
     children: [
       {
         path: "/edit/:uuid",
@@ -17,6 +26,10 @@ const routes: RouteRecordRaw[] = [
         component: () => import("@components/EditorMain.vue"),
       },
     ],
+  },
+  {
+    path: "/",
+    redirect: "/login",
   },
 ];
 
