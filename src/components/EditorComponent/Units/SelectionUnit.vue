@@ -29,6 +29,7 @@ const selectionGroups = computed({
         id: Date.now().valueOf(),
         type: "option",
         text: "",
+        isConditional: false,
         condition: [] as unknown as SelectionGroup["condition"],
         content: [] as StoryEditorTextUnit[],
       },
@@ -53,6 +54,23 @@ function handleSelectionGroupUpdate(newValue: SelectionGroup) {
   }
   selectionGroups.value = selectionGroupsValue;
 }
+
+function handleAddNewSelectionGroup() {
+  selectionGroups.value.push({
+    id: Date.now().valueOf(),
+    type: "option",
+    text: "",
+    isConditional: false,
+    condition: [] as unknown as SelectionGroup["condition"],
+    content: [] as StoryEditorTextUnit[],
+  });
+}
+
+function handleRequestDeleteSelectionGroup(id: number) {
+  selectionGroups.value = selectionGroups.value.filter(
+    selectionGroup => selectionGroup.id !== id
+  );
+}
 </script>
 
 <template>
@@ -63,7 +81,11 @@ function handleSelectionGroupUpdate(newValue: SelectionGroup) {
       :uuid="props.uuid"
       :selectionGroup="selectionGroup"
       @update-value="handleSelectionGroupUpdate"
+      @request-delete="handleRequestDeleteSelectionGroup"
     />
+    <a-button long type="primary" @click="handleAddNewSelectionGroup">
+      添加选项组
+    </a-button>
   </a-space>
 </template>
 

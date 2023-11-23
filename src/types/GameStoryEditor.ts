@@ -183,6 +183,14 @@ export const unitTypeWithoutOption = unitType.filter(
   unit => unit.value !== "option"
 );
 
+export const unitTypeInSelectionGroup = unitType.filter(
+  unit =>
+    unit.value !== "select" &&
+    unit.value !== "option" &&
+    unit.value !== "continue" &&
+    unit.value !== "title"
+);
+
 export const characterEmotionsList: Array<{
   label: Character["emotion"];
   value: Character["emotion"];

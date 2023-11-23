@@ -1,10 +1,15 @@
 <script setup lang="ts">
-import { flagConditionList, SelectionGroup } from "@/types/GameStoryEditor.ts";
+import {
+  flagConditionList,
+  SelectionGroup,
+  unitTypeInSelectionGroup,
+} from "@/types/GameStoryEditor.ts";
 import EffectOnlyUnit from "@components/EditorComponent/Units/EffectOnlyUnit.vue";
 import PlaceUnit from "@components/EditorComponent/Units/PlaceUnit.vue";
 import StUnit from "@components/EditorComponent/Units/StUnit.vue";
 import TextUnit from "@components/EditorComponent/Units/TextUnit.vue";
 import { computed } from "vue";
+import { unitType } from "@/types/GameStoryEditor.ts";
 
 const unitTypeComponentMap = [
   {
@@ -32,6 +37,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   (event: "update-value", value: SelectionGroup): void;
+  (event: "request-delete", id: number): void;
 }>();
 
 const currentSelectionGroup = computed({
@@ -67,7 +73,7 @@ const flagConditionParam = computed({
 function handleAddNewUnit() {
   currentSelectionGroup.value.content.push({
     id: Date.now().valueOf(),
-    type: "title",
+    type: "text",
     backgroundImage: "",
     bgm: "",
     speaker: "",
@@ -75,6 +81,35 @@ function handleAddNewUnit() {
     text: "",
     characters: [],
   });
+}
+
+function handleAddNewUnitBelow() {
+  const index = currentSelectionGroup.value.content.findIndex(
+    item => item.id === props.selectionGroup.id
+  );
+  currentSelectionGroup.value.content.splice(index, 0, {
+    id: Date.now().valueOf(),
+    type: "text",
+    backgroundImage: "",
+    bgm: "",
+    speaker: "",
+    affiliation: "",
+    text: "",
+    characters: [],
+  });
+}
+
+function handleDeleteStoryUnit(id: number) {
+  currentSelectionGroup.value.content =
+    currentSelectionGroup.value.content.filter(item => item.id !== id);
+}
+
+function getUnitTypeDescription(type: string) {
+  return unitType.find(item => item.value === type)?.description || "未知类型";
+}
+
+function handleRequestDeleteSelectionGroup() {
+  emit("request-delete", props.selectionGroup.id);
 }
 </script>
 
@@ -90,8 +125,15 @@ function handleAddNewUnit() {
             v-model="currentSelectionGroup.text"
           />
         </a-space>
-        <a-checkbox> 需要条件 </a-checkbox>
-        <a-space size="small" direction="vertical" fill>
+        <a-checkbox v-model="currentSelectionGroup.isConditional">
+          需要条件才能继续
+        </a-checkbox>
+        <a-space
+          v-if="currentSelectionGroup.isConditional"
+          size="small"
+          direction="vertical"
+          fill
+        >
           <h1>选项条件</h1>
           <a-input-group>
             <a-input allow-clear placeholder="Flag" v-model="flagName">
@@ -114,6 +156,19 @@ function handleAddNewUnit() {
             </a-input>
           </a-input-group>
         </a-space>
+        <div class="w-full flex justify-end">
+          <a-popconfirm
+            type="warning"
+            ok-text="删除"
+            @ok="handleRequestDeleteSelectionGroup"
+          >
+            <template #content>
+              <div>你确定要删除吗？</div>
+              <div>删除的内容无法恢复。</div>
+            </template>
+            <a-button type="outline" status="danger"> 删除选项组 </a-button>
+          </a-popconfirm>
+        </div>
       </a-space>
     </a-card>
     <a-card
@@ -130,9 +185,39 @@ function handleAddNewUnit() {
         :uuid="props.uuid"
         :storyUnit="content"
       />
+      <template #title>
+        <a-space>
+          <a-select
+            v-model="content.type"
+            style="width: 10rem"
+            :options="unitTypeInSelectionGroup"
+          />
+          <a-tooltip :content="getUnitTypeDescription(content.type)">
+            <icon-question-circle class="cursor-pointer" />
+          </a-tooltip>
+        </a-space>
+      </template>
+      <template #extra>
+        <a-space>
+          <a-popconfirm
+            type="warning"
+            ok-text="删除"
+            @ok="handleDeleteStoryUnit(content.id)"
+          >
+            <a-button type="text" size="mini" status="danger">删除</a-button>
+            <template #content>
+              <div>你确定要删除吗？</div>
+              <div>删除的内容无法恢复。</div>
+            </template>
+          </a-popconfirm>
+          <a-button type="outline" size="mini" @click="handleAddNewUnitBelow"
+            >在下方插入</a-button
+          >
+        </a-space>
+      </template>
     </a-card>
-    <a-button long type="primary" @click="handleAddNewUnit">
-      添加选项内容
+    <a-button long type="outline" @click="handleAddNewUnit">
+      添加新内容
     </a-button>
   </div>
 </template>
