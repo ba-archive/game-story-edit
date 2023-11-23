@@ -6,10 +6,12 @@ const router = useRouter();
 
 const currentRoute = computed(() => router.currentRoute.value.meta.title);
 
-const isHomeRoute = computed(() => router.currentRoute.value.name === "Home");
+const isHomeRoute = computed(
+  () => router.currentRoute.value.name === "EditorHome"
+);
 
 function handleBackToHome() {
-  router.push({ name: "Home" });
+  router.push({ name: "EditorHome" });
 }
 </script>
 
