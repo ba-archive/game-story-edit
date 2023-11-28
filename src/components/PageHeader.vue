@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 import { computed } from "vue";
-import { events } from "@/eventSystem/eventSystem.ts";
+import { eventSystem } from "@/eventSystem/eventSystem.ts";
 
 const router = useRouter();
 
@@ -16,7 +16,7 @@ function handleBackToHome() {
 }
 
 function handleSyncButtonClick() {
-  events.emit("sync-list");
+  eventSystem.emit("sync-list");
 }
 </script>
 

@@ -4,4 +4,4 @@ export type Events = {
   "sync-list": void;
 };
 
-export const events = mitt<Events>();
+export const eventSystem = mitt<Events>();
