@@ -3,6 +3,7 @@ import { useGameStoryEditorStore } from "@/store/store.ts";
 import { computed, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { storyType } from "@/types/GameStoryEditor.ts";
+import { formatDate } from "@/helper/date.ts";
 
 const router = useRouter();
 
@@ -41,32 +42,40 @@ watch(
   },
   { deep: true }
 );
+
+function getLastUpdated() {
+  const lastUpdated = story.value?.lastUpdated ?? getCurrentDate().valueOf();
+  return formatDate(lastUpdated);
+}
 </script>
 
 <template>
   <a-card class="shadow-sm" :bordered="false" :id="uuid">
     <a-space direction="vertical" size="medium" fill>
-      <a-space direction="vertical" size="small" fill>
-        <h2 class="m-0">剧情编号</h2>
-        <a-input-group>
-          <a-select
-            v-model="selectedStoryType"
-            :trigger-props="{ autoFitPopupMinWidth: true }"
-          >
-            <a-option
-              v-for="item in storyType"
-              :key="item.value"
-              :value="item.value"
-              :label="item.label"
+      <div class="flex w-full justify-between">
+        <a-space direction="vertical" size="small" fill>
+          <h2 class="m-0">剧情编号</h2>
+          <a-input-group>
+            <a-select
+              v-model="selectedStoryType"
+              :trigger-props="{ autoFitPopupMinWidth: true }"
+            >
+              <a-option
+                v-for="item in storyType"
+                :key="item.value"
+                :value="item.value"
+                :label="item.label"
+              />
+            </a-select>
+            <a-input
+              allow-clear
+              :placeholder="storyNumberSerial"
+              v-model="storyNumberSerial"
             />
-          </a-select>
-          <a-input
-            allow-clear
-            :placeholder="storyNumberSerial"
-            v-model="storyNumberSerial"
-          />
-        </a-input-group>
-      </a-space>
+          </a-input-group>
+        </a-space>
+        <a-tag color="blue">最后更新：{{ getLastUpdated() }}</a-tag>
+      </div>
       <a-space direction="vertical" size="small" fill>
         <h2 class="m-0">剧情概要</h2>
         <a-textarea

@@ -13,6 +13,7 @@ import PlaceUnit from "./Units/PlaceUnit.vue";
 import StUnit from "./Units/StUnit.vue";
 import TextUnit from "./Units/TextUnit.vue";
 import ToBeContinueUnit from "./Units/ToBeContinueUnit.vue";
+import { getShanghaiDate } from "@/helper/date.ts";
 
 const useStore = useGameStoryEditorStore();
 
@@ -69,7 +70,7 @@ function handleAddNewUnitBelow() {
   useStore.addNewStoryUnit(
     props.uuid,
     {
-      id: Date.now().valueOf(),
+      id: getShanghaiDate().valueOf(),
       type: "title",
       backgroundImage: "",
       bgm: "",
@@ -98,7 +99,7 @@ watch(
       if (!currentStoryUnit.value.selectionGroups) {
         currentStoryUnit.value.selectionGroups = [
           {
-            id: Date.now().valueOf(),
+            id: getShanghaiDate().valueOf(),
             type: "option",
             text: "",
             isConditional: false,

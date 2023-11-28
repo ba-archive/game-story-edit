@@ -10,6 +10,7 @@ import StUnit from "@components/EditorComponent/Units/StUnit.vue";
 import TextUnit from "@components/EditorComponent/Units/TextUnit.vue";
 import { computed } from "vue";
 import { unitType } from "@/types/GameStoryEditor.ts";
+import { getShanghaiDate } from "@/helper/date.ts";
 
 const unitTypeComponentMap = [
   {
@@ -72,7 +73,7 @@ const flagConditionParam = computed({
 
 function handleAddNewUnit() {
   currentSelectionGroup.value.content.push({
-    id: Date.now().valueOf(),
+    id: getShanghaiDate().valueOf(),
     type: "text",
     backgroundImage: "",
     bgm: "",
@@ -88,7 +89,7 @@ function handleAddNewUnitBelow() {
     item => item.id === props.selectionGroup.id
   );
   currentSelectionGroup.value.content.splice(index, 0, {
-    id: Date.now().valueOf(),
+    id: getShanghaiDate().valueOf(),
     type: "text",
     backgroundImage: "",
     bgm: "",

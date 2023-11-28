@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { StoryEditorTextUnit } from "@/types/GameStoryEditor.ts";
+import { getShanghaiDate } from "@/helper/date.ts";
 
 const props = withDefaults(
   defineProps<{
@@ -11,7 +12,7 @@ const props = withDefaults(
     uuid: "",
     storyUnit: {
       // @ts-ignore
-      id: Date.now().valueOf(),
+      id: getShanghaiDate().valueOf(),
       type: "title",
       backgroundImage: "",
       bgm: "",

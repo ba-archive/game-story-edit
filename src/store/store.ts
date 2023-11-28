@@ -5,6 +5,7 @@ import {
   StoryStatus,
 } from "@/types/GameStoryEditor";
 import { v4 as uuidv4 } from "uuid";
+import { getShanghaiDate } from "@/helper/date.ts";
 
 export const useGameStoryEditorStore = defineStore({
   id: "game-story-editor-useStore",
@@ -33,7 +34,7 @@ export const useGameStoryEditorStore = defineStore({
       this.stories.push({
         serial: serial,
         uuid: uuid,
-        lastUpdated: Date.now(),
+        lastUpdated: getShanghaiDate().valueOf(),
         status: StoryStatus.working,
         description: description,
         tags: [],

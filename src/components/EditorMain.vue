@@ -60,7 +60,7 @@ const selectedUnitType = ref(
 
 function addNewStoryUnit() {
   useStore.addNewStoryUnit(uuid.value, {
-    id: Date.now().valueOf(),
+    id: getCurrentDate().valueOf(),
     type: selectedUnitType.value,
     backgroundImage: "",
     bgm: "",

@@ -5,6 +5,7 @@ import BackgroundImageSelector from "@components/EditorComponent/Units/Backgroun
 import { getImageUrl } from "@/helper/image.ts";
 import CharacterSelector from "@components/EditorComponent/Units/CharacterSelector.vue";
 import BackgroundMusicSelector from "@components/EditorComponent/Units/BackgroundMusicSelector.vue";
+import { getShanghaiDate } from "@/helper/date.ts";
 
 const props = withDefaults(
   defineProps<{
@@ -15,7 +16,7 @@ const props = withDefaults(
     uuid: "",
     storyUnit: {
       // @ts-ignore
-      id: Date.now().valueOf(),
+      id: getShanghaiDate().valueOf(),
       type: "title",
       backgroundImage: "",
       bgm: "",

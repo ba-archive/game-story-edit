@@ -5,6 +5,7 @@ import {
   StoryEditorTextUnit,
 } from "@/types/GameStoryEditor.ts";
 import OptionUnit from "@components/EditorComponent/Units/OptionUnit.vue";
+import { getShanghaiDate } from "@/helper/date.ts";
 
 const props = defineProps<{
   uuid: string;
@@ -26,7 +27,7 @@ const selectionGroups = computed({
   get: () =>
     currentStoryUnit.value.selectionGroups ?? [
       {
-        id: Date.now().valueOf(),
+        id: getShanghaiDate().valueOf(),
         type: "option",
         text: "",
         isConditional: false,
@@ -57,7 +58,7 @@ function handleSelectionGroupUpdate(newValue: SelectionGroup) {
 
 function handleAddNewSelectionGroup() {
   selectionGroups.value.push({
-    id: Date.now().valueOf(),
+    id: getShanghaiDate().valueOf(),
     type: "option",
     text: "",
     isConditional: false,
