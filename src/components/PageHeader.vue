@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 import { computed } from "vue";
+import { events } from "@/eventSystem/eventSystem.ts";
 
 const router = useRouter();
 
@@ -12,6 +13,10 @@ const isHomeRoute = computed(
 
 function handleBackToHome() {
   router.push({ name: "EditorHome" });
+}
+
+function handleSyncButtonClick() {
+  events.emit("sync-list");
 }
 </script>
 
@@ -32,19 +37,12 @@ function handleBackToHome() {
     </div>
     <div
       class="header__container__center flex gap-1 items-center justify-center"
-      v-if="false"
+      v-if="isHomeRoute"
     >
-      <a-tooltip mini content="撤销">
-        <a-button type="text" shape="circle">
+      <a-tooltip mini content="同步">
+        <a-button type="text" shape="circle" @click="handleSyncButtonClick">
           <template #icon>
-            <icon-undo size="20" />
-          </template>
-        </a-button>
-      </a-tooltip>
-      <a-tooltip mini content="返回">
-        <a-button type="text" shape="circle">
-          <template #icon>
-            <icon-redo size="20" />
+            <icon-sync />
           </template>
         </a-button>
       </a-tooltip>
