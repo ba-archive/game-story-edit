@@ -6,6 +6,7 @@ import { useRouter } from "vue-router";
 import StoryListCard from "@components/StoryListCard.vue";
 import { storyType } from "@/types/GameStoryEditor.ts";
 import { Message } from "@arco-design/web-vue";
+import { getStoryList } from "@/helper/comm.ts";
 
 const router = useRouter();
 const useStore = useGameStoryEditorStore();
@@ -64,6 +65,11 @@ function handleInputBlur(type: InputBlurType) {
       break;
   }
 }
+
+async function test() {
+  const test = await getStoryList();
+  console.log(test);
+}
 </script>
 
 <template>
@@ -76,6 +82,7 @@ function handleInputBlur(type: InputBlurType) {
       fill
       style="grid-area: main"
     >
+      <a-button type="primary" @click="test">test</a-button>
       <story-list-card
         v-for="story in storyList"
         :key="story.uuid"
@@ -127,10 +134,10 @@ function handleInputBlur(type: InputBlurType) {
             full
             align="center"
           >
-            <a-button @click="handleCreateNewStory(false)"> 新建剧情 </a-button>
+            <a-button @click="handleCreateNewStory(false)"> 新建剧情</a-button>
             <a-button type="primary" @click="handleCreateNewStory"
-              >新建剧情并编辑</a-button
-            >
+              >新建剧情并编辑
+            </a-button>
           </a-space>
         </a-space>
       </a-card>

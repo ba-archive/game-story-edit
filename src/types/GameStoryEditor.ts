@@ -1,8 +1,15 @@
 import { TimeStamp } from "./Helper";
 
+export enum StoryStatus {
+  working,
+  finished,
+}
+
 export interface Story {
   uuid: string;
   serial: string;
+  lastUpdated: TimeStamp;
+  status: StoryStatus;
   description: string;
   tags: string[];
   content: StoryEditorTextUnit[];

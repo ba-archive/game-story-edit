@@ -22,6 +22,8 @@ onMounted(() => {
   document.body.style.setProperty("--header-height", `${height.value}px`);
   import("@components/EditorComponent/CardComponentContainer.vue");
 });
+
+import.meta.env.MODE;
 </script>
 
 <template>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
+import axios from "axios";
 
 onMounted(() => {
   import("@components/EditorMain.vue");

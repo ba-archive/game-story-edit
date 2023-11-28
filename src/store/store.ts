@@ -1,5 +1,9 @@
 import { defineStore } from "pinia";
-import { Story, StoryEditorTextUnit } from "@/types/GameStoryEditor";
+import {
+  Story,
+  StoryEditorTextUnit,
+  StoryStatus,
+} from "@/types/GameStoryEditor";
 import { v4 as uuidv4 } from "uuid";
 
 export const useGameStoryEditorStore = defineStore({
@@ -8,6 +12,7 @@ export const useGameStoryEditorStore = defineStore({
   state: () => {
     return {
       stories: [] as Story[],
+      remoteStories: [] as Story[],
     };
   },
   getters: {
@@ -28,6 +33,8 @@ export const useGameStoryEditorStore = defineStore({
       this.stories.push({
         serial: serial,
         uuid: uuid,
+        lastUpdated: Date.now(),
+        status: StoryStatus.working,
         description: description,
         tags: [],
         content: [] as StoryEditorTextUnit[],
