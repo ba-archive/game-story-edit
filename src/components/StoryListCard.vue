@@ -4,6 +4,10 @@ import { computed, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { storyType } from "@/types/GameStoryEditor.ts";
 import { formatDate, getShanghaiDate } from "@/helper/date.ts";
+import { useClipboard } from "@vueuse/core";
+import { Message } from "@arco-design/web-vue";
+
+const { copy } = useClipboard({ legacy: true });
 
 const router = useRouter();
 
@@ -43,6 +47,14 @@ watch(
   { deep: true }
 );
 
+function copyUuid() {
+  copy(props.uuid).catch(() => {
+    Message.error("复制 UUID 失败");
+  });
+
+  Message.success("复制 UUID 成功: " + props.uuid);
+}
+
 function getLastUpdated() {
   const lastUpdated = story.value?.lastUpdated ?? getShanghaiDate().valueOf();
   return formatDate(lastUpdated);
@@ -74,7 +86,9 @@ function getLastUpdated() {
             />
           </a-input-group>
         </a-space>
-        <a-tag color="blue">最后更新：{{ getLastUpdated() }}</a-tag>
+        <a-tag class="cursor-pointer" color="blue" @click="copyUuid"
+          >最后更新：{{ getLastUpdated() }}</a-tag
+        >
       </div>
       <a-space direction="vertical" size="small" fill>
         <h2 class="m-0">剧情概要</h2>

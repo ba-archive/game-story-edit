@@ -13,7 +13,7 @@ export const useGameStoryEditorStore = defineStore({
   state: () => {
     return {
       stories: [] as Story[],
-      remoteStories: [] as Story[],
+      remoteData: { stories: [] as Story[], lastUpdated: 0 },
     };
   },
   getters: {
@@ -97,6 +97,10 @@ export const useGameStoryEditorStore = defineStore({
           story.content[targetIndex] = unit;
         }
       }
+    },
+    updateRemoteStories(stories: Story[]) {
+      this.remoteData.stories = stories;
+      this.remoteData.lastUpdated = getShanghaiDate().valueOf();
     },
   },
 });

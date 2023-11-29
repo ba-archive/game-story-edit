@@ -4,9 +4,9 @@ import { computed, ref } from "vue";
 import EditorSidebar from "@components/EditorSidebar.vue";
 import { useRouter } from "vue-router";
 import StoryListCard from "@components/StoryListCard.vue";
-import { storyType } from "@/types/GameStoryEditor.ts";
+import { Story, storyType } from "@/types/GameStoryEditor.ts";
 import { Message } from "@arco-design/web-vue";
-import { getStoryList } from "@/helper/comm.ts";
+import { getStoryContent, getStoryList } from "@/helper/comm.ts";
 import { eventSystem } from "@/eventSystem/eventSystem.ts";
 
 const router = useRouter();
@@ -72,7 +72,36 @@ async function test() {
   console.log(test);
 }
 
-eventSystem.on("sync-list", () => {});
+const remoteList = ref([] as string[]);
+const remoteStories = ref([] as Story[]);
+
+eventSystem.on("sync-list", async () => {
+  try {
+    const response = await getStoryList();
+    if (200 === response.status && response.data.data) {
+      remoteList.value = response.data.data;
+    }
+  } catch (e) {
+    Message.error("同步列表失败");
+    return;
+  }
+
+  remoteStories.value = await Promise.all(
+    remoteList.value.map(async uuid => {
+      try {
+        const response = await getStoryContent(uuid);
+        if (200 === response.status && response.data.data) {
+          return response.data.data;
+        }
+      } catch (e) {
+        Message.error("同步列表失败：UUID " + uuid);
+        return;
+      }
+    })
+  );
+
+  useStore.updateRemoteStories(remoteStories.value);
+});
 </script>
 
 <template>
