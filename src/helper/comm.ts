@@ -13,3 +13,7 @@ const api = axios.create({
 export async function getStoryList() {
   return await api.get(`/storys?t=${Date.now()}`);
 }
+
+export async function getStoryInfo(uuid: string) {
+  return await api.get(`/story/${uuid}?t=${Date.now()}`);
+}

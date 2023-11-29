@@ -7,6 +7,7 @@ import StoryListCard from "@components/StoryListCard.vue";
 import { storyType } from "@/types/GameStoryEditor.ts";
 import { Message } from "@arco-design/web-vue";
 import { getStoryList } from "@/helper/comm.ts";
+import { eventSystem } from "@/eventSystem/eventSystem.ts";
 
 const router = useRouter();
 const useStore = useGameStoryEditorStore();
@@ -70,6 +71,8 @@ async function test() {
   const test = await getStoryList();
   console.log(test);
 }
+
+eventSystem.on("sync-list", () => {});
 </script>
 
 <template>
