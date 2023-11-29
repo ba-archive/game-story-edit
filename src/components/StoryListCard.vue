@@ -3,7 +3,7 @@ import { useGameStoryEditorStore } from "@/store/store.ts";
 import { computed, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { storyType } from "@/types/GameStoryEditor.ts";
-import { formatDate } from "@/helper/date.ts";
+import { formatDate, getShanghaiDate } from "@/helper/date.ts";
 
 const router = useRouter();
 
@@ -44,7 +44,7 @@ watch(
 );
 
 function getLastUpdated() {
-  const lastUpdated = story.value?.lastUpdated ?? getCurrentDate().valueOf();
+  const lastUpdated = story.value?.lastUpdated ?? getShanghaiDate().valueOf();
   return formatDate(lastUpdated);
 }
 </script>
