@@ -2,10 +2,11 @@
 import { useGameStoryEditorStore } from "@/store/store.ts";
 import { computed, ref, watch } from "vue";
 import { useRouter } from "vue-router";
-import { storyType } from "@/types/GameStoryEditor.ts";
+import { Story, storyType } from "@/types/GameStoryEditor.ts";
 import { formatDate, getShanghaiDate } from "@/helper/date.ts";
 import { useClipboard } from "@vueuse/core";
 import { Message } from "@arco-design/web-vue";
+import { getStoryContent } from "@/helper/comm.ts";
 
 const { copy } = useClipboard({ legacy: true });
 
@@ -58,6 +59,28 @@ function copyUuid() {
 function getLastUpdated() {
   const lastUpdated = story.value?.lastUpdated ?? getShanghaiDate().valueOf();
   return formatDate(lastUpdated);
+}
+
+const remoteStory = ref<Story | {}>({});
+
+async function handleSyncRemote(uuid: string) {
+  try {
+    const response = await getStoryContent(uuid);
+    if (200 === response.status && response.data.data) {
+      remoteStory.value = response.data.data;
+    } else {
+      throw new Error("同步故事信息失败：UUID " + uuid);
+    }
+  } catch (e) {
+    Message.error("同步故事信息失败：UUID " + uuid);
+    return {
+      uuid,
+      serial: useStore.getStoryByUuid(uuid)?.serial ?? uuid,
+      description: useStore.getStoryByUuid(uuid)?.description ?? "",
+      tags: useStore.getStoryByUuid(uuid)?.tags ?? [],
+      lastUpdated: useStore.getStoryByUuid(uuid)?.lastUpdated ?? 0,
+    };
+  }
 }
 </script>
 
@@ -125,7 +148,22 @@ function getLastUpdated() {
               <div>删除的内容无法恢复。</div>
             </template>
           </a-popconfirm>
-          <a-button type="primary" @click="goToEditor">前往编辑</a-button>
+          <a-dropdown-button
+            type="primary"
+            position="br"
+            trigger="hover"
+            @click="goToEditor"
+          >
+            前往编辑
+            <template #content>
+              <a-doption @click="handleSyncRemote(uuid)">
+                <template #icon>
+                  <icon-cloud-download />
+                </template>
+                <span>同步远程</span>
+              </a-doption>
+            </template>
+          </a-dropdown-button>
         </a-space>
       </div>
     </a-space>

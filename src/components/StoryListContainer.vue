@@ -67,15 +67,10 @@ function handleInputBlur(type: InputBlurType) {
   }
 }
 
-async function test() {
-  const test = await getStoryList();
-  console.log(test);
-}
-
 const remoteList = ref([] as string[]);
 const remoteStories = ref([] as Story[]);
 
-eventSystem.on("sync-list", async () => {
+async function handleSync() {
   try {
     const response = await getStoryList();
     if (200 === response.status && response.data.data) {
@@ -94,14 +89,22 @@ eventSystem.on("sync-list", async () => {
           return response.data.data;
         }
       } catch (e) {
-        Message.error("同步列表失败：UUID " + uuid);
-        return;
+        Message.error("同步故事信息失败：UUID " + uuid);
+        return {
+          uuid,
+          serial: useStore.getStoryByUuid(uuid)?.serial ?? uuid,
+          description: useStore.getStoryByUuid(uuid)?.description ?? "",
+          tags: useStore.getStoryByUuid(uuid)?.tags ?? [],
+          lastUpdated: useStore.getStoryByUuid(uuid)?.lastUpdated ?? 0,
+        };
       }
     })
   );
 
   useStore.updateRemoteStories(remoteStories.value);
-});
+}
+
+eventSystem.on("sync-list", handleSync);
 </script>
 
 <template>
@@ -114,7 +117,6 @@ eventSystem.on("sync-list", async () => {
       fill
       style="grid-area: main"
     >
-      <a-button type="primary" @click="test">test</a-button>
       <story-list-card
         v-for="story in storyList"
         :key="story.uuid"
