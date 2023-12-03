@@ -160,7 +160,13 @@ async function handleSyncRemote(uuid: string) {
                 <template #icon>
                   <icon-cloud-download />
                 </template>
-                <span>同步远程</span>
+                <span>从云端拉取</span>
+              </a-doption>
+              <a-doption @click="handleSyncRemote(uuid)">
+                <template #icon>
+                  <icon-upload />
+                </template>
+                <span>上传至云端</span>
               </a-doption>
             </template>
           </a-dropdown-button>

@@ -46,6 +46,7 @@ import {
   StoryEditorTextUnit,
   unitTypeWithoutOption,
 } from "@/types/GameStoryEditor";
+import { getShanghaiDate } from "@/helper/date.ts";
 
 const router = useRouter();
 const useStore = useGameStoryEditorStore();
@@ -60,7 +61,7 @@ const selectedUnitType = ref(
 
 function addNewStoryUnit() {
   useStore.addNewStoryUnit(uuid.value, {
-    id: getCurrentDate().valueOf(),
+    id: getShanghaiDate().valueOf(),
     type: selectedUnitType.value,
     backgroundImage: "",
     bgm: "",
