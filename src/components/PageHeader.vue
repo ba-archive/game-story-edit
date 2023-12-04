@@ -39,13 +39,19 @@ function handleSyncButtonClick() {
       class="header__container__center flex gap-1 items-center justify-center"
       v-if="isHomeRoute"
     >
-      <a-tooltip mini content="同步">
-        <a-button type="text" shape="circle" @click="handleSyncButtonClick">
-          <template #icon>
-            <icon-sync />
-          </template>
-        </a-button>
-      </a-tooltip>
+      <a-popconfirm type="warning" ok-text="同步" @ok="handleSyncButtonClick">
+        <template #content>
+          <div>你确定要同步吗？</div>
+          <div>同步完成后本地数据将全部丢失，请慎重考虑。</div>
+        </template>
+        <a-tooltip mini content="用云端数据覆盖本地数据。">
+          <a-button type="text" shape="circle">
+            <template #icon>
+              <icon-cloud-download size="20" />
+            </template>
+          </a-button>
+        </a-tooltip>
+      </a-popconfirm>
     </div>
     <div
       class="header__container__right flex gap-1 items-center justify-end"

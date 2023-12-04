@@ -29,6 +29,16 @@ export const useGameStoryEditorStore = defineStore({
       state.stories.find(story => uuid === story.uuid),
   },
   actions: {
+    overwriteStory(story: Story) {
+      const index = this.stories.findIndex(
+        localStory => story.uuid === localStory.uuid
+      );
+      if (index > -1) {
+        this.stories[index] = story;
+      } else {
+        this.stories.push(story);
+      }
+    },
     createNewStory(serial: string, description: string) {
       const uuid = uuidv4();
       this.stories.push({

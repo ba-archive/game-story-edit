@@ -6,7 +6,7 @@ import { Story, storyType } from "@/types/GameStoryEditor.ts";
 import { formatDate, getShanghaiDate } from "@/helper/date.ts";
 import { useClipboard } from "@vueuse/core";
 import { Message } from "@arco-design/web-vue";
-import { getStoryContent } from "@/helper/comm.ts";
+import { getStoryContent, updateStoryContent } from "@/helper/comm.ts";
 
 const { copy } = useClipboard({ legacy: true });
 
@@ -63,7 +63,7 @@ function getLastUpdated() {
 
 const remoteStory = ref<Story | {}>({});
 
-async function handleSyncRemote(uuid: string) {
+async function handlePullFromRemote(uuid: string) {
   try {
     const response = await getStoryContent(uuid);
     if (200 === response.status && response.data.data) {
@@ -80,6 +80,22 @@ async function handleSyncRemote(uuid: string) {
       tags: useStore.getStoryByUuid(uuid)?.tags ?? [],
       lastUpdated: useStore.getStoryByUuid(uuid)?.lastUpdated ?? 0,
     };
+  }
+}
+
+async function handlePushToRemote(uuid: string) {
+  const storyContent = useStore.getStoryByUuid(uuid);
+  if (!storyContent) return;
+
+  try {
+    const response = await updateStoryContent(uuid, storyContent);
+    if (200 === response.status && response.data.data) {
+      remoteStory.value = response.data.data;
+    } else {
+      throw new Error("同步故事信息失败：UUID " + uuid);
+    }
+  } catch (e) {
+    Message.error("同步故事信息失败：UUID " + uuid);
   }
 }
 </script>
@@ -156,13 +172,13 @@ async function handleSyncRemote(uuid: string) {
           >
             前往编辑
             <template #content>
-              <a-doption @click="handleSyncRemote(uuid)">
+              <a-doption @click="handlePullFromRemote(uuid)">
                 <template #icon>
                   <icon-cloud-download />
                 </template>
                 <span>从云端拉取</span>
               </a-doption>
-              <a-doption @click="handleSyncRemote(uuid)">
+              <a-doption @click="handlePushToRemote(uuid)">
                 <template #icon>
                   <icon-upload />
                 </template>

@@ -8,6 +8,7 @@ import { Story, storyType } from "@/types/GameStoryEditor.ts";
 import { Message } from "@arco-design/web-vue";
 import { getStoryContent, getStoryList } from "@/helper/comm.ts";
 import { eventSystem } from "@/eventSystem/eventSystem.ts";
+import { uniq } from "lodash-es";
 
 const router = useRouter();
 const useStore = useGameStoryEditorStore();
@@ -69,6 +70,29 @@ function handleInputBlur(type: InputBlurType) {
 
 const remoteList = ref([] as string[]);
 const remoteStories = ref([] as Story[]);
+const localList = ref([] as string[]);
+
+function handleMerge() {
+  const uniqList = uniq([...localList.value, ...remoteList.value]);
+  const mergedStories = uniqList.map(uuid => {
+    const localStory = useStore.getStoryByUuid(uuid);
+    const remoteStory = remoteStories.value.find(
+      story => story.uuid === uuid
+    ) as Story;
+    if (!localStory) {
+      return remoteStory;
+    }
+    if (!remoteStory) {
+      return localStory;
+    }
+    if (localStory.lastUpdated > remoteStory.lastUpdated) {
+      return localStory;
+    }
+    return remoteStory;
+  });
+
+  mergedStories.forEach(story => useStore.overwriteStory(story));
+}
 
 async function handleSync() {
   try {
@@ -101,7 +125,11 @@ async function handleSync() {
     })
   );
 
+  localList.value = useStore.getStoryList.map(story => story.uuid);
+
   useStore.updateRemoteStories(remoteStories.value);
+
+  handleMerge();
 }
 
 eventSystem.on("sync-list", handleSync);
