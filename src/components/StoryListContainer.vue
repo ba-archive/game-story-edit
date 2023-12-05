@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { useGameStoryEditorStore } from "@/store/store.ts";
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import EditorSidebar from "@components/EditorSidebar.vue";
 import { useRouter } from "vue-router";
 import StoryListCard from "@components/StoryListCard.vue";
 import { Story, storyType } from "@/types/GameStoryEditor.ts";
 import { Message } from "@arco-design/web-vue";
-import { deleteStory, getStoryContent, getStoryList } from "@/helper/comm.ts";
+import { getStoryContent, getStoryList } from "@/helper/comm.ts";
 import { eventSystem } from "@/eventSystem/eventSystem.ts";
 import { uniq } from "lodash-es";
 
@@ -133,6 +133,10 @@ async function handleSync() {
 }
 
 eventSystem.on("sync-list", handleSync);
+
+onMounted(() => {
+  handleSync();
+});
 </script>
 
 <template>

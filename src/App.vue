@@ -4,7 +4,7 @@ import PageHeader from "./components/PageHeader.vue";
 import { useRouter } from "vue-router";
 import { computed, onMounted, ref, watch } from "vue";
 import StoryListContainer from "@components/StoryListContainer.vue";
-import { useElementSize, useThrottleFn } from "@vueuse/core";
+import { useElementSize } from "@vueuse/core";
 import { eventSystem } from "@/eventSystem/eventSystem.ts";
 import { useGameStoryEditorStore } from "@/store/store.ts";
 import { updateStoryContent } from "@/helper/comm.ts";
