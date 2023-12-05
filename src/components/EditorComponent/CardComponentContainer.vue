@@ -14,6 +14,7 @@ import StUnit from "./Units/StUnit.vue";
 import TextUnit from "./Units/TextUnit.vue";
 import ToBeContinueUnit from "./Units/ToBeContinueUnit.vue";
 import { getShanghaiDate } from "@/helper/date.ts";
+import { cloneDeep } from "lodash-es";
 
 const useStore = useGameStoryEditorStore();
 
@@ -77,7 +78,7 @@ function handleAddNewUnitBelow() {
       speaker: currentStoryUnit.value.speaker,
       affiliation: currentStoryUnit.value.affiliation,
       text: "",
-      characters: currentStoryUnit.value.characters || [],
+      characters: cloneDeep(currentStoryUnit.value.characters) || [],
     },
     props.storyUnit.id
   );
