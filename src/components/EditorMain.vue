@@ -14,7 +14,11 @@
         <a-button type="primary" long @click="addNewStoryUnit"
           >添加新卡片</a-button
         >
-        <a-dropdown position="br" @select="handleChangeUnitType">
+        <a-dropdown
+          trigger="hover"
+          position="br"
+          @select="handleChangeUnitType"
+        >
           <a-button type="primary">
             <template #icon>
               <icon-down />

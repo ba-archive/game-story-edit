@@ -71,13 +71,13 @@ function handleAddNewUnitBelow() {
     props.uuid,
     {
       id: getShanghaiDate().valueOf(),
-      type: "title",
-      backgroundImage: "",
-      bgm: "",
-      speaker: "",
-      affiliation: "",
+      type: currentUnitType.value,
+      backgroundImage: currentStoryUnit.value.backgroundImage,
+      bgm: currentStoryUnit.value.bgm,
+      speaker: currentStoryUnit.value.speaker,
+      affiliation: currentStoryUnit.value.affiliation,
       text: "",
-      characters: [],
+      characters: currentStoryUnit.value.characters || [],
     },
     props.storyUnit.id
   );
