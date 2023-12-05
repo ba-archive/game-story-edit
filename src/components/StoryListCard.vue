@@ -27,13 +27,20 @@ const story = computed(() => useStore.getStoryByUuid(props.uuid));
 const storySerialFull = ref(story.value?.serial ?? "MS_001");
 const storyDescription = ref(story.value?.description ?? "");
 
-function goToEditor() {
-  router.push({ name: "EditorMain", params: { uuid: props.uuid } });
-}
-
 const selectedStoryType = ref(storySerialFull.value.slice(0, 2));
 const storyNumberSerial = ref(storySerialFull.value.slice(3));
 const tags = ref<string[]>(story.value?.tags ?? []);
+
+watch(
+  () => story.value,
+  newValue => {
+    storySerialFull.value = newValue?.serial ?? "MS_001";
+    storyDescription.value = newValue?.description ?? "";
+    selectedStoryType.value = storySerialFull.value.slice(0, 2);
+    storyNumberSerial.value = storySerialFull.value.slice(3);
+    tags.value = newValue?.tags ?? [];
+  }
+);
 
 watch(
   [selectedStoryType, storyNumberSerial, storyDescription, tags],
@@ -47,6 +54,10 @@ watch(
   },
   { deep: true }
 );
+
+function goToEditor() {
+  router.push({ name: "EditorMain", params: { uuid: props.uuid } });
+}
 
 function copyUuid() {
   copy(props.uuid).catch(() => {

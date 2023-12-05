@@ -28,7 +28,7 @@ onMounted(() => {
   import("@components/EditorComponent/CardComponentContainer.vue");
 });
 
-let lastUpdatedTimestamp = Date.now();
+let lastUpdatedTimestamp = 0;
 
 async function handleStoryChange(uuid: string) {
   const storyContent = useStore.getStoryByUuid(uuid);
