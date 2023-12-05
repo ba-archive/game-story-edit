@@ -6,6 +6,7 @@ import {
 } from "@/types/GameStoryEditor";
 import { v4 as uuidv4 } from "uuid";
 import { getShanghaiDate } from "@/helper/date.ts";
+import { eventSystem } from "@/eventSystem/eventSystem.ts";
 
 export const useGameStoryEditorStore = defineStore({
   id: "game-story-editor-useStore",
@@ -34,8 +35,10 @@ export const useGameStoryEditorStore = defineStore({
         localStory => story.uuid === localStory.uuid
       );
       if (index > -1) {
+        story.lastUpdated = getShanghaiDate().valueOf();
         this.stories[index] = story;
       } else {
+        story.lastUpdated = getShanghaiDate().valueOf();
         this.stories.push(story);
       }
     },
@@ -50,6 +53,7 @@ export const useGameStoryEditorStore = defineStore({
         tags: [],
         content: [] as StoryEditorTextUnit[],
       });
+      eventSystem.emit("story-changed", uuid);
       return uuid;
     },
     deleteStory(uuid: string) {
@@ -70,6 +74,7 @@ export const useGameStoryEditorStore = defineStore({
         story.tags = tags;
         story.description = description;
         story.lastUpdated = getShanghaiDate().valueOf();
+        eventSystem.emit("story-changed", uuid);
       }
     },
     addNewStoryUnit(
@@ -79,6 +84,7 @@ export const useGameStoryEditorStore = defineStore({
     ) {
       const story = this.stories.find(story => uuid === story.uuid);
       if (story) {
+        story.lastUpdated = getShanghaiDate().valueOf();
         if (positionBehind === null) {
           story.content.push(unit);
           return;
@@ -95,6 +101,7 @@ export const useGameStoryEditorStore = defineStore({
     deleteStoryUnit(uuid: string, id: number) {
       const story = this.stories.find(story => uuid === story.uuid);
       if (story) {
+        story.lastUpdated = getShanghaiDate().valueOf();
         const targetIndex = story.content.findIndex(unit => id === unit.id);
         if (targetIndex > -1) {
           story.content.splice(targetIndex, 1);
@@ -104,6 +111,7 @@ export const useGameStoryEditorStore = defineStore({
     updateStoryUnit(uuid: string, id: number, unit: StoryEditorTextUnit) {
       const story = this.stories.find(story => uuid === story.uuid);
       if (story) {
+        story.lastUpdated = getShanghaiDate().valueOf();
         const targetIndex = story.content.findIndex(unit => id === unit.id);
         if (targetIndex > -1) {
           story.content[targetIndex] = unit;

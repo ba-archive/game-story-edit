@@ -4,9 +4,14 @@ import PageHeader from "./components/PageHeader.vue";
 import { useRouter } from "vue-router";
 import { computed, onMounted, ref, watch } from "vue";
 import StoryListContainer from "@components/StoryListContainer.vue";
-import { useElementSize } from "@vueuse/core";
+import { useElementSize, useThrottleFn } from "@vueuse/core";
+import { eventSystem } from "@/eventSystem/eventSystem.ts";
+import { useGameStoryEditorStore } from "@/store/store.ts";
+import { updateStoryContent } from "@/helper/comm.ts";
+import { Message } from "@arco-design/web-vue";
 
 const router = useRouter();
+const useStore = useGameStoryEditorStore();
 
 const isHomeRoute = computed(() => router.currentRoute.value.name === "Home");
 
@@ -23,7 +28,25 @@ onMounted(() => {
   import("@components/EditorComponent/CardComponentContainer.vue");
 });
 
-import.meta.env.MODE;
+let lastUpdatedTimestamp = Date.now();
+
+async function handleStoryChange(uuid: string) {
+  const storyContent = useStore.getStoryByUuid(uuid);
+  if (!storyContent) return;
+
+  const currentTimeStamp = Date.now();
+  if (currentTimeStamp - lastUpdatedTimestamp < 5000) return;
+  const response = await updateStoryContent(uuid, storyContent);
+
+  if (response.status === 200) {
+    Message.success("自动同步到云端成功：" + uuid);
+    lastUpdatedTimestamp = currentTimeStamp;
+  } else {
+    Message.error(`云端同步失败：${uuid}，将会在下一次修改时重试`);
+  }
+}
+
+eventSystem.on("story-changed", async uuid => handleStoryChange(uuid));
 </script>
 
 <template>

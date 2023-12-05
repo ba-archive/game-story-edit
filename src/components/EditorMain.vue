@@ -41,19 +41,30 @@ import EditorSidebar from "./EditorSidebar.vue";
 import CardComponentContainer from "@components/EditorComponent/CardComponentContainer.vue";
 import { useGameStoryEditorStore } from "@/store/store";
 import { useRouter } from "vue-router";
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import {
   StoryEditorTextUnit,
   unitTypeWithoutOption,
 } from "@/types/GameStoryEditor";
 import { getShanghaiDate } from "@/helper/date.ts";
+import { eventSystem } from "@/eventSystem/eventSystem.ts";
 
 const router = useRouter();
 const useStore = useGameStoryEditorStore();
 
 const uuid = computed(() => router.currentRoute.value.params.uuid as string);
 
-const story = ref(useStore.getStoryByUuid(uuid.value));
+const story = computed(() => useStore.getStoryByUuid(uuid.value));
+
+watch(
+  () => story.value,
+  () => {
+    eventSystem.emit("story-changed", uuid.value);
+  },
+  {
+    deep: true,
+  }
+);
 
 const selectedUnitType = ref(
   unitTypeWithoutOption[0].value as StoryEditorTextUnit["type"]
