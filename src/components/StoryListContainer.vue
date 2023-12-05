@@ -6,7 +6,7 @@ import { useRouter } from "vue-router";
 import StoryListCard from "@components/StoryListCard.vue";
 import { Story, storyType } from "@/types/GameStoryEditor.ts";
 import { Message } from "@arco-design/web-vue";
-import { getStoryContent, getStoryList } from "@/helper/comm.ts";
+import { deleteStory, getStoryContent, getStoryList } from "@/helper/comm.ts";
 import { eventSystem } from "@/eventSystem/eventSystem.ts";
 import { uniq } from "lodash-es";
 

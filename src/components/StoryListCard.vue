@@ -6,7 +6,11 @@ import { Story, storyType } from "@/types/GameStoryEditor.ts";
 import { formatDate, getShanghaiDate } from "@/helper/date.ts";
 import { useClipboard } from "@vueuse/core";
 import { Message } from "@arco-design/web-vue";
-import { getStoryContent, updateStoryContent } from "@/helper/comm.ts";
+import {
+  deleteStory,
+  getStoryContent,
+  updateStoryContent,
+} from "@/helper/comm.ts";
 
 const { copy } = useClipboard({ legacy: true });
 
@@ -23,7 +27,20 @@ const story = computed(() => useStore.getStoryByUuid(props.uuid));
 const storySerialFull = ref(story.value?.serial ?? "MS_001");
 const storyDescription = ref(story.value?.description ?? "");
 
-function handleDeleteStory() {
+async function handleDelete(uuid: string) {
+  await deleteStory(uuid);
+}
+
+async function handleDeleteStoryRemote() {
+  try {
+    await handleDelete(props.uuid);
+    Message.success("删除故事成功：UUID " + props.uuid);
+  } catch (e) {
+    Message.error("删除故事失败：UUID " + props.uuid);
+  }
+}
+
+function handleDeleteStoryLocal() {
   useStore.deleteStory(props.uuid);
 }
 
