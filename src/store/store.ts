@@ -69,6 +69,7 @@ export const useGameStoryEditorStore = defineStore({
         story.serial = serial;
         story.tags = tags;
         story.description = description;
+        story.lastUpdated = getShanghaiDate().valueOf();
       }
     },
     addNewStoryUnit(
@@ -88,6 +89,7 @@ export const useGameStoryEditorStore = defineStore({
         if (targetIndex > -1) {
           story.content.splice(targetIndex + 1, 0, unit);
         }
+        story.lastUpdated = getShanghaiDate().valueOf();
       }
     },
     deleteStoryUnit(uuid: string, id: number) {
@@ -106,6 +108,7 @@ export const useGameStoryEditorStore = defineStore({
         if (targetIndex > -1) {
           story.content[targetIndex] = unit;
         }
+        story.lastUpdated = getShanghaiDate().valueOf();
       }
     },
     updateRemoteStories(stories: Story[]) {
