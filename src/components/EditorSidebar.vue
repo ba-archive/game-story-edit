@@ -52,8 +52,11 @@ function getTooltipText(storyUnit: StoryEditorTextUnit) {
   switch (storyUnit.type) {
     case "title":
       return storyUnit.text?.replace(";", " ") || "标题";
-    case "select":
-
+    case "text":
+      return `${storyUnit.speaker ?? ""}：${storyUnit.text?.replaceAll(
+        "\n",
+        "<br>"
+      )}`;
     case "effectOnly":
       // FIXME 改成显示效果
       return storyUnit.text?.replaceAll("\n", "<br>") || "此段剧情暂无描述";
