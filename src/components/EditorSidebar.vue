@@ -40,7 +40,12 @@ function getDisplayText(item: SidebarStoryUnitListUnit) {
   switch (item.type) {
     case "title":
       return item.text?.replace(";", " ") || "标题";
-
+    case "select":
+      return "选项";
+    case "text":
+      return item.speaker
+        ? `对话（${item.speaker}）：${item.text}`.slice(0, 10) + "…"
+        : "旁白";
     default:
       return (
         unitType.find(unit => unit.value === item.type)?.label ?? item.type
