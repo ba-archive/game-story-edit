@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useGameStoryEditorStore } from "@/store/store.ts";
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import EditorSidebar from "@components/EditorSidebar.vue";
 import { useRouter } from "vue-router";
 import StoryListCard from "@components/StoryListCard.vue";
@@ -136,24 +136,135 @@ eventSystem.on("sync-list", handleSync);
 onMounted(() => {
   handleSync();
 });
+
+const sortType = ref("lastUpdated");
+
+const sortTypes = [
+  {
+    label: "默认排序",
+    value: "default",
+  },
+  {
+    label: "按编号从小到大排序",
+    value: "serial",
+  },
+  {
+    label: "按更新时间从晚到早排序",
+    value: "lastUpdated",
+  },
+];
+
+const scrollContainer = ref<HTMLElement>();
+
+const sortTypeString = computed(
+  () =>
+    sortTypes.find(item => item.value === sortType.value)?.label ?? "默认排序"
+);
+
+function handleChangeSortType(value: string) {
+  sortType.value = value;
+}
+
+const storyListSorted = computed(() => {
+  const list = [...storyList.value];
+  switch (sortType.value) {
+    case "default":
+      return list;
+    case "serial":
+      return list.sort((a, b) => {
+        const serialA = a.serial;
+        const serialB = b.serial;
+        if (serialA < serialB) {
+          return -1;
+        }
+        if (serialA > serialB) {
+          return 1;
+        }
+        return 0;
+      });
+    case "lastUpdated":
+      return list.sort((a, b) => {
+        const lastUpdatedA = a.lastUpdated;
+        const lastUpdatedB = b.lastUpdated;
+        if (lastUpdatedA < lastUpdatedB) {
+          return 1;
+        }
+        if (lastUpdatedA > lastUpdatedB) {
+          return -1;
+        }
+        return 0;
+      });
+    default:
+      return list;
+  }
+});
+
+const storyListFiltered = ref(storyListSorted.value);
+const searchInput = ref("");
+
+watch([searchInput, storyListSorted], ([searchInput, storyListSorted]) => {
+  if (searchInput === "") {
+    storyListFiltered.value = storyListSorted;
+  }
+  storyListFiltered.value = storyListSorted.filter(story => {
+    const serial = story.serial;
+    const description = story.description;
+    const tags = story.tags.join(" ");
+    return (
+      serial.includes(searchInput) ||
+      description.includes(searchInput) ||
+      tags.includes(searchInput)
+    );
+  });
+  eventSystem.emit("list-sorted", storyListFiltered.value);
+});
 </script>
 
 <template>
   <div class="story-list-container flex-1">
     <editor-sidebar style="grid-area: sidebar" mode="storyList" />
-    <a-space
-      direction="vertical"
-      size="medium"
-      class="story-list"
-      fill
-      style="grid-area: main"
+    <div
+      class="story-list flex flex-col justify-start gap-4"
+      ref="scrollContainer"
     >
+      <div class="sticky top-[-24px] flex justify-between z-10 shadow-y-upper">
+        <a-input
+          placeholder="搜索标题、概要和标签"
+          v-model="searchInput"
+          allow-clear
+        >
+          <template #prefix>
+            <a-space size="small">
+              <icon-search />
+            </a-space>
+          </template>
+        </a-input>
+
+        <a-dropdown trigger="hover">
+          <a-button>
+            <span>{{ sortTypeString }}</span>
+            <template #icon>
+              <icon-down />
+            </template>
+          </a-button>
+          <template #content>
+            <a-doption
+              v-for="item in sortTypes"
+              :key="item.value"
+              :value="item.value"
+              @click="handleChangeSortType(item.value)"
+            >
+              {{ item.label }}
+            </a-doption>
+          </template>
+        </a-dropdown>
+      </div>
+
       <story-list-card
-        v-for="story in storyList"
+        v-for="story in storyListFiltered"
         :key="story.uuid"
         :uuid="story.uuid"
       />
-
       <a-divider />
       <a-card id="story-create-new-item" class="shadow-sm" :bordered="false">
         <a-space direction="vertical" size="medium" fill>
@@ -206,7 +317,7 @@ onMounted(() => {
           </a-space>
         </a-space>
       </a-card>
-    </a-space>
+    </div>
   </div>
 </template>
 
@@ -215,6 +326,13 @@ onMounted(() => {
   display: grid;
   grid-template-areas: "sidebar main";
   grid-template-columns: 240px 1fr;
+
+  &__content {
+    &__header {
+      $inner-width: 684px;
+      padding: 24px calc((100% - #{$inner-width}) / 2);
+    }
+  }
 }
 
 .story-list {
@@ -222,5 +340,16 @@ onMounted(() => {
   padding: 24px calc((100% - #{$inner-width}) / 2);
   overflow: scroll;
   height: calc(100vh - var(--header-height, 32px));
+
+  &--title {
+  }
+
+  &.affixed {
+    .story-list--title {
+      .arco-input-wrapper {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
 }
 </style>

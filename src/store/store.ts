@@ -24,6 +24,8 @@ export const useGameStoryEditorStore = defineStore({
           serial: story.serial,
           uuid: story.uuid,
           description: story.description,
+          lastUpdated: story.lastUpdated,
+          tags: story.tags,
         };
       }),
     getStoryByUuid: state => (uuid: string) =>

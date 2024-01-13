@@ -4,9 +4,10 @@ import {
   SidebarStoryUnitListUnit,
   StoryEditorTextUnit,
 } from "@/types/GameStoryEditor.ts";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useGameStoryEditorStore } from "@/store/store.ts";
 import { unitType } from "@/types/GameStoryEditor.ts";
+import { eventSystem } from "@/eventSystem/eventSystem";
 
 const useStore = useGameStoryEditorStore();
 
@@ -22,6 +23,14 @@ const list = computed(() => {
     return useStore.getStoryList;
   } else {
     return useStore.getStoryByUuid(props.uuid as string)?.content ?? [];
+  }
+});
+
+const displayList = ref(list.value);
+
+eventSystem.on("list-sorted", sortedList => {
+  if (isStoryListMode.value) {
+    displayList.value = sortedList;
   }
 });
 
@@ -85,7 +94,7 @@ function getTooltipText(storyUnit: StoryEditorTextUnit) {
       </h2>
       <a-space direction="vertical" size="mini" fill v-if="isStoryListMode">
         <a-tooltip
-          v-for="item in list as SidebarStoryListUnit[]"
+          v-for="item in displayList as SidebarStoryListUnit[]"
           position="right"
           :content="item.description ? item.description : '此段剧情暂无描述'"
         >
