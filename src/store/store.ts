@@ -30,12 +30,16 @@ export const useGameStoryEditorStore = defineStore({
       state.stories.find(story => uuid === story.uuid),
   },
   actions: {
-    overwriteStory(story: Story) {
+    overwriteStory(story: Story, timestamp = 0) {
       const index = this.stories.findIndex(
         localStory => story.uuid === localStory.uuid
       );
       if (index > -1) {
-        story.lastUpdated = getShanghaiDate().valueOf();
+        if (timestamp !== 0) {
+          story.lastUpdated = timestamp;
+        } else {
+          story.lastUpdated = getShanghaiDate().valueOf();
+        }
         this.stories[index] = story;
       } else {
         story.lastUpdated = getShanghaiDate().valueOf();

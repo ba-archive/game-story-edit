@@ -11,6 +11,7 @@ import {
   getStoryContent,
   updateStoryContent,
 } from "@/helper/comm.ts";
+import { isEqual } from "lodash-es";
 
 const { copy } = useClipboard({ legacy: true });
 
@@ -34,17 +35,32 @@ const tags = ref<string[]>(story.value?.tags ?? []);
 watch(
   () => story.value,
   newValue => {
-    storySerialFull.value = newValue?.serial ?? "MS_001";
-    storyDescription.value = newValue?.description ?? "";
-    selectedStoryType.value = storySerialFull.value.slice(0, 2);
-    storyNumberSerial.value = storySerialFull.value.slice(3);
-    tags.value = newValue?.tags ?? [];
+    if (!newValue) return;
+    if (newValue.serial !== storySerialFull.value) {
+      storySerialFull.value = newValue.serial;
+    }
+    if (newValue.description !== storyDescription.value) {
+      storyDescription.value = newValue.description;
+    }
+    if (!isEqual(newValue.tags, tags.value)) {
+      tags.value = newValue.tags;
+    }
   }
 );
 
 watch(
   [selectedStoryType, storyNumberSerial, storyDescription, tags],
-  ([newSelectedStoryType, newStoryNumberSerial, newStoryDescription, tags]) => {
+  (
+    [newSelectedStoryType, newStoryNumberSerial, newStoryDescription, tags],
+    [oldSelectedStoryType, oldStoryNumberSerial, oldStoryDescription, oldTags]
+  ) => {
+    if (
+      newSelectedStoryType === oldSelectedStoryType &&
+      newStoryNumberSerial === oldStoryNumberSerial &&
+      newStoryDescription === oldStoryDescription &&
+      tags === oldTags
+    )
+      return;
     useStore.updateStoryMeta(
       props.uuid,
       newSelectedStoryType + "_" + newStoryNumberSerial,
@@ -84,20 +100,12 @@ async function handlePullFromRemote(uuid: string) {
     }
   } catch (e) {
     Message.error("同步故事信息失败：UUID " + uuid);
-    return {
-      uuid,
-      serial: useStore.getStoryByUuid(uuid)?.serial ?? uuid,
-      description: useStore.getStoryByUuid(uuid)?.description ?? "",
-      tags: useStore.getStoryByUuid(uuid)?.tags ?? [],
-      lastUpdated: useStore.getStoryByUuid(uuid)?.lastUpdated ?? 0,
-    };
   }
 }
 
 async function handlePushToRemote(uuid: string) {
   const storyContent = useStore.getStoryByUuid(uuid);
   if (!storyContent) return;
-  storyContent.lastUpdated = getShanghaiDate().valueOf();
   try {
     const response = await updateStoryContent(uuid, storyContent);
     if (200 === response.status && response.data.data) {

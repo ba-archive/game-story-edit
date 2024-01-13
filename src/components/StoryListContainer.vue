@@ -85,13 +85,12 @@ function handleMerge() {
     if (!remoteStory) {
       return localStory;
     }
-    if (localStory.lastUpdated > remoteStory.lastUpdated) {
-      return localStory;
-    }
     return remoteStory;
   });
 
-  mergedStories.forEach(story => useStore.overwriteStory(story));
+  mergedStories.forEach(story => {
+    useStore.overwriteStory(story, story.lastUpdated ?? 0);
+  });
 }
 
 async function handleSync() {

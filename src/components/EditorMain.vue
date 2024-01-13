@@ -63,19 +63,13 @@ import {
 import { getShanghaiDate } from "@/helper/date.ts";
 import { eventSystem } from "@/eventSystem/eventSystem.ts";
 import { vDraggable } from "vue-draggable-plus";
-import { Story } from "@/types/GameStoryEditor";
 
 const router = useRouter();
 const useStore = useGameStoryEditorStore();
 
 const uuid = computed(() => router.currentRoute.value.params.uuid as string);
 
-const story = computed({
-  get: () => useStore.getStoryByUuid(uuid.value),
-  set: newValue => {
-    useStore.overwriteStory(newValue as Story);
-  },
-});
+const story = computed(() => useStore.getStoryByUuid(uuid.value));
 
 watch(
   () => story.value,
