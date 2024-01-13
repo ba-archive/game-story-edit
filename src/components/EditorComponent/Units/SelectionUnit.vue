@@ -33,6 +33,7 @@ const selectionGroups = computed({
         isConditional: false,
         condition: [] as unknown as SelectionGroup["condition"],
         content: [] as StoryEditorTextUnit[],
+        script: "",
       },
     ],
   set: newValue => {
@@ -64,6 +65,7 @@ function handleAddNewSelectionGroup() {
     isConditional: false,
     condition: [] as unknown as SelectionGroup["condition"],
     content: [] as StoryEditorTextUnit[],
+    script: "",
   });
 }
 

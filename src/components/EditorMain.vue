@@ -103,6 +103,7 @@ function addNewStoryUnit() {
         isConditional: false,
         condition: [] as unknown as SelectionGroup["condition"],
         content: [] as StoryEditorTextUnit[],
+        script: "",
       },
     ],
     bgm: "",
@@ -110,6 +111,7 @@ function addNewStoryUnit() {
     affiliation: "",
     text: "",
     characters: [],
+    script: "",
   });
 }
 

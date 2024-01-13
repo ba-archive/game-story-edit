@@ -78,6 +78,7 @@ function handleAddNewUnitBelow() {
       affiliation: currentStoryUnit.value.affiliation,
       text: "",
       characters: currentStoryUnit.value.characters || [],
+      script: "",
     },
     props.storyUnit.id
   );
@@ -109,6 +110,7 @@ watch(
               "",
             ] as unknown as SelectionGroup["condition"],
             content: [] as StoryEditorTextUnit[],
+            script: "",
           },
         ];
       }
@@ -134,6 +136,19 @@ watch(
       :storyUnit="currentStoryUnit"
       @value-change="handleValueChange"
     />
+
+    <details class="mt-4" close>
+      <summary>高级选项</summary>
+
+      <a-space class="mt-0" size="mini" direction="vertical" fill>
+        <h1>script</h1>
+        <a-input
+          v-model="currentStoryUnit.script"
+          allow-clear
+          placeholder="脚本命令"
+        />
+      </a-space>
+    </details>
 
     <template #title>
       <a-space>

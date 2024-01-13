@@ -109,6 +109,7 @@ export interface StoryEditorTextUnit {
     | "BG_Ash_Red" // 火星
     | "BG_Snow_L"; // 下雪
   commandArgs?: (number | string | boolean)[]; // 命令参数，可能有多个，比如 trigger 的参数有 flagName，可选参数有 value
+  script: string;
 }
 
 export interface SelectionGroup {
@@ -122,6 +123,7 @@ export interface SelectionGroup {
     string,
   ]; // 条件参数，可能有多个，例: ["flagName", "GreaterEqual", 1]
   content: StoryEditorTextUnit[]; // 当满足条件时显示的对话内容
+  script: string;
 }
 
 export interface SidebarStoryListUnit {

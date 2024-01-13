@@ -81,6 +81,7 @@ function handleAddNewUnit() {
     affiliation: "",
     text: "",
     characters: [],
+    script: "",
   });
 }
 
@@ -97,6 +98,7 @@ function handleAddNewUnitBelow() {
     affiliation: "",
     text: "",
     characters: [],
+    script: "",
   });
 }
 
@@ -186,6 +188,19 @@ function handleRequestDeleteSelectionGroup() {
         :uuid="props.uuid"
         :storyUnit="content"
       />
+
+      <details class="mt-4" close>
+        <summary>高级选项</summary>
+
+        <a-space class="mt-0" size="mini" direction="vertical" fill>
+          <h1>script</h1>
+          <a-input
+            v-model="currentSelectionGroup.script"
+            allow-clear
+            placeholder="脚本命令"
+          />
+        </a-space>
+      </details>
       <template #title>
         <a-space>
           <a-select
