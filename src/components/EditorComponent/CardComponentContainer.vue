@@ -52,6 +52,7 @@ const unitTypeComponentMap = [
 const props = defineProps<{
   uuid: string;
   storyUnit: StoryEditorTextUnit;
+  index: number;
 }>();
 
 const currentStoryUnit = ref(props.storyUnit);
@@ -152,6 +153,12 @@ watch(
     </details>
 
     <template #title>
+      <div
+        class="absolute left-[-3rem] bg-blue-600 text-white w-8 h-8 rounded-[100px] flex justify-center items-center"
+        color="blue"
+      >
+        {{ index }}
+      </div>
       <a-space>
         <a-select
           v-model="currentUnitType"
@@ -201,5 +208,6 @@ watch(
 
 .arco-card-header {
   cursor: grab;
+  overflow: visible;
 }
 </style>

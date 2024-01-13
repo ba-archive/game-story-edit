@@ -12,9 +12,10 @@
       ]"
     >
       <card-component-container
-        v-for="storyUnit in story?.content"
+        v-for="(storyUnit, index) in story?.content"
         :uuid="uuid"
         :story-unit="storyUnit"
+        :index="index"
         :key="storyUnit.id"
       />
       <a-divider />
@@ -148,7 +149,8 @@ function handleChangeUnitType(unitType: StoryEditorTextUnit["type"]) {
 
 .main-editor__container__main {
   grid-area: main;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: visible;
   $inner-width: 684px;
   padding: 24px calc((100% - #{$inner-width}) / 2);
   height: calc(100vh - var(--header-height, 32px) - var(--footer-height, 64px));
