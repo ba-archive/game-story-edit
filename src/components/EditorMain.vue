@@ -2,7 +2,15 @@
   <div class="main-editor__container">
     <editor-sidebar class="sidebar shadow-sm" mode="storyEditor" :uuid="uuid" />
 
-    <div class="main-editor__container__main flex flex-col gap-4">
+    <div
+      class="main-editor__container__main flex flex-col gap-4"
+      v-draggable="[
+        story?.content,
+        {
+          animation: 175,
+        },
+      ]"
+    >
       <card-component-container
         v-for="storyUnit in story?.content"
         :uuid="uuid"
@@ -52,13 +60,20 @@ import {
 } from "@/types/GameStoryEditor";
 import { getShanghaiDate } from "@/helper/date.ts";
 import { eventSystem } from "@/eventSystem/eventSystem.ts";
+import { vDraggable } from "vue-draggable-plus";
+import { Story } from "@/types/GameStoryEditor";
 
 const router = useRouter();
 const useStore = useGameStoryEditorStore();
 
 const uuid = computed(() => router.currentRoute.value.params.uuid as string);
 
-const story = computed(() => useStore.getStoryByUuid(uuid.value));
+const story = computed({
+  get: () => useStore.getStoryByUuid(uuid.value),
+  set: newValue => {
+    useStore.overwriteStory(newValue as Story);
+  },
+});
 
 watch(
   () => story.value,

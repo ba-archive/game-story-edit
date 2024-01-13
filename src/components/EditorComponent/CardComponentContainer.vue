@@ -182,4 +182,8 @@ watch(
     background: var(--color-bg-2);
   }
 }
+
+.arco-card-header {
+  cursor: grab;
+}
 </style>
