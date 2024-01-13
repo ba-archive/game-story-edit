@@ -55,6 +55,7 @@ import { useGameStoryEditorStore } from "@/store/store";
 import { useRouter } from "vue-router";
 import { computed, ref, watch } from "vue";
 import {
+  SelectionGroup,
   StoryEditorTextUnit,
   unitTypeWithoutOption,
 } from "@/types/GameStoryEditor";
@@ -94,6 +95,16 @@ function addNewStoryUnit() {
     id: getShanghaiDate().valueOf(),
     type: selectedUnitType.value,
     backgroundImage: "",
+    selectionGroups: [
+      {
+        id: getShanghaiDate().valueOf(),
+        type: "option",
+        text: "",
+        isConditional: false,
+        condition: [] as unknown as SelectionGroup["condition"],
+        content: [] as StoryEditorTextUnit[],
+      },
+    ],
     bgm: "",
     speaker: "",
     affiliation: "",
