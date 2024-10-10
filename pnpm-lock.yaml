@@ -10,10 +10,10 @@ dependencies:
     version: 1.4.5
   '@csstools/css-parser-algorithms':
     specifier: 2.5.0
-    version: 2.5.0(@csstools/css-tokenizer@2.2.3)
+    version: 2.5.0(@csstools/css-tokenizer@3.0.2)
   '@csstools/css-tokenizer':
-    specifier: 2.2.3
-    version: 2.2.3
+    specifier: 3.0.2
+    version: 3.0.2
   '@trivago/prettier-plugin-sort-imports':
     specifier: 4.3.0
     version: 4.3.0(prettier@3.2.4)
@@ -1522,9 +1522,23 @@ packages:
       '@csstools/css-tokenizer': 2.2.3
     dev: false
 
+  /@csstools/css-parser-algorithms@2.5.0(@csstools/css-tokenizer@3.0.2):
+    resolution: {integrity: sha512-abypo6m9re3clXA00eu5syw+oaPHbJTPapu9C4pzNsJ4hdZDzushT50Zhu+iIYXgEe1CxnRMn7ngsbV+MLrlpQ==}
+    engines: {node: ^14 || ^16 || >=18}
+    peerDependencies:
+      '@csstools/css-tokenizer': ^2.2.3
+    dependencies:
+      '@csstools/css-tokenizer': 3.0.2
+    dev: false
+
   /@csstools/css-tokenizer@2.2.3:
     resolution: {integrity: sha512-pp//EvZ9dUmGuGtG1p+n17gTHEOqu9jO+FiCUjNN3BDmyhdA2Jq9QsVeR7K8/2QCK17HSsioPlTW9ZkzoWb3Lg==}
     engines: {node: ^14 || ^16 || >=18}
+    dev: false
+
+  /@csstools/css-tokenizer@3.0.2:
+    resolution: {integrity: sha512-IuTRcD53WHsXPCZ6W7ubfGqReTJ9Ra0yRRFmXYP/Re8hFYYfoIYIK4080X5luslVLWimhIeFq0hj09urVMQzTw==}
+    engines: {node: '>=18'}
     dev: false
 
   /@csstools/media-query-list-parser@2.1.5(@csstools/css-parser-algorithms@2.5.0)(@csstools/css-tokenizer@2.2.3):
