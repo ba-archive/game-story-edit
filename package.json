@@ -24,7 +24,7 @@
   "dependencies": {
     "@arco-plugins/vite-vue": "1.4.5",
     "@csstools/css-parser-algorithms": "2.5.0",
-    "@csstools/css-tokenizer": "2.2.3",
+    "@csstools/css-tokenizer": "3.0.2",
     "@trivago/prettier-plugin-sort-imports": "4.3.0",
     "@typescript-eslint/eslint-plugin": "6.19.0",
     "@vitejs/plugin-legacy": "5.2.0",
