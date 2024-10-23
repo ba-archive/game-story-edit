@@ -9,8 +9,8 @@ dependencies:
     specifier: 1.4.5
     version: 1.4.5
   '@csstools/css-parser-algorithms':
-    specifier: 2.5.0
-    version: 2.5.0(@csstools/css-tokenizer@2.2.3)
+    specifier: 3.0.3
+    version: 3.0.3(@csstools/css-tokenizer@2.2.3)
   '@csstools/css-tokenizer':
     specifier: 2.2.3
     version: 2.2.3
@@ -1518,6 +1518,15 @@ packages:
     engines: {node: ^14 || ^16 || >=18}
     peerDependencies:
       '@csstools/css-tokenizer': ^2.2.3
+    dependencies:
+      '@csstools/css-tokenizer': 2.2.3
+    dev: false
+
+  /@csstools/css-parser-algorithms@3.0.3(@csstools/css-tokenizer@2.2.3):
+    resolution: {integrity: sha512-15WQTALDyxAwSgAvLt7BksAssiSrNNhTv4zM7qX9U6R7FtpNskVVakzWQlYODlwPwXhGpKPmB10LM943pxMe7w==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@csstools/css-tokenizer': ^3.0.2
     dependencies:
       '@csstools/css-tokenizer': 2.2.3
     dev: false
